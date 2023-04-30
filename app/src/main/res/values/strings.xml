@@ -1,3 +1,64 @@
 <resources>
     <string name="app_name">WorkiFY</string>
+    <string name="userName">Enter your name</string>
+    <string name="password">Enter password</string>
+    <string name="welcome">Welcome Back</string>
+    <string name="SignIn">Sign In</string>
+    <string name="noAccountText">Don\'t have an account?</string>
+    <string name="Signup">Sign up</string>
+    <string name="RegisterTitle">Create Account</string>
+    <string name="email">Enter your email</string>
+    <string name="district">Select your district</string>
+    <string name="description">Enter something about you</string>
+    <string name="haveAccountText">Already have an account?</string>
+    <string name="SettingsTitle">Settings</string>
+    <string name="WorkerName">My Name</string>
+    <string name="WorkerEmail">testEmail@gmail.com</string>
+    <string name="WorkerLocation">Kandy</string>
+    <string name="WorkerDescription">Lorem Ipsum  dummy text typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="CategoriesTitle">Categories</string>
+    <string name="Plumbing">Plumbing</string>
+    <string name="Electrical">Electrical</string>
+    <string name="DoneBtn">Done</string>
+    <string name="DeleteBtn">Delete Account</string>
+    <string name="HomeTitle">Home</string>
+    <string name="SearchHint">Search Workers..</string>
+    <string name="NearMe">Near me</string>
+    <string name="OrderBtn">Order</string>
+    <string name="ViewBtn">View</string>
+    <string name="rate">4.5</string>
+    <string name="RateOutOf">/5.0</string>
+    <string name="AllServicesTitle">All Services</string>
+    <string name="Painting">Painting</string>
+    <string name="ProfileTitle">Profile</string>
+    <string name="DescriptionBtn">Description</string>
+    <string name="ServicesBtn">Services</string>
+    <string name="ReviewsBtn">Reviews</string>
+    <string name="ReviewsTitle">Customer Reviews</string>
+    <string name="CustomerName">Customer Name</string>
+    <string name="ReviewDesc">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</string>
+    <string name="MyServices">My Services</string>
+    <string name="ServiceDesc">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been "</string>
+    <string name="Hr1000">RS1000/Hr</string>
+    <string name="Hr1500">RS1500/Hr</string>
+    <string name="furniture">Furniture Assembly</string>
+    <string name="Moving">Help Moving</string>
+    <string name="Cleaning">Home Cleaning</string>
+    <string name="ElectricalHelp">Electrical Help</string>
+    <string name="HomeCaption">Help when you need it, at your fingertips</string>
+    <string name="Gardening"><![CDATA[Yardwork & Gardening]]></string>
+    <string name="PlumbingRepairs">Plumbing Repairs</string>
+    <string name="Help">What do you need help with?</string>
+    <string name="EasyLife">Everyday life made easier</string>
+    <string name="EasyLifeDesc">When life gets busy, you don’t have to tackle it alone. Get time back for what you love without breaking the bank.</string>
+    <string name="EasyLifeLi1">Choose your Tasker by reviews, skills, and price</string>
+    <string name="EasyLifeLi2">Schedule when it works for you — as early as today</string>
+    <string name="EasyLifeLi3">Chat, pay, tip, and review all through one platform</string>
+    <string-array name="filter">
+        <item> Sort by </item>
+        <item> Average Ratings </item>
+        <item> Price Low To High </item>
+        <item> Price High To Low </item>
+    </string-array>
+    <string name="GetHelp">Get the help you need today</string>
 </resources>

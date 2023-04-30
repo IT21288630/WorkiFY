@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="regularLayoutMargin">20dp</dimen>
+    <dimen name="scrollMargin">50dp</dimen>
+    <dimen name="largeMargin">50dp</dimen>
+    <dimen name="mediumMargin">20dp</dimen>
+    <dimen name="smallMargin">10dp</dimen>
+    <dimen name="regularPadding">10dp</dimen>
+    <dimen name="mainHeader">40sp</dimen>
+    <dimen name="mediumHeader">30sp</dimen>
+    <dimen name="smallHeader">20sp</dimen>
+    <dimen name="largeText">20sp</dimen>
+    <dimen name="mediumText">18sp</dimen>
+    <dimen name="smallText">15sp</dimen>
+</resources>
