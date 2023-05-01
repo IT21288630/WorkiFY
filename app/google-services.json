@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "776713416384",
+    "project_id": "workify-8feef",
+    "storage_bucket": "workify-8feef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776713416384:android:57d093cfbc89912e458725",
+        "android_client_info": {
+          "package_name": "com.example.workify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776713416384-61omlafh2au2uq9gqgj3ghtjmdm274eg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1EhfBsT6hbKJyy1PCggQzDH29DNnjRIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776713416384-61omlafh2au2uq9gqgj3ghtjmdm274eg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
