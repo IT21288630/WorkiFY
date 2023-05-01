@@ -5,5 +5,6 @@ data class Worker(
     var email: String = "",
     var district: String = "",
     var password: String = "",
-    var description: String = ""
+    var description: String = "",
+    var categories : Array<Category>? = null
 )

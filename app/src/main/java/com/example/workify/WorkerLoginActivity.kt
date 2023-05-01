@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.example.workify.dataClasses.Worker
 import com.google.firebase.firestore.ktx.firestore
@@ -28,6 +29,12 @@ class WorkerLoginActivity : AppCompatActivity() {
         val etWEmail = findViewById<EditText>(R.id.etWEmail)
         val etWPassword = findViewById<EditText>(R.id.etWPassword)
         val workerLoginBtn = findViewById<ImageView>(R.id.workerLoginBtn)
+        val workerSignUp = findViewById<TextView>(R.id.workerSignUp)
+
+        workerSignUp.setOnClickListener {
+            val intent = Intent(this@WorkerLoginActivity, WorkerRegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         workerLoginBtn.setOnClickListener {
             val email = etWEmail.text.toString()
