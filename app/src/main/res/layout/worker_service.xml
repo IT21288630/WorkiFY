@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
+    android:elevation="3dp"
+    android:background="@drawable/service_background"
+    android:orientation="vertical">
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="0dp">
+
+    <ImageView
+        android:id="@+id/ivServiceImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"></ImageView>
+
+</androidx.cardview.widget.CardView>
+
+
+<TextView
+    android:id="@+id/tvServiceName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="10dp"
+    android:text="@string/PlumbingRepairs"
+    android:textColor="@color/textLight"
+    android:textSize="20sp"></TextView>
+
+<TextView
+    android:id="@+id/tvServiceDescription"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:text="@string/ServiceDesc"
+    android:textColor="@color/textLight" />
+
+<TextView
+    android:id="@+id/tvServiceRate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="10dp"
+    android:textColor="@color/textLight"
+    android:text="@string/Hr1000"/>
+
+</LinearLayout>

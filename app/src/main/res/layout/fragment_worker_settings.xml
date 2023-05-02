@@ -68,16 +68,16 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvWorkerNameSett"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/WorkerName"
                             android:textColor="@color/nameInProfile"
                             android:textSize="30dp"></TextView>
 
                         <TextView
+                            android:id="@+id/tvWorkerEmailSett"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/WorkerEmail"
                             android:textColor="@color/emailInProfile"
                             android:textSize="20dp"></TextView>
                     </LinearLayout>
@@ -97,6 +97,7 @@
                 android:textSize="30dp" />
 
             <EditText
+                android:id="@+id/etWSName"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="20dp"
@@ -112,6 +113,7 @@
             </EditText>
 
             <EditText
+                android:id="@+id/etWSDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_margin="20dp"
@@ -125,6 +127,7 @@
             </EditText>
 
             <EditText
+                android:id="@+id/etWSDescription"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginStart="20dp"
@@ -224,6 +227,7 @@
                 </Button>
 
                 <Button
+                    android:id="@+id/btnWorkerEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

@@ -44,7 +44,8 @@ class WorkerLoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun workerLogin(email: String, password: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun workerLogin(email: String, password: String) =
+        CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = workerCollectionRef
                     .whereEqualTo("email", email)
@@ -52,9 +53,13 @@ class WorkerLoginActivity : AppCompatActivity() {
                     .get()
                     .await()
 
-                if(querySnapshot.isEmpty){
+                if (querySnapshot.isEmpty) {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@WorkerLoginActivity, "Wrong credentials", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            this@WorkerLoginActivity,
+                            "Wrong credentials",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
 
@@ -62,7 +67,8 @@ class WorkerLoginActivity : AppCompatActivity() {
                     val worker = document.toObject<Worker>()
 
                     if (worker != null) {
-                        var intent = Intent(this@WorkerLoginActivity, HomeActivity::class.java)
+                        var intent = Intent(this@WorkerLoginActivity, WorkerActivity::class.java)
+                        intent.putExtra("curWorkerEmail", email)
                         startActivity(intent)
                     }
                 }

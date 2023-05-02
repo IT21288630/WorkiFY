@@ -10,22 +10,28 @@ class WorkerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_worker)
 
-        val workerBottomNavigationView = findViewById<BottomNavigationView>(R.id.workerBottomNavigationView)
+        val workerBottomNavigationView =
+            findViewById<BottomNavigationView>(R.id.workerBottomNavigationView)
         val mainWorkerProfileFragment = MainWorkerProfileFragment()
         val workerSettingsFragment = WorkerSettingsFragment()
 
-        setCurrentFragment(mainWorkerProfileFragment)
+        val mBundle = Bundle()
+        mBundle.putString("curWorkerEmail", intent.getStringExtra("curWorkerEmail"))
 
-        workerBottomNavigationView.setOnItemSelectedListener{
-            when(it.itemId){
-                R.id.miProfile->setCurrentFragment(mainWorkerProfileFragment)
-                R.id.miSettings->setCurrentFragment(workerSettingsFragment)
+        setCurrentFragment(mainWorkerProfileFragment, mBundle)
+
+        workerBottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.miProfile -> setCurrentFragment(mainWorkerProfileFragment, mBundle)
+                R.id.miSettings -> setCurrentFragment(workerSettingsFragment, mBundle)
             }
             true
         }
+
     }
 
-    private fun setCurrentFragment(fragment: Fragment){
+    private fun setCurrentFragment(fragment: Fragment, mBundle: Bundle) {
+        fragment.arguments = mBundle
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flWorkerFragment, fragment)
             commit()

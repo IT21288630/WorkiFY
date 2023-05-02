@@ -74,16 +74,16 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvWorkerName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/WorkerName"
                             android:textColor="@color/white"
                             android:textSize="30dp"></TextView>
 
                         <TextView
+                            android:id="@+id/tvWorkerEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/WorkerEmail"
                             android:textColor="@color/white"
                             android:textSize="20dp"></TextView>
 
@@ -94,11 +94,10 @@
                             android:paddingBottom="5dp">
 
                             <TextView
-                                android:id="@+id/rate"
+                                android:id="@+id/tvWorkerAvgRate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:text="@string/rate"
                                 android:textColor="@color/white"
                                 android:textSize="20dp">
 
@@ -109,7 +108,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_toRightOf="@id/rate"
+                                android:layout_toRightOf="@id/tvWorkerAvgRate"
                                 android:text="@string/RateOutOf"
                                 android:textColor="@color/white"
                                 android:textSize="20dp">
@@ -198,7 +197,8 @@
                 android:id="@+id/flWorkerProfileFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/fragment_worker_profile_description" />
+                tools:layout="@layout/fragment_worker_profile_description"
+                android:layout_marginBottom="20dp"/>
 
         </LinearLayout>
 
