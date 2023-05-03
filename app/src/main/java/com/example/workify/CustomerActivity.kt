@@ -5,14 +5,15 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class HomeSearchActivity : AppCompatActivity() {
+class CustomerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_search)
+        setContentView(R.layout.activity_customer)
 
         val customerBottomNavigationView =
             findViewById<BottomNavigationView>(R.id.customerBottomNavigationView)
         val homeFragment = HomeFragment()
+        val homeSearchFragment = HomeSearchFragment()
 
         val mBundle = Bundle()
         //mBundle.putString("curWorkerEmail", intent.getStringExtra("curWorkerEmail"))
@@ -27,7 +28,7 @@ class HomeSearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCurrentFragment(fragment: Fragment, mBundle: Bundle) {
+    fun setCurrentFragment(fragment: Fragment, mBundle: Bundle) {
         fragment.arguments = mBundle
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flCustomerFragment, fragment)

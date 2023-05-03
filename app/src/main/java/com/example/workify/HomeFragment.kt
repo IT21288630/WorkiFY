@@ -5,14 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.workify.adapters.CustomerReviewsForWorkerProfileAdapter
+import com.example.workify.adapters.ServicesForHomeAdapter
 import com.example.workify.adapters.WorkerServicesAdapter
 import com.example.workify.dataClasses.Category
-import com.example.workify.dataClasses.CustomerReview
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,53 +22,36 @@ import kotlinx.coroutines.withContext
 /**
  * A simple [Fragment] subclass.
  */
-class WorkerProfileServicesFragment : Fragment(R.layout.fragment_worker_profile_services) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private val workerCatCollectionRef = Firebase.firestore.collection("worker_cat")
     private val categoryCollectionRef = Firebase.firestore.collection("categories")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bundle = arguments
-        val email = bundle!!.getString("curWorkerEmail")
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rvWorkerServices)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rvHomeServices)
 
         var services = mutableListOf<Category>()
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val querySnapshot = workerCatCollectionRef
-                    .whereEqualTo("wEmail", email)
+                val querySnapshot = categoryCollectionRef
                     .get()
                     .await()
 
                 for (document in querySnapshot.documents) {
-                    val name = document.get("cName").toString()
-                    val price = document.get("hrRate").toString()
-                    val description = document.get("wDesc").toString()
+                    val name = document.get("name").toString()
+                    val image = document.get("image").toString()
 
-                    val querySnapshot2 = categoryCollectionRef
-                        .whereEqualTo("name", name)
-                        .get()
-                        .await()
-
-                    var image = ""
-
-                    for (doc in querySnapshot2.documents) {
-                        image = doc.get("image").toString()
-                    }
-
-                    val category = Category(name, description, image, price)
+                    val category = Category(name, "", image, "")
 
                     services.add(category)
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = WorkerServicesAdapter(services, view.context)
+                    val adapter = ServicesForHomeAdapter(services, view.context)
                     recyclerView.adapter = adapter
-                    recyclerView.layoutManager = LinearLayoutManager(view.context)
+                    recyclerView.layoutManager = GridLayoutManager(view.context, 3)
                     adapter.setData(services, view.context)
                 }
 
@@ -79,5 +61,4 @@ class WorkerProfileServicesFragment : Fragment(R.layout.fragment_worker_profile_
             }
         }
     }
-
 }

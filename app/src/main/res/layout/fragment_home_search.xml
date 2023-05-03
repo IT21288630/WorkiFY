@@ -194,12 +194,6 @@
     </ScrollView>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/customerBottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:menu="@menu/customer_bottom_nav_menu"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
