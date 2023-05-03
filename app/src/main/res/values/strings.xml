@@ -63,4 +63,20 @@
     <string name="GetHelp">Get the help you need today</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="WorkerDetails">Your Worker</string>
+    <string name="ViewProfile">View Profile</string>
+    <string name="MyDetails">Order Details</string>
+    <string name="NewOrdersHead">Pending Orders</string>
+    <string name="NewOrdersID">Order Id</string>
+    <string name="NewTitleDesc">Title</string>
+    <string name="NewViewBtn">View Details</string>
+    <string name="NewAcceptBtn">Accept</string>
+    <string name="NewRejectBtn">Reject</string>
+
+    <string-array name="status">
+        <item> Pending </item>
+        <item> Accepted </item>
+        <item> Rejected </item>
+        <item> Completed </item>
+    </string-array>
 </resources>

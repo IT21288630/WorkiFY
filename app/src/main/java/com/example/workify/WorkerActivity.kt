@@ -15,6 +15,8 @@ class WorkerActivity : AppCompatActivity() {
         val mainWorkerProfileFragment = MainWorkerProfileFragment()
         val workerSettingsFragment = WorkerSettingsFragment()
 
+        val workerOrdersFragment = WorkerOrdersFragment()
+
         val mBundle = Bundle()
         mBundle.putString("curWorkerEmail", intent.getStringExtra("curWorkerEmail"))
 
@@ -24,6 +26,7 @@ class WorkerActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.miProfile -> setCurrentFragment(mainWorkerProfileFragment, mBundle)
                 R.id.miSettings -> setCurrentFragment(workerSettingsFragment, mBundle)
+                R.id.miNotification-> setCurrentFragment(workerOrdersFragment, mBundle)
             }
             true
         }
