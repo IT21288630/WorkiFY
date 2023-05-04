@@ -1,10 +1,7 @@
-package com.example.workify
+package com.example.workify.fragments
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import com.example.workify.R
 
 /**
  * A simple [Fragment] subclass.

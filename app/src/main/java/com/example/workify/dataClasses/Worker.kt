@@ -7,5 +7,6 @@ data class Worker(
     var password: String = "",
     var description: String = "",
     var avgRating: Double? = 0.0,
-    var categories : Array<Category>? = null
+    var categories : Array<Category>? = null,
+    var price: String? = null
 )

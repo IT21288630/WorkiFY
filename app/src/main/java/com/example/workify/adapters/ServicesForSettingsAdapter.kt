@@ -1,25 +1,16 @@
 package com.example.workify.adapters
 
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
-import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.*
 import com.example.workify.dataClasses.Category
-import com.example.workify.dataClasses.CustomerReview
-import com.example.workify.dataClasses.Worker
+import com.example.workify.fragments.WorkerSettingsFragment
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -102,6 +93,13 @@ class ServicesForSettingsAdapter(
             }
 
         }
+
+
+        holder.ivSettingsServiceEditBtn.setOnClickListener {
+            var workerSettingsFragment = WorkerSettingsFragment()
+
+            //workerSettingsFragment.displayEditServiceDialog(data[position].name, data[position].description, data[position].price)
+        }
     }
 
     fun setData(data: List<Category>, context: Context) {
@@ -109,4 +107,5 @@ class ServicesForSettingsAdapter(
         this.context = context
         notifyDataSetChanged()
     }
+
 }

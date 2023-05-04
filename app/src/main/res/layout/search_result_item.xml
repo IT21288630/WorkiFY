@@ -30,7 +30,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvWorkerNameSearch"
+            android:id="@+id/tvSearchWName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/WorkerName"
@@ -44,7 +44,7 @@
             android:paddingBottom="5dp">
 
             <TextView
-                android:id="@+id/tvWorkerAvgRateSearch"
+                android:id="@+id/tvSearchWRate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rate"
@@ -66,7 +66,8 @@
                 android:layout_height="15dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
-                app:srcCompat="@drawable/icons8_star_filled_50" />
+                android:layout_toRightOf="@id/rate5"
+                app:srcCompat="@drawable/star" />
 
         </LinearLayout>
 
@@ -82,6 +83,7 @@
     android:orientation="horizontal">
 
     <Button
+        android:id="@+id/orderWorkerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"

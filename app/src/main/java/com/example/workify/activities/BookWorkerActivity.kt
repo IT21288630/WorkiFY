@@ -1,12 +1,12 @@
-package com.example.workify
+package com.example.workify.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.workify.R
 import com.example.workify.dataClasses.Order
-import com.example.workify.dataClasses.Worker
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -49,7 +49,7 @@ class BookWorkerActivity : AppCompatActivity() {
             val cusDesc = etDescription.text.toString()
             val cusDate = etDate.text.toString()
 
-            val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,null,null,"Pending")
+            val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,null,intent.getStringExtra("workerEmail"),"Pending")
             orderWorker(order)
 
         }
