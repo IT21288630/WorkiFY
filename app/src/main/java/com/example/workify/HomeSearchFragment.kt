@@ -11,4 +11,12 @@ import android.view.ViewGroup
  */
 class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val bundle = arguments
+        val curService = bundle!!.getString("curService")
+
+        println("current service = $curService")
+    }
 }

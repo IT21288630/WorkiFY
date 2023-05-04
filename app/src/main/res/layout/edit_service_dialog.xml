@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit service details"
+        android:textColor="@color/darkTitle"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/tvEditServiceName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Electrical"
+        android:textColor="@color/darkTitle"
+        android:layout_marginTop="20dp"
+        android:textSize="25dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit your description"
+                android:textColor="@color/textLight"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/etEditServiceDesc"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/round_corners"
+                android:drawableStart="@drawable/description"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:inputType="text|textMultiLine"
+                android:padding="10dp"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit your hourly rate"
+                android:textColor="@color/textLight"
+                android:layout_marginTop="30dp"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/etEditServiceHrRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_corners"
+                android:drawableStart="@drawable/description"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:padding="10dp"></EditText>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

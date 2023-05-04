@@ -102,6 +102,13 @@ class ServicesForSettingsAdapter(
             }
 
         }
+
+
+        holder.ivSettingsServiceEditBtn.setOnClickListener {
+            var workerSettingsFragment = WorkerSettingsFragment()
+
+            //workerSettingsFragment.displayEditServiceDialog(data[position].name, data[position].description, data[position].price)
+        }
     }
 
     fun setData(data: List<Category>, context: Context) {
@@ -109,4 +116,5 @@ class ServicesForSettingsAdapter(
         this.context = context
         notifyDataSetChanged()
     }
+
 }

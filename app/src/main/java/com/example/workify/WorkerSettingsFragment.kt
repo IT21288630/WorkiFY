@@ -221,4 +221,40 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
         val alertDialog = builder.create()
         alertDialog.show()
     }
+
+    fun displayEditServiceDialog(context: Context, service: String, description: String, rate: String) {
+        println("Im here")
+
+        // Create a new instance of AlertDialog.Builder
+        val builder = AlertDialog.Builder(context)
+        val inflator = layoutInflater
+        val view: View = inflator.inflate(R.layout.edit_service_dialog, null)
+
+        // Set the view
+        builder.setView(view)
+
+        val tvEditServiceName = view.findViewById<TextView>(R.id.tvEditServiceName)
+        val etEditServiceDesc = view.findViewById<EditText>(R.id.etEditServiceDesc)
+        val etEditServiceHrRate = view.findViewById<EditText>(R.id.etEditServiceHrRate)
+
+        tvEditServiceName.text = service
+        etEditServiceDesc.setText(description)
+        etEditServiceHrRate.setText(rate)
+
+        // Set the positive button action
+        builder.setPositiveButton("ADD") { dialog, which ->
+
+
+        }
+
+        // Set the negative button action
+        builder.setNegativeButton("Cancel") { dialog, which ->
+            dialog.cancel()
+        }
+
+        // Create and show the alert dialog
+        val alertDialog = builder.create()
+        alertDialog.show()
+    }
+
 }

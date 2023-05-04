@@ -13,11 +13,12 @@ class HomeSearchActivity : AppCompatActivity() {
         val customerBottomNavigationView =
             findViewById<BottomNavigationView>(R.id.customerBottomNavigationView)
         val homeFragment = HomeFragment()
+        val homeSearchFragment = HomeSearchFragment()
 
         val mBundle = Bundle()
-        //mBundle.putString("curWorkerEmail", intent.getStringExtra("curWorkerEmail"))
+        mBundle.putString("curService", intent.getStringExtra("service"))
 
-        setCurrentFragment(homeFragment, mBundle)
+        setCurrentFragment(homeSearchFragment, mBundle)
 
         customerBottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
@@ -30,7 +31,7 @@ class HomeSearchActivity : AppCompatActivity() {
     private fun setCurrentFragment(fragment: Fragment, mBundle: Bundle) {
         fragment.arguments = mBundle
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flCustomerFragment, fragment)
+            replace(R.id.flHomeSearchFragment, fragment)
             commit()
         }
     }

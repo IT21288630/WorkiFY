@@ -47,11 +47,9 @@ class ServicesForHomeAdapter(
         holder.tvServiceHome.text = data[position].name
 
         holder.ivServiceHome.setOnClickListener {
-            var ca = CustomerActivity()
-            val homeSearchFragment = HomeSearchFragment()
-            val mBundle = Bundle()
-
-            ca.setCurrentFragment(homeSearchFragment, mBundle)
+            var intent = Intent(context, HomeSearchActivity::class.java)
+            intent.putExtra("service", data[position].name)
+            context.startActivity(intent)
         }
     }
 
