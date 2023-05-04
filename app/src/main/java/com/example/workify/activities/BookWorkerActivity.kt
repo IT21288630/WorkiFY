@@ -48,8 +48,9 @@ class BookWorkerActivity : AppCompatActivity() {
             val cusTitle = etTitle.text.toString()
             val cusDesc = etDescription.text.toString()
             val cusDate = etDate.text.toString()
+            val orderID = getRandomString()
 
-            val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,null,intent.getStringExtra("workerEmail"),"Pending")
+            val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,null,intent.getStringExtra("workerEmail"),"Pending",orderID)
             orderWorker(order)
 
         }
@@ -68,5 +69,13 @@ class BookWorkerActivity : AppCompatActivity() {
                 Toast.makeText(this@BookWorkerActivity, e.message, Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+
+    fun getRandomString() : String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..5)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 }

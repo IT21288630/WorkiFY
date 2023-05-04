@@ -86,11 +86,12 @@
     <string name="add_a_service">Add a Service</string>
     <string name="select_a_service">Select a service</string>
     <string name="enter_your_description">Enter your description</string>
+    <string name="workerCompletebtn">Complete</string>
 
     <string-array name="status">
         <item> Pending </item>
         <item> Accepted </item>
-        <item> Rejected </item>
         <item> Completed </item>
+
     </string-array>
 </resources>

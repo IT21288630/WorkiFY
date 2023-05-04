@@ -1,12 +1,11 @@
 package com.example.workify.fragments
 
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
-import com.example.workify.adapters.WorkerAcceptedAdapter
 import com.example.workify.adapters.WorkerCompletedAdapter
 import com.example.workify.dataClasses.Order
 import com.google.firebase.firestore.ktx.firestore
@@ -21,7 +20,7 @@ import kotlinx.coroutines.withContext
 /**
  * A simple [Fragment] subclass.
  */
-class WorkerAcceptedOrdersFragment : Fragment(R.layout.fragment_worker_accepted_orders) {
+class WorkerCompletedOrdersFragment : Fragment(R.layout.fragment_worker_completed_orders) {
 
     private val orderCollectionRef = Firebase.firestore.collection("orders")
 
@@ -33,13 +32,13 @@ class WorkerAcceptedOrdersFragment : Fragment(R.layout.fragment_worker_accepted_
 
         var orders = mutableListOf<Order>()
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rvWorkerAccepted)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rvWorkerCompleted)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = orderCollectionRef
                     .whereEqualTo("workEmail", email)
-                    .whereEqualTo("orderStatus", "Accepted")
+                    .whereEqualTo("orderStatus", "Completed")
                     .get()
                     .await()
 
@@ -54,7 +53,7 @@ class WorkerAcceptedOrdersFragment : Fragment(R.layout.fragment_worker_accepted_
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = WorkerAcceptedAdapter(orders, view.context)
+                    val adapter = WorkerCompletedAdapter(orders, view.context)
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view.context)
                     adapter.setData(orders, view.context)

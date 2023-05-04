@@ -69,26 +69,17 @@ android:orientation="horizontal">
 
         <Button
 
-            android:id="@+id/AcceptbtnWorker"
+            android:id="@+id/CompletebtnWorker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="5dp"
             android:backgroundTint="#4CAF50"
-            android:text="@string/NewAcceptBtn"
+            android:text="@string/workerCompletebtn"
             android:textSize="10sp"
             app:cornerRadius="30dp"></Button>
 
-        <Button
-            android:id="@+id/RejectbtnWorker"
-            android:layout_width="87dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#FF1100"
-            android:text="@string/NewRejectBtn"
-            android:textSize="10sp"
-            app:cornerRadius="30dp"></Button>
+
     </LinearLayout>
 </LinearLayout>
 

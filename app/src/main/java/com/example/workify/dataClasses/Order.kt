@@ -12,4 +12,5 @@ class Order (
     var cusEmail: String? = null,
     var workEmail: String? = null,
     var orderStatus: String? = null,
+    var orderID: String? = null,
 )

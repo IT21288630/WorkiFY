@@ -21,29 +21,27 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-class WorkerPendingAdapter(
+class WorkerAcceptedAdapter(
     private var data: List<Order>,
     private var context: Context
 ) :
-    RecyclerView.Adapter<WorkerPendingAdapter.ViewHolder>() {
+    RecyclerView.Adapter<WorkerAcceptedAdapter.ViewHolder>() {
 
     private val orderCollectionRef = Firebase.firestore.collection("orders")
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val workerOrderTitle: TextView
-        val AcceptbtnWorker: Button
-        val RejectbtnWorker: Button
+        val CompletebtnWorker: Button
 
         init {
             workerOrderTitle = view.findViewById(R.id.workerOrderTitle)
-            AcceptbtnWorker = view.findViewById(R.id.AcceptbtnWorker)
-            RejectbtnWorker = view.findViewById(R.id.RejectbtnWorker)
+            CompletebtnWorker = view.findViewById(R.id.CompletebtnWorker)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.worker_pending_order, parent, false)
+            .inflate(R.layout.worker_accepted_order, parent, false)
 
         return ViewHolder(view)
     }
@@ -55,30 +53,7 @@ class WorkerPendingAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.workerOrderTitle.text = data[position].cusTitle
 
-
-
-
-        holder.RejectbtnWorker.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    val querySnapshot = orderCollectionRef
-                        .whereEqualTo("orderID",data[position].orderID)
-                        .get()
-                        .await()
-
-                    for (document in querySnapshot.documents) {
-                        orderCollectionRef.document(document.id).delete()
-                    }
-
-
-                } catch (e: Exception) {
-                    println(e.message)
-                }
-            }
-
-        }
-
-        holder.AcceptbtnWorker.setOnClickListener {
+        holder.CompletebtnWorker.setOnClickListener {
 
             CoroutineScope(Dispatchers.IO).launch {
                 try {
@@ -99,7 +74,7 @@ class WorkerPendingAdapter(
                     for (document in querySnapshot.documents) {
                         println(document.get("orderID"))
                         orderCollectionRef.document(document.id)
-                            .update("orderStatus", "Accepted")
+                            .update("orderStatus", "Completed")
 
                     }
 

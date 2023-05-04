@@ -11,52 +11,39 @@ import com.example.workify.R
 import com.example.workify.dataClasses.Category
 import com.example.workify.dataClasses.CustomerReview
 import com.example.workify.dataClasses.Order
+import com.example.workify.dataClasses.Worker
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
-class CustomerPendingAdapter(
+class WorkerCompletedAdapter(
     private var data: List<Order>,
     private var context: Context
 ) :
-    RecyclerView.Adapter<CustomerPendingAdapter.ViewHolder>() {
+    RecyclerView.Adapter<WorkerCompletedAdapter.ViewHolder>() {
 
     private val orderCollectionRef = Firebase.firestore.collection("orders")
 
-    private lateinit var mListener: onItemClickListener
-    interface onItemClickListener{
-        fun onItemClick(position: Int)
-    }
-
-    fun setOnItemClickListener(clickListener: onItemClickListener){
-        mListener = clickListener
-    }
-    inner class ViewHolder(view: android.view.View,clickListener: onItemClickListener) : RecyclerView.ViewHolder(view) {
-        val customerOrderTitle: TextView
+    inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
+        val workerOrderTitle: TextView
 
 
         init {
-            view.setOnClickListener{
-                clickListener.onItemClick(adapterPosition)
-            }
-        }
-
-        init {
-            customerOrderTitle = view.findViewById(R.id.workerOrderTitle)
+            workerOrderTitle = view.findViewById(R.id.workerOrderTitle)
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.worker_pending_order, parent, false)
+            .inflate(R.layout.worker_completed_order, parent, false)
 
-        return ViewHolder(view,mListener)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -64,8 +51,7 @@ class CustomerPendingAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.customerOrderTitle.text = data[position].cusTitle
-
+        holder.workerOrderTitle.text = data[position].cusTitle
 
     }
 

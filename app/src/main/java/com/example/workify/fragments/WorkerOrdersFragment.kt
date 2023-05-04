@@ -19,6 +19,7 @@ class WorkerOrdersFragment : Fragment(R.layout.fragment_worker_orders) {
         var workerOrderSelect: Spinner = view.findViewById(R.id.WorkerOrderSelect)
         val workerPendingOrdersFragment = WorkerPendingOrdersFragment()
         val workerAcceptedOrdersFragment = WorkerAcceptedOrdersFragment()
+        val workerCompletedOrdersFragment = WorkerCompletedOrdersFragment()
 
         val bundle = arguments
         val email = bundle!!.getString("curWorkerEmail")
@@ -55,6 +56,13 @@ class WorkerOrdersFragment : Fragment(R.layout.fragment_worker_orders) {
                         workerAcceptedOrdersFragment.arguments = mBundle
                         childFragmentManager.beginTransaction().apply {
                             replace(R.id.flWorkerOrders, workerAcceptedOrdersFragment)
+                            commit()
+                        }
+                    }
+                    2 -> {
+                        workerCompletedOrdersFragment.arguments = mBundle
+                        childFragmentManager.beginTransaction().apply {
+                            replace(R.id.flWorkerOrders, workerCompletedOrdersFragment)
                             commit()
                         }
                     }
