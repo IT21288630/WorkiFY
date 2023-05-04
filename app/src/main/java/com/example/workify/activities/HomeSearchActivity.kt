@@ -1,8 +1,11 @@
-package com.example.workify
+package com.example.workify.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.workify.fragments.HomeSearchFragment
+import com.example.workify.R
+import com.example.workify.fragments.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeSearchActivity : AppCompatActivity() {

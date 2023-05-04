@@ -1,4 +1,4 @@
-package com.example.workify
+package com.example.workify.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -6,10 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.workify.adapters.ServicesForHomeAdapter
+import com.example.workify.R
 import com.example.workify.adapters.ServicesForSettingsAdapter
 import com.example.workify.dataClasses.Category
 import com.example.workify.dataClasses.Worker

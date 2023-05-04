@@ -1,8 +1,12 @@
-package com.example.workify
+package com.example.workify.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.workify.R
+import com.example.workify.fragments.WorkerOrdersFragment
+import com.example.workify.fragments.MainWorkerProfileFragment
+import com.example.workify.fragments.WorkerSettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class WorkerActivity : AppCompatActivity() {
@@ -26,7 +30,7 @@ class WorkerActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.miProfile -> setCurrentFragment(mainWorkerProfileFragment, mBundle)
                 R.id.miSettings -> setCurrentFragment(workerSettingsFragment, mBundle)
-                R.id.miNotification-> setCurrentFragment(workerOrdersFragment, mBundle)
+                R.id.miNotification -> setCurrentFragment(workerOrdersFragment, mBundle)
             }
             true
         }

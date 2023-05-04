@@ -1,10 +1,11 @@
-package com.example.workify
+package com.example.workify.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.workify.R
 import com.example.workify.adapters.CustomerReviewsForWorkerProfileAdapter
 import com.example.workify.dataClasses.CustomerReview
 import com.google.firebase.firestore.ktx.firestore

@@ -1,16 +1,14 @@
-package com.example.workify
+package com.example.workify.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.workify.R
 import com.example.workify.adapters.CustomerReviewsForWorkerProfileAdapter
-import com.example.workify.adapters.WorkerServicesAdapter
-import com.example.workify.dataClasses.Category
-import com.example.workify.dataClasses.CustomerReview
+import com.example.workify.adapters.HomeSearchAdapter
+import com.example.workify.dataClasses.Worker
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -23,61 +21,55 @@ import kotlinx.coroutines.withContext
 /**
  * A simple [Fragment] subclass.
  */
-class WorkerProfileServicesFragment : Fragment(R.layout.fragment_worker_profile_services) {
+class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
 
     private val workerCatCollectionRef = Firebase.firestore.collection("worker_cat")
-    private val categoryCollectionRef = Firebase.firestore.collection("categories")
+    private val workerCollectionRef = Firebase.firestore.collection("workers")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val bundle = arguments
-        val email = bundle!!.getString("curWorkerEmail")
+        val curService = bundle!!.getString("curService")
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rvWorkerServices)
-
-        var services = mutableListOf<Category>()
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rvHomeSearchResult)
+        var workers = mutableListOf<Worker>()
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = workerCatCollectionRef
-                    .whereEqualTo("wEmail", email)
+                    .whereEqualTo("cName", curService)
                     .get()
                     .await()
 
                 for (document in querySnapshot.documents) {
-                    val name = document.get("cName").toString()
-                    val price = document.get("hrRate").toString()
-                    val description = document.get("wDesc").toString()
-
-                    val querySnapshot2 = categoryCollectionRef
-                        .whereEqualTo("name", name)
+                    val querySnapshot2 = workerCollectionRef
+                        .whereEqualTo("email", document.get("wEmail"))
                         .get()
                         .await()
 
-                    var image = ""
+                    for (document2 in querySnapshot2.documents){
+                        val worker = document2.toObject<Worker>()
+                        worker?.price = document.get("hrRate") as String?
 
-                    for (doc in querySnapshot2.documents) {
-                        image = doc.get("image").toString()
+                        if (worker != null) {
+                            workers.add(worker)
+                        }
                     }
-
-                    val category = Category(name, description, image, price)
-
-                    services.add(category)
                 }
+
+                println(workers)
 
                 withContext(Dispatchers.Main) {
-                    val adapter = WorkerServicesAdapter(services, view.context)
+                    val adapter = HomeSearchAdapter(workers, view.context)
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view.context)
-                    adapter.setData(services, view.context)
+                    adapter.setData(workers, view.context)
                 }
-
 
             } catch (e: Exception) {
                 println(e.message)
             }
         }
     }
-
 }

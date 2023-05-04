@@ -20,28 +20,28 @@
             android:name=".ViewOrderDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".BookWorkerActivity"
+            android:name=".activities.BookWorkerActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerActivity"
+            android:name=".activities.CustomerActivity"
             android:exported="false" />
         <activity
-            android:name=".WorkerActivity"
+            android:name=".activities.WorkerActivity"
             android:exported="false" />
         <activity
-            android:name=".WorkerLoginActivity"
+            android:name=".activities.WorkerLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".WorkerRegisterActivity"
+            android:name=".activities.WorkerRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeSearchActivity"
+            android:name=".activities.HomeSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

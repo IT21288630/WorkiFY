@@ -2,17 +2,14 @@ package com.example.workify.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.*
+import com.example.workify.activities.HomeSearchActivity
 import com.example.workify.dataClasses.Category
-import com.example.workify.dataClasses.CustomerReview
 import com.squareup.picasso.Picasso
 
 class ServicesForHomeAdapter(
