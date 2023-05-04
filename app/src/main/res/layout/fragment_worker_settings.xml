@@ -153,57 +153,27 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:text="@string/CategoriesTitle"
+                    android:text="@string/services"
                     android:textColor="@color/secondaryTitle"
                     android:textSize="20dp">
 
                 </TextView>
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/ivAddServiceBtn"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="25dp"
                     app:srcCompat="@drawable/icons8_plus_67" />
             </LinearLayout>
 
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSettingsServices"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:backgroundTint="@color/secondaryBtnColor"
-                    android:drawableEnd="@drawable/close"
-                    android:text="@string/Plumbing"
-                    android:textColor="@color/textLight"
-                    android:textSize="10sp"
-                    app:cornerRadius="30dp">
-
-                </Button>
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:backgroundTint="@color/secondaryBtnColor"
-                    android:drawableEnd="@drawable/close"
-                    android:text="@string/Electrical"
-                    android:textColor="@color/textLight"
-                    android:textSize="10sp"
-                    app:cornerRadius="30dp">
-
-                </Button>
-
-
-            </LinearLayout>
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"

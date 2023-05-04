@@ -60,6 +60,16 @@
         <item> Price Low To High </item>
         <item> Price High To Low </item>
     </string-array>
+
+    <string-array name="services">
+        <item> Electrical Help </item>
+        <item> Plumbing Repairs </item>
+        <item> Home Cleaning </item>
+        <item> Yardwork &amp; Gardening </item>
+        <item> Help Moving </item>
+        <item> Furniture Assembly </item>
+    </string-array>
+
     <string name="GetHelp">Get the help you need today</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -72,6 +82,10 @@
     <string name="NewViewBtn">View Details</string>
     <string name="NewAcceptBtn">Accept</string>
     <string name="NewRejectBtn">Reject</string>
+    <string name="services">Services</string>
+    <string name="add_a_service">Add a Service</string>
+    <string name="select_a_service">Select a service</string>
+    <string name="enter_your_description">Enter your description</string>
 
     <string-array name="status">
         <item> Pending </item>
