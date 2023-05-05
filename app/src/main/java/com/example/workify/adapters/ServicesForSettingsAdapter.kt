@@ -2,9 +2,10 @@ package com.example.workify.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.*
 import com.example.workify.dataClasses.Category
@@ -96,9 +97,35 @@ class ServicesForSettingsAdapter(
 
 
         holder.ivSettingsServiceEditBtn.setOnClickListener {
-            var workerSettingsFragment = WorkerSettingsFragment()
+            val builder = AlertDialog.Builder(context)
+            val inflator: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view: View = inflator.inflate(R.layout.edit_service_dialog, null)
 
-            //workerSettingsFragment.displayEditServiceDialog(data[position].name, data[position].description, data[position].price)
+            // Set the view
+            builder.setView(view)
+
+            val tvEditServiceName = view.findViewById<TextView>(R.id.tvEditServiceName)
+            val etEditServiceDesc = view.findViewById<EditText>(R.id.etEditServiceDesc)
+            val etEditServiceHrRate = view.findViewById<EditText>(R.id.etEditServiceHrRate)
+
+            tvEditServiceName.text = data[position].name
+            etEditServiceDesc.setText(data[position].description)
+            etEditServiceHrRate.setText(data[position].price)
+
+            // Set the positive button action
+            builder.setPositiveButton("ADD") { dialog, which ->
+
+
+            }
+
+            // Set the negative button action
+            builder.setNegativeButton("Cancel") { dialog, which ->
+                dialog.cancel()
+            }
+
+            // Create and show the alert dialog
+            val alertDialog = builder.create()
+            alertDialog.show()
         }
     }
 
