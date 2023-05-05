@@ -75,6 +75,21 @@
             </EditText>
 
             <EditText
+                android:id="@+id/etWPhone"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/round_corners"
+                android:drawableStart="@drawable/phone"
+                android:drawablePadding="10dp"
+                android:hint="@string/enter_your_phone_number"
+                android:padding="10dp">
+
+            </EditText>
+
+            <EditText
                 android:id="@+id/etWDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -85,19 +100,6 @@
                 android:drawableStart="@drawable/location"
                 android:drawablePadding="10dp"
                 android:hint="@string/district"
-                android:padding="10dp"></EditText>
-
-            <EditText
-                android:id="@+id/etWPassword"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/round_corners"
-                android:drawableStart="@drawable/password"
-                android:drawablePadding="10dp"
-                android:hint="@string/password"
                 android:padding="10dp"></EditText>
 
             <EditText
@@ -114,6 +116,21 @@
                 android:hint="@string/description"
                 android:inputType="text|textMultiLine"
                 android:padding="10dp"></EditText>
+
+            <EditText
+                android:id="@+id/etWPassword"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/round_corners"
+                android:drawableStart="@drawable/password"
+                android:drawablePadding="10dp"
+                android:hint="@string/password"
+                android:padding="10dp"></EditText>
+
+
 
             <RelativeLayout
                 android:layout_width="match_parent"

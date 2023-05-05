@@ -87,6 +87,7 @@
     <string name="select_a_service">Select a service</string>
     <string name="enter_your_description">Enter your description</string>
     <string name="workerCompletebtn">Complete</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
 
     <string-array name="status">
         <item> Pending </item>

@@ -28,6 +28,7 @@ class WorkerRegisterActivity : AppCompatActivity() {
         val etWDistrict = findViewById<EditText>(R.id.etWDistrict)
         val etWPassword = findViewById<EditText>(R.id.etWPassword)
         val etWDescription = findViewById<EditText>(R.id.etWDescription)
+        val etWPhone = findViewById<EditText>(R.id.etWPhone)
         val workerRegBtn = findViewById<ImageView>(R.id.workerRegBtn)
 
         workerRegBtn.setOnClickListener {
@@ -36,8 +37,45 @@ class WorkerRegisterActivity : AppCompatActivity() {
             val district = etWDistrict.text.toString()
             val password = etWPassword.text.toString()
             val description = etWDescription.text.toString()
+            val phone = etWPhone.text.toString()
 
-            val worker = Worker(name, email, district, password, description)
+            if(name.isEmpty()){
+                etWName.error = "Please Enter Your Name"
+                return@setOnClickListener
+            }
+            if(email.isEmpty()){
+                etWEmail.error = "Please Enter Your Email"
+                return@setOnClickListener
+            }
+            if(phone.isEmpty()){
+                etWPhone.error = "Please Enter Your PhoneNumber"
+                return@setOnClickListener
+            }
+            if(phone.length != 10){
+                etWPhone.error = "Please Enter a Valid PhoneNumber"
+                return@setOnClickListener
+            }
+            try {
+                var tempPhone = phone.toInt()
+            }catch (e: Exception){
+                etWPhone.error = "Please Enter a Valid PhoneNumber"
+                return@setOnClickListener
+            }
+            if(district.isEmpty()){
+                etWDistrict.error = "Please Enter Your District"
+                return@setOnClickListener
+            }
+            if(description.isEmpty()){
+                etWDescription.error = "Please Enter Your Description"
+                return@setOnClickListener
+            }
+            if(password.isEmpty()){
+                etWPassword.error = "Please Enter a Password"
+                return@setOnClickListener
+            }
+
+
+            val worker = Worker(name, email, district, password, description, 0.0, null, phone)
 
             saveWorker(worker)
         }
