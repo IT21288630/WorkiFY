@@ -2,7 +2,6 @@ package com.example.workify.dataClasses
 
 class Order (
 
-
     var cusName: String? = null,
     var cusAddress: String? = null,
     var cusPhone: String? = null,

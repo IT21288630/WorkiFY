@@ -1,6 +1,7 @@
 package com.example.workify.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
@@ -8,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
+import com.example.workify.activities.HomeSearchActivity
+import com.example.workify.activities.ViewOrderDetailsActivity
 import com.example.workify.dataClasses.Category
 import com.example.workify.dataClasses.CustomerReview
 import com.example.workify.dataClasses.Order
@@ -33,11 +36,13 @@ class WorkerPendingAdapter(
         val workerOrderTitle: TextView
         val AcceptbtnWorker: Button
         val RejectbtnWorker: Button
+        val ViewOrderDetails:Button
 
         init {
             workerOrderTitle = view.findViewById(R.id.workerOrderTitle)
             AcceptbtnWorker = view.findViewById(R.id.AcceptbtnWorker)
             RejectbtnWorker = view.findViewById(R.id.RejectbtnWorker)
+            ViewOrderDetails = view.findViewById(R.id.ViewOrderDetails)
         }
     }
 
@@ -55,7 +60,12 @@ class WorkerPendingAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.workerOrderTitle.text = data[position].cusTitle
 
-
+        holder.ViewOrderDetails.setOnClickListener {
+            var intent = Intent(context, ViewOrderDetailsActivity::class.java)
+            intent.putExtra("orderID", data[position].orderID)
+            intent.putExtra("workEmail", data[position].workEmail)
+            context.startActivity(intent)
+        }
 
 
         holder.RejectbtnWorker.setOnClickListener {

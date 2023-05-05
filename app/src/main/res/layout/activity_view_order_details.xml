@@ -47,6 +47,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/OrderDetailsId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
@@ -57,7 +58,8 @@
 
                     </TextView>
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/OrderDetailsName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -68,7 +70,7 @@
                         android:drawablePadding="10dp"
 
                         android:padding="10dp"
-                        android:textSize="20dp"></EditText>
+                        android:textSize="20dp"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -80,7 +82,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/OrderDetailsAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -91,7 +94,7 @@
                         android:drawablePadding="10dp"
 
                         android:padding="10dp"
-                        android:textSize="20dp"></EditText>
+                        android:textSize="20dp"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,7 +106,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/OrderDetailsPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -114,7 +118,7 @@
                         android:drawablePadding="10dp"
 
                         android:padding="10dp"
-                        android:textSize="20dp"></EditText>
+                        android:textSize="20dp"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -135,7 +139,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
-                        <EditText
+                        <TextView
+                            android:id="@+id/OrderDetailsTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
@@ -146,10 +151,11 @@
                             android:drawablePadding="10dp"
 
                             android:padding="10dp"
-                            android:textSize="20dp"></EditText>
+                            android:textSize="20dp"></TextView>
                     </LinearLayout>
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/OrderDetailsDesc"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginTop="10dp"
@@ -160,9 +166,10 @@
                         android:drawableStart="@drawable/description"
                         android:drawablePadding="10dp"
                         android:gravity="center_vertical"
+                        android:textSize="20dp"
 
                         android:inputType="text|textMultiLine"
-                        android:padding="10dp"></EditText>
+                        android:padding="10dp"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -174,7 +181,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/OrderDetailsDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -186,11 +194,11 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
 
-                        android:textSize="20dp"></EditText>
+                        android:textSize="20dp"></TextView>
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/OrderConfirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
