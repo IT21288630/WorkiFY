@@ -1,6 +1,7 @@
 package com.example.workify.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
+import com.example.workify.activities.WorkerLoginActivity
 import com.example.workify.adapters.ServicesForSettingsAdapter
 import com.example.workify.dataClasses.Category
 import com.example.workify.dataClasses.Worker
@@ -42,11 +44,32 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
         val btnWorkerEdit = view.findViewById<Button>(R.id.btnWorkerEdit)
         val ivAddServiceBtn = view.findViewById<ImageView>(R.id.ivAddServiceBtn)
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvSettingsServices)
+        val workerDeleteProfileBtn = view.findViewById<Button>(R.id.workerDeleteProfileBtn)
 
         ivAddServiceBtn.setOnClickListener {
             if (email != null) {
                 displayDialog(view.context, email, recyclerView)
             }
+
+
+        }
+
+        workerDeleteProfileBtn.setOnClickListener {
+            val builder = AlertDialog.Builder(view.context)
+            builder.setTitle("Confirm!")
+            builder.setMessage("Do you really want to delete your account?")
+
+            builder.setPositiveButton("Delete") { dialog, which ->
+                if (email != null) {
+                    deleteProfile(email, view.context)
+                }
+            }
+
+            builder.setNegativeButton("Cancel") { dialog, which ->
+                dialog.cancel()
+            }
+
+            builder.show()
         }
 
         btnWorkerEdit.setOnClickListener {
@@ -222,7 +245,7 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
         }
 
         // Set the positive button action
-        builder.setPositiveButton("ADD") { dialog, which ->
+        builder.setPositiveButton("Add") { dialog, which ->
 
             val map = mutableMapOf<String, Any>()
             val description = etAddServiceDesc.text.toString()
@@ -261,44 +284,27 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
         alertDialog.show()
     }
 
-    fun displayEditServiceDialog(
-        context: Context,
-        service: String,
-        description: String,
-        rate: String
-    ) {
-        println("Im here")
+    private fun deleteProfile(email: String, context: Context){
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
 
-        // Create a new instance of AlertDialog.Builder
-        val builder = AlertDialog.Builder(context)
-        val inflator = layoutInflater
-        val view: View = inflator.inflate(R.layout.edit_service_dialog, null)
+                for (document in querySnapshot.documents) {
+                    workerCollectionRef.document(document.id).delete()
+                }
 
-        // Set the view
-        builder.setView(view)
+                withContext(Dispatchers.Main) {
+                    var intent = Intent(context, WorkerLoginActivity::class.java)
+                    startActivity(intent)
+                }
 
-        val tvEditServiceName = view.findViewById<TextView>(R.id.tvEditServiceName)
-        val etEditServiceDesc = view.findViewById<EditText>(R.id.etEditServiceDesc)
-        val etEditServiceHrRate = view.findViewById<EditText>(R.id.etEditServiceHrRate)
-
-        tvEditServiceName.text = service
-        etEditServiceDesc.setText(description)
-        etEditServiceHrRate.setText(rate)
-
-        // Set the positive button action
-        builder.setPositiveButton("ADD") { dialog, which ->
-
-
+            } catch (e: Exception) {
+                println(e.message)
+            }
         }
-
-        // Set the negative button action
-        builder.setNegativeButton("Cancel") { dialog, which ->
-            dialog.cancel()
-        }
-
-        // Create and show the alert dialog
-        val alertDialog = builder.create()
-        alertDialog.show()
     }
 
 }

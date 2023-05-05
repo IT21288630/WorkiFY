@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.*
 import com.example.workify.dataClasses.Category
+import com.example.workify.dataClasses.Worker
 import com.example.workify.fragments.WorkerSettingsFragment
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -113,8 +116,49 @@ class ServicesForSettingsAdapter(
             etEditServiceHrRate.setText(data[position].price)
 
             // Set the positive button action
-            builder.setPositiveButton("ADD") { dialog, which ->
+            builder.setPositiveButton("EDIT") { dialog, which ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val querySnapshot = workerCatCollectionRef
+                            .whereEqualTo("cName", data[position].name)
+                            .whereEqualTo("wEmail", email)
+                            .get()
+                            .await()
 
+                        for (document in querySnapshot.documents) {
+                            val worker = document.toObject<Worker>()
+
+                            if (etEditServiceDesc.text.toString().isNotEmpty()) workerCatCollectionRef.document(document.id)
+                                .update("wDesc", etEditServiceDesc.text.toString())
+                            if (etEditServiceHrRate.text.toString().isNotEmpty()) workerCatCollectionRef.document(document.id)
+                                .update("hrRate", etEditServiceHrRate.text.toString())
+                        }
+
+                        val categories = mutableListOf<Category>()
+
+                        val querySnapshot2 = workerCatCollectionRef
+                            .whereEqualTo("wEmail", email)
+                            .get()
+                            .await()
+
+                        for (document in querySnapshot2.documents) {
+                            val name = document.get("cName").toString()
+                            val rate = document.get("hrRate").toString()
+                            val description = document.get("wDesc").toString()
+
+                            val category = Category(name, description, "", rate)
+
+                            categories.add(category)
+                        }
+
+                        withContext(Dispatchers.Main) {
+                            setData(categories, context)
+                        }
+
+                    } catch (e: Exception) {
+                        println(e.message)
+                    }
+                }
 
             }
 
