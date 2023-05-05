@@ -16,7 +16,6 @@ class CustomerActivity : AppCompatActivity() {
         val customerBottomNavigationView =
             findViewById<BottomNavigationView>(R.id.customerBottomNavigationView)
         val homeFragment = HomeFragment()
-        val homeSearchFragment = HomeSearchFragment()
 
         val mBundle = Bundle()
         //mBundle.putString("curWorkerEmail", intent.getStringExtra("curWorkerEmail"))
