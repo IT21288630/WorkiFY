@@ -40,30 +40,46 @@ class WorkerLoginActivity : AppCompatActivity() {
             val email = etWEmail.text.toString()
             val password = etWPassword.text.toString()
 
-            workerLogin(email, password)
+            if(email.isEmpty()){
+                etWEmail.error = "Please Enter Your Email"
+                return@setOnClickListener
+            }
+            if(password.isEmpty()){
+                etWPassword.error = "Please Enter Your Password"
+                return@setOnClickListener
+            }
+
+            workerLogin(email, password, etWEmail, etWPassword)
         }
     }
 
-    private fun workerLogin(email: String, password: String) =
+    private fun workerLogin(email: String, password: String, etWEmail: EditText, etWPassword: EditText) =
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = workerCollectionRef
                     .whereEqualTo("email", email)
-                    .whereEqualTo("password", password)
                     .get()
                     .await()
 
                 if (querySnapshot.isEmpty) {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            this@WorkerLoginActivity,
-                            "Wrong credentials",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        etWEmail.error = "Wrong Email"
                     }
                 }
 
-                for (document in querySnapshot.documents) {
+                val querySnapshot2 = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .whereEqualTo("password", password)
+                    .get()
+                    .await()
+
+                if (querySnapshot2.isEmpty) {
+                    withContext(Dispatchers.Main) {
+                        etWPassword.error = "Wrong Password"
+                    }
+                }
+
+                for (document in querySnapshot2.documents) {
                     val worker = document.toObject<Worker>()
 
                     if (worker != null) {

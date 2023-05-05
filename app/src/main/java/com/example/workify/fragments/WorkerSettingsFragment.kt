@@ -36,10 +36,10 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
 
         val tvWorkerName = view.findViewById<TextView>(R.id.tvWorkerNameSett)
         val tvWorkerEmail = view.findViewById<TextView>(R.id.tvWorkerEmailSett)
-        val etWSName = view.findViewById<TextView>(R.id.etWSName)
-        val etWSDistrict = view.findViewById<TextView>(R.id.etWSDistrict)
-        val etWSDescription = view.findViewById<TextView>(R.id.etWSDescription)
-        val btnWorkerEdit = view.findViewById<TextView>(R.id.btnWorkerEdit)
+        val etWSName = view.findViewById<EditText>(R.id.etWSName)
+        val etWSDistrict = view.findViewById<EditText>(R.id.etWSDistrict)
+        val etWSDescription = view.findViewById<EditText>(R.id.etWSDescription)
+        val btnWorkerEdit = view.findViewById<Button>(R.id.btnWorkerEdit)
         val ivAddServiceBtn = view.findViewById<ImageView>(R.id.ivAddServiceBtn)
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvSettingsServices)
 
@@ -55,18 +55,42 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
                     email,
                     etWSName.text.toString(),
                     etWSDescription.text.toString(),
-                    etWSDistrict.text.toString()
+                    etWSDistrict.text.toString(),
+                    tvWorkerName,
+                    tvWorkerEmail,
+                    etWSName,
+                    etWSDistrict,
+                    etWSDescription
                 )
             }
         }
 
-        workerCollectionRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-            firebaseFirestoreException?.let {
-                println(it.message)
-                return@addSnapshotListener
-            }
-            querySnapshot?.let {
-                for (document in it) {
+        if (email != null) {
+            getDetails(email, tvWorkerName, tvWorkerEmail, etWSName, etWSDistrict, etWSDescription)
+        }
+
+
+        if (email != null) {
+            getServices(recyclerView, view.context, email)
+        }
+    }
+
+    private fun getDetails(
+        email: String,
+        tvWorkerName: TextView,
+        tvWorkerEmail: TextView,
+        etWSName: EditText,
+        etWSDistrict: EditText,
+        etWSDescription: EditText
+    ) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
+
+                for (document in querySnapshot.documents) {
                     val worker = document.toObject<Worker>()
 
                     if (worker != null) {
@@ -78,16 +102,23 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
 
                     }
                 }
+            } catch (e: Exception) {
+                println(e.message)
             }
-        }
-
-
-        if (email != null) {
-            getServices(recyclerView, view.context, email)
         }
     }
 
-    private fun updateWorker(email: String, name: String, description: String, district: String) =
+    private fun updateWorker(
+        email: String,
+        name: String,
+        description: String,
+        district: String,
+        tvWorkerName: TextView,
+        tvWorkerEmail: TextView,
+        etWSName: EditText,
+        etWSDistrict: EditText,
+        etWSDescription: EditText
+    ) =
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = workerCollectionRef
@@ -106,12 +137,21 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
                         .update("district", district)
                 }
 
+                getDetails(
+                    email,
+                    tvWorkerName,
+                    tvWorkerEmail,
+                    etWSName,
+                    etWSDistrict,
+                    etWSDescription
+                )
+
             } catch (e: Exception) {
                 println(e.message)
             }
         }
 
-    private fun getServices(recyclerView: RecyclerView, context: Context, email: String){
+    private fun getServices(recyclerView: RecyclerView, context: Context, email: String) {
         val categories = mutableListOf<Category>()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -221,7 +261,12 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
         alertDialog.show()
     }
 
-    fun displayEditServiceDialog(context: Context, service: String, description: String, rate: String) {
+    fun displayEditServiceDialog(
+        context: Context,
+        service: String,
+        description: String,
+        rate: String
+    ) {
         println("Im here")
 
         // Create a new instance of AlertDialog.Builder
