@@ -69,7 +69,7 @@ class CustomerLoginActivity2 : AppCompatActivity() {
 
                     if (worker != null) {
                         var intent = Intent(this@CustomerLoginActivity2, CustomerActivity::class.java)
-                        intent.putExtra("curWorkerEmail", email)
+                        intent.putExtra("curCusEmail", email)
                         startActivity(intent)
                     }
                 }

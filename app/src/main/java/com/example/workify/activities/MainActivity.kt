@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var intent = Intent(this, CustomerLoginActivity2::class.java)
+        var intent = Intent(this, StartActivity::class.java)
         startActivity(intent)
     }
 }
