@@ -27,21 +27,53 @@ class ViewCusOrderDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_view_cus_order_details)
 
         var etOrderID = findViewById<TextView>(R.id.CusOrderDetailsId)
-        var etName = findViewById<TextView>(R.id.CusOrderDetailsName)
-        var etAddress = findViewById<TextView>(R.id.CusOrderDetailsAddress)
-        var etPhone = findViewById<TextView>(R.id.CusOrderDetailsPhone)
-        var etTitle = findViewById<TextView>(R.id.CusOrderDetailsTitle)
-        var etDesc = findViewById<TextView>(R.id.CusOrderDetailsDesc)
-        var etDate = findViewById<TextView>(R.id.CusOrderDetailsDate)
-
+        var etName = findViewById<EditText>(R.id.CusOrderDetailsName)
+        var etAddress = findViewById<EditText>(R.id.CusOrderDetailsAddress)
+        var etPhone = findViewById<EditText>(R.id.CusOrderDetailsPhone)
+        var etTitle = findViewById<EditText>(R.id.CusOrderDetailsTitle)
+        var etDesc = findViewById<EditText>(R.id.CusOrderDetailsDesc)
+        var etDate = findViewById<EditText>(R.id.CusOrderDetailsDate)
+        var etEditbtn = findViewById<Button>(R.id.CusOrderUpdate)
 
         var curOrderID = intent.getStringExtra("orderID")
-        var curWorkerEmail = intent.getStringExtra("workEmail")
+        var curCustomerEmail = intent.getStringExtra("cusEmail")
 
+
+        etEditbtn.setOnClickListener {
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val querySnapshot = orderCollectionRef
+                        .whereEqualTo("cusEmail", curCustomerEmail)
+                        .whereEqualTo("orderID", curOrderID)
+                        .get()
+                        .await()
+
+                    for (document in querySnapshot.documents) {
+                        orderCollectionRef.document(document.id)
+                            .update("cusName", etName.text.toString())
+                        orderCollectionRef.document(document.id)
+                            .update("cusAddress", etAddress.text.toString())
+                        orderCollectionRef.document(document.id)
+                            .update("cusPhone", etPhone.text.toString())
+                        orderCollectionRef.document(document.id)
+                            .update("cusTitle", etTitle.text.toString())
+                        orderCollectionRef.document(document.id)
+                            .update("cusDec", etDesc.text.toString())
+                        orderCollectionRef.document(document.id)
+                            .update("cusDate", etDate.text.toString())
+                    }
+
+
+                } catch (e: Exception) {
+                    println(e.message)
+                }
+            }
+        }
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = orderCollectionRef
-                    .whereEqualTo("workEmail", curWorkerEmail)
+                    .whereEqualTo("cusEmail", curCustomerEmail)
                     .whereEqualTo("orderID", curOrderID)
                     .get()
                     .await()
@@ -58,13 +90,16 @@ class ViewCusOrderDetailsActivity : AppCompatActivity() {
                     println(order?.cusName)
                     println(order?.cusName)
 
-                    etOrderID.text = order?.orderID
-                    etName.text = order?.cusName
-                    etAddress.text = order?.cusAddress
-                    etPhone.text = order?.cusPhone
-                    etTitle.text = order?.cusTitle
-                    etDesc.text = order?.cusDesc
-                    etDate.text = order?.cusDate
+                    withContext(Dispatchers.Main){
+                        etOrderID.text = order?.orderID
+                        etName.setText(order?.cusName)
+                        etAddress.setText(order?.cusAddress)
+                        etPhone.setText(order?.cusPhone)
+                        etTitle.setText(order?.cusTitle)
+                        etDesc.setText(order?.cusDesc)
+                        etDate.setText(order?.cusDesc)
+                    }
+
                 }
 
             } catch (e: Exception) {

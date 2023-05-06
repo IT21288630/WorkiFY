@@ -6,6 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
+import com.example.workify.adapters.CustomerPendingAdapter
 import com.example.workify.adapters.WorkerPendingAdapter
 import com.example.workify.dataClasses.Order
 import com.google.firebase.firestore.ktx.firestore
@@ -38,7 +39,7 @@ class CustomerPendingOrdersFragment : Fragment(R.layout.fragment_customer_pendin
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = orderCollectionRef
-                    .whereEqualTo("workEmail", email)
+                    .whereEqualTo("cusEmail", email)
                     .whereEqualTo("orderStatus", "Pending")
                     .get()
                     .await()
@@ -56,7 +57,7 @@ class CustomerPendingOrdersFragment : Fragment(R.layout.fragment_customer_pendin
 
 
                 withContext(Dispatchers.Main) {
-                    val adapter = WorkerPendingAdapter(orders, view.context)
+                    val adapter = CustomerPendingAdapter(orders, view.context)
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view.context)
                     adapter.setData(orders, view.context)

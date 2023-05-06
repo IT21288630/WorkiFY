@@ -64,7 +64,7 @@ class CustomerPendingAdapter(
         holder.CustomerViewDetailsbtn.setOnClickListener {
             var intent = Intent(context, ViewCusOrderDetailsActivity::class.java)
             intent.putExtra("orderID", data[position].orderID)
-            intent.putExtra("workEmail", data[position].workEmail)
+            intent.putExtra("cusEmail", data[position].cusEmail)
             context.startActivity(intent)
         }
 

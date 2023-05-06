@@ -41,7 +41,7 @@ class CustomerCompletedAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.worker_completed_order, parent, false)
+            .inflate(R.layout.customer_completed_order, parent, false)
 
         return ViewHolder(view)
     }
