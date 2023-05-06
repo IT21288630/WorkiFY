@@ -29,7 +29,7 @@ class CustomerPendingOrdersFragment : Fragment(R.layout.fragment_customer_pendin
         super.onViewCreated(view, savedInstanceState)
 
         val bundle = arguments
-        val email = bundle!!.getString("curWorkerEmail")
+        val email = bundle!!.getString("curCusEmail")
 
         var orders = mutableListOf<Order>()
 

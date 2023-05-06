@@ -22,10 +22,10 @@ class CustomerOrdersFragment : Fragment(R.layout.fragment_customer_orders) {
         val customerCompletedOrdersFragment = CustomerCompletedOrdersFragment()
 
         val bundle = arguments
-        val email = bundle!!.getString("curWorkerEmail")
+        val email = bundle!!.getString("curCusEmail")
 
         val mBundle = Bundle()
-        mBundle.putString("curWorkerEmail", bundle!!.getString("curWorkerEmail"))
+        mBundle.putString("curCustomerEmail", bundle!!.getString("curCustomerEmail"))
 
 
 
