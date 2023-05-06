@@ -31,7 +31,7 @@ class CustomerOrdersFragment : Fragment(R.layout.fragment_customer_orders) {
 
         customerPendingOrdersFragment.arguments = mBundle
         childFragmentManager.beginTransaction().apply {
-            replace(R.id.flWorkerOrders, customerPendingOrdersFragment)
+            replace(R.id.flCusOrders, customerPendingOrdersFragment)
             commit()
         }
 
@@ -47,7 +47,7 @@ class CustomerOrdersFragment : Fragment(R.layout.fragment_customer_orders) {
                     0 -> {
                         customerPendingOrdersFragment.arguments = mBundle
                         childFragmentManager.beginTransaction().apply {
-                            replace(R.id.flWorkerOrders, customerPendingOrdersFragment)
+                            replace(R.id.flCusOrders, customerPendingOrdersFragment)
                             commit()
                         }
                     }
@@ -55,7 +55,7 @@ class CustomerOrdersFragment : Fragment(R.layout.fragment_customer_orders) {
                     1 -> {
                         customerAcceptedOrdersFragment.arguments = mBundle
                         childFragmentManager.beginTransaction().apply {
-                            replace(R.id.flWorkerOrders, customerAcceptedOrdersFragment)
+                            replace(R.id.flCusOrders, customerAcceptedOrdersFragment)
                             commit()
                         }
                     }
@@ -63,7 +63,7 @@ class CustomerOrdersFragment : Fragment(R.layout.fragment_customer_orders) {
                     2 -> {
                         customerCompletedOrdersFragment.arguments = mBundle
                         childFragmentManager.beginTransaction().apply {
-                            replace(R.id.flWorkerOrders,customerCompletedOrdersFragment)
+                            replace(R.id.flCusOrders,customerCompletedOrdersFragment)
                             commit()
                         }
                     }
