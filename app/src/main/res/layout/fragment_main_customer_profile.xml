@@ -121,9 +121,13 @@
     android:textColor="#6672FF"
     android:textSize="30dp">            </TextView>
 
+
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:id="@+id/name"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -148,6 +152,16 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/round_corners"
+        android:drawableStart="@drawable/location"
+        android:drawablePadding="10dp"
+        android:hint="@string/WorkerLocation"
+        android:padding="10dp"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
@@ -157,15 +171,9 @@
         android:hint="@string/ppassword"
         android:padding="10dp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/round_corners"
-        android:drawableStart="@drawable/location"
-        android:drawablePadding="10dp"
-        android:hint="@string/WorkerLocation"
-        android:padding="10dp"></EditText>
+
+
+
 </LinearLayout>
 
 </ScrollView>

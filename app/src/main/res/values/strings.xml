@@ -13,6 +13,10 @@
     <string name="anyjob">Any Job</string>
     <string name="anytime">Any Time</string>
     <string name="anywhere">Any Where</string>
+    <string name="EditDetailsBtn">Edit Details</string>
+    <string name="SaveDetailsBtn">Save Details</string>
+    <string name="EditTitle">Edit Details</string>
+    <string name="favouritesTitle">Favourites</string>
     <string name="RegisterTitle">Create Account</string>
     <string name="email">Enter your email</string>
     <string name="district">Select your district</string>

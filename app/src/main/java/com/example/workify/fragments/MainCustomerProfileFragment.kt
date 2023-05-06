@@ -2,59 +2,129 @@ package com.example.workify.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.workify.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.workify.dataClasses.Worker
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass.
- * Use the [MainCustomerProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
  */
-class MainCustomerProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_profile) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+   // private val workerCollectionRef = Firebase.firestore.collection("customers")
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val workerProfileDescriptionFragment = WorkerProfileDescriptionFragment()
+        val customerProfileFavFragment = CustomerProfileFavFragment()
+        val customerOrdersFragment = CustomerOrdersFragment()
+
+        val bundle = arguments
+        val email = bundle!!.getString("curCusEmail")
+
+        val mBundle = Bundle()
+        mBundle.putString("curCusEmail", bundle!!.getString("curCusEmail"))
+
+        workerProfileDescriptionFragment.arguments = mBundle
+        childFragmentManager.beginTransaction().apply {
+            replace(R.id.flWorkerProfileFragment, workerProfileDescriptionFragment)
+            commit()
         }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_customer_profile, container, false)
-    }
+        val btnDescription = view.findViewById<TextView>(R.id.btnDescription)
+        val btnServices = view.findViewById<TextView>(R.id.btnServices)
+        val btnReviews = view.findViewById<TextView>(R.id.btnReviews)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainCustomerProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainCustomerProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        btnDescription.setOnClickListener {
+            btnDescription.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+            btnServices.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            btnReviews.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+
+            btnDescription.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+            btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+
+            workerProfileDescriptionFragment.arguments = mBundle
+            childFragmentManager.beginTransaction().apply {
+                replace(R.id.flWorkerProfileFragment, workerProfileDescriptionFragment)
+                addToBackStack(null)
+                commit()
             }
-    }
+        }
+
+        btnServices.setOnClickListener {
+            btnDescription.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            btnServices.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+            btnReviews.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+
+            btnDescription.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+            btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+
+            customerProfileFavFragment.arguments = mBundle
+            childFragmentManager.beginTransaction().apply {
+                replace(R.id.flWorkerProfileFragment, customerProfileFavFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
+
+        btnReviews.setOnClickListener {
+            btnDescription.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            btnServices.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            btnReviews.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+
+            btnDescription.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+
+            workerProfileReviewsFragment.arguments = mBundle
+            childFragmentManager.beginTransaction().apply {
+                replace(R.id.flWorkerProfileFragment, workerProfileReviewsFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
+
+        val tvWorkerName = view.findViewById<TextView>(R.id.tvWorkerName)
+        val tvWorkerEmail = view.findViewById<TextView>(R.id.tvWorkerEmail)
+        val tvWorkerAvgRate = view.findViewById<TextView>(R.id.tvWorkerAvgRate)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
+
+                for (document in querySnapshot.documents) {
+                    val worker = document.toObject<Worker>()
+
+                    if (worker != null) {
+                        withContext(Dispatchers.Main){
+                            tvWorkerName.text = worker.name
+                            tvWorkerEmail.text = worker.email
+                            tvWorkerAvgRate.text = worker.avgRating.toString()
+                        }
+                    }
+                }
+
+            } catch (e: Exception) {
+                println(e.message)
+            }
+        }
+
+    }*/
+
 }
