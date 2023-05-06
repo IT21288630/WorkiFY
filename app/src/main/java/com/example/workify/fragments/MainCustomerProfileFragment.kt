@@ -22,12 +22,11 @@ import kotlinx.coroutines.withContext
  */
 class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_profile) {
 
-   // private val workerCollectionRef = Firebase.firestore.collection("customers")
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val workerProfileDescriptionFragment = WorkerProfileDescriptionFragment()
         val customerProfileFavFragment = CustomerProfileFavFragment()
+        val customerDetailsFragment = CustomerDetailsFragment()
         val customerOrdersFragment = CustomerOrdersFragment()
 
         val bundle = arguments
@@ -36,95 +35,43 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
         val mBundle = Bundle()
         mBundle.putString("curCusEmail", bundle!!.getString("curCusEmail"))
 
-        workerProfileDescriptionFragment.arguments = mBundle
+        customerDetailsFragment.arguments = mBundle
         childFragmentManager.beginTransaction().apply {
-            replace(R.id.flWorkerProfileFragment, workerProfileDescriptionFragment)
+            replace(R.id.flSubCusProfileFragment, customerDetailsFragment)
             commit()
         }
 
-        val btnDescription = view.findViewById<TextView>(R.id.btnDescription)
-        val btnServices = view.findViewById<TextView>(R.id.btnServices)
-        val btnReviews = view.findViewById<TextView>(R.id.btnReviews)
+        val cusDetailsBtn = view.findViewById<Button>(R.id.cusDetailsBtn)
+        val cusFavBtn = view.findViewById<Button>(R.id.cusFavBtn)
+        val cusRevBtn = view.findViewById<Button>(R.id.cusRevBtn)
+        val cusOrdersBtn = view.findViewById<Button>(R.id.cusOrdersBtn)
 
-        btnDescription.setOnClickListener {
-            btnDescription.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
-            btnServices.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
-            btnReviews.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
-
-            btnDescription.setTextColor(ContextCompat.getColor(view.context, R.color.white))
-            btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
-            btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
-
-            workerProfileDescriptionFragment.arguments = mBundle
+       cusDetailsBtn.setOnClickListener {
+           customerDetailsFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
-                replace(R.id.flWorkerProfileFragment, workerProfileDescriptionFragment)
+                replace(R.id.flSubCusProfileFragment, customerDetailsFragment)
                 addToBackStack(null)
                 commit()
             }
         }
 
-        btnServices.setOnClickListener {
-            btnDescription.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
-            btnServices.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
-            btnReviews.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+       cusFavBtn.setOnClickListener {
+           customerProfileFavFragment.arguments = mBundle
+            childFragmentManager.beginTransaction().apply {
+                replace(R.id.flSubCusProfileFragment, customerProfileFavFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
 
-            btnDescription.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
-            btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.white))
-            btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
-
+        cusOrdersBtn.setOnClickListener {
             customerProfileFavFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
-                replace(R.id.flWorkerProfileFragment, customerProfileFavFragment)
+                replace(R.id.flSubCusProfileFragment, customerProfileFavFragment)
                 addToBackStack(null)
                 commit()
             }
         }
-
-        btnReviews.setOnClickListener {
-            btnDescription.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
-            btnServices.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
-            btnReviews.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
-
-            btnDescription.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
-            btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
-            btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.white))
-
-            workerProfileReviewsFragment.arguments = mBundle
-            childFragmentManager.beginTransaction().apply {
-                replace(R.id.flWorkerProfileFragment, workerProfileReviewsFragment)
-                addToBackStack(null)
-                commit()
-            }
-        }
-
-        val tvWorkerName = view.findViewById<TextView>(R.id.tvWorkerName)
-        val tvWorkerEmail = view.findViewById<TextView>(R.id.tvWorkerEmail)
-        val tvWorkerAvgRate = view.findViewById<TextView>(R.id.tvWorkerAvgRate)
-
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val querySnapshot = workerCollectionRef
-                    .whereEqualTo("email", email)
-                    .get()
-                    .await()
-
-                for (document in querySnapshot.documents) {
-                    val worker = document.toObject<Worker>()
-
-                    if (worker != null) {
-                        withContext(Dispatchers.Main){
-                            tvWorkerName.text = worker.name
-                            tvWorkerEmail.text = worker.email
-                            tvWorkerAvgRate.text = worker.avgRating.toString()
-                        }
-                    }
-                }
-
-            } catch (e: Exception) {
-                println(e.message)
-            }
-        }
-
-    }*/
+    }
 
 }

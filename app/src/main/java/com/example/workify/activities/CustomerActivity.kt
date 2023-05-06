@@ -21,13 +21,13 @@ class CustomerActivity : AppCompatActivity() {
         val mBundle = Bundle()
         mBundle.putString("curCusEmail", intent.getStringExtra("curCusEmail"))
 
-        setCurrentFragment(mainCustomerProfileFragment, mBundle)
+        setCurrentFragment(homeFragment, mBundle)
 
         customerBottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.miHomeCus -> setCurrentFragment(homeFragment, mBundle)
-                R.id.miProfile -> setCurrentFragment(mainCustomerProfileFragment, mBundle)
-                R.id.miSettings -> setCurrentFragment(customerSettingsFragment, mBundle)
+                R.id.miProfileCus -> setCurrentFragment(mainCustomerProfileFragment, mBundle)
+                R.id.miSettingsCus -> setCurrentFragment(customerSettingsFragment, mBundle)
             }
             true
         }
