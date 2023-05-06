@@ -7,7 +7,7 @@ import com.example.workify.dataClasses.Order
 class IT21256646TestClass {
 
     companion object {
-        private fun DetailsEmptyCheck(
+        public fun DetailsEmptyCheck(
             CusName: String,
             CusAddress: String,
             CusPhone: String,
@@ -40,26 +40,26 @@ class IT21256646TestClass {
             return "Success"
         }
 
+        fun ValideData(CusPhone: String): Boolean{
 
+            if (CusPhone.length != 10){
+                return false
+            }
+
+            try {
+                CusPhone.toInt()
+            }catch (e: java.lang.Exception){
+                return false
+            }
+
+            val order = Order(CusPhone)
+
+            return true
+        }
 
     }
 
-    fun ValideData(CusPhone: String): Boolean{
 
-        if (CusPhone.length != 10){
-            return false
-        }
-
-        try {
-            CusPhone.toInt()
-        }catch (e: java.lang.Exception){
-            return false
-        }
-
-        val order = Order(CusPhone)
-
-        return true
-    }
 
 
 }
