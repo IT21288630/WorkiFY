@@ -41,7 +41,6 @@ class ViewOrderDetailsActivity : AppCompatActivity() {
         println(curOrderID)
         println(curWorkerEmail)
 
-
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = orderCollectionRef
@@ -58,17 +57,23 @@ class ViewOrderDetailsActivity : AppCompatActivity() {
                     println(order?.cusName)
                     println(order?.cusAddress)
                     println(order?.cusPhone)
-                    println(order?.cusName)
-                    println(order?.cusName)
-                    println(order?.cusName)
+                    println(order?.cusTitle)
+                    println(order?.cusDesc)
+                    println(order?.cusDate)
 
-                    etOrderID.text = order?.orderID
-                    etName.text = order?.cusName
-                    etAddress.text = order?.cusAddress
-                    etPhone.text = order?.cusPhone
-                    etTitle.text = order?.cusTitle
-                    etDesc.text = order?.cusDesc
-                    etDate.text = order?.cusDate
+                    if(order != null){
+                        withContext(Dispatchers.Main){
+                            etOrderID.text = order.orderID
+                            etName.text = order.cusName
+                            etAddress.text = order.cusAddress
+                            etPhone.text = order.cusPhone
+                            etTitle.text = order.cusTitle
+                            etDesc.text = order.cusDesc
+                            etDate.text = order.cusDate
+                        }
+                    }
+
+
                 }
 
             } catch (e: Exception) {
