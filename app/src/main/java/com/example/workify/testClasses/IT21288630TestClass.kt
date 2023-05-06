@@ -1,4 +1,4 @@
-package com.example.workify
+package com.example.workify.testClasses
 
 import com.example.workify.dataClasses.Category
 import com.example.workify.dataClasses.Worker

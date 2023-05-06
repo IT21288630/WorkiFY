@@ -1,5 +1,6 @@
 package com.example.workify
 
+import com.example.workify.testClasses.IT21288630TestClass
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
