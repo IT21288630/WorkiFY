@@ -41,6 +41,7 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
         val etWSName = view.findViewById<EditText>(R.id.etWSName)
         val etWSDistrict = view.findViewById<EditText>(R.id.etWSDistrict)
         val etWSDescription = view.findViewById<EditText>(R.id.etWSDescription)
+        val etWSPhone = view.findViewById<EditText>(R.id.etWSPhone)
         val btnWorkerEdit = view.findViewById<Button>(R.id.btnWorkerEdit)
         val ivAddServiceBtn = view.findViewById<ImageView>(R.id.ivAddServiceBtn)
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvSettingsServices)
@@ -83,13 +84,14 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
                     tvWorkerEmail,
                     etWSName,
                     etWSDistrict,
-                    etWSDescription
+                    etWSDescription,
+                    etWSPhone
                 )
             }
         }
 
         if (email != null) {
-            getDetails(email, tvWorkerName, tvWorkerEmail, etWSName, etWSDistrict, etWSDescription)
+            getDetails(email, tvWorkerName, tvWorkerEmail, etWSName, etWSDistrict, etWSDescription, etWSPhone)
         }
 
 
@@ -104,8 +106,14 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
         tvWorkerEmail: TextView,
         etWSName: EditText,
         etWSDistrict: EditText,
-        etWSDescription: EditText
+        etWSDescription: EditText,
+        etWSPhone: EditText
     ) {
+        etWSName.text.clear()
+        etWSDistrict.text.clear()
+        etWSDescription.text.clear()
+        etWSPhone.text.clear()
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = workerCollectionRef
@@ -122,7 +130,7 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
                         etWSName.hint = worker.name
                         etWSDistrict.hint = worker.district
                         etWSDescription.hint = worker.description
-
+                        etWSPhone.hint = worker.phone
                     }
                 }
             } catch (e: Exception) {
@@ -140,7 +148,8 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
         tvWorkerEmail: TextView,
         etWSName: EditText,
         etWSDistrict: EditText,
-        etWSDescription: EditText
+        etWSDescription: EditText,
+        etWSPhone: EditText
     ) =
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -158,6 +167,8 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
                         .update("description", description)
                     if (district.isNotEmpty()) workerCollectionRef.document(document.id)
                         .update("district", district)
+                    if (etWSPhone.text.toString().isNotEmpty()) workerCollectionRef.document(document.id)
+                        .update("phone", etWSPhone.text.toString())
                 }
 
                 getDetails(
@@ -166,7 +177,8 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
                     tvWorkerEmail,
                     etWSName,
                     etWSDistrict,
-                    etWSDescription
+                    etWSDescription,
+                    etWSPhone
                 )
 
             } catch (e: Exception) {

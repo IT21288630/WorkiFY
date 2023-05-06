@@ -3,13 +3,13 @@
 
     <item android:id="@+id/miProfile"
         android:title="Profile"
-        android:icon="@drawable/outline_person"/>
+        android:icon="@drawable/filled_person"/>
 
     <item android:id="@+id/miNotification"
         android:title="Notification"
-        android:icon="@drawable/outline_notification"/>
+        android:icon="@drawable/filled_notification"/>
 
     <item android:id="@+id/miSettings"
         android:title="Settings"
-        android:icon="@drawable/outline_settings"/>
+        android:icon="@drawable/filled_settings"/>
 </menu>

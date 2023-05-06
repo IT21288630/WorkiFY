@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.workify.R
 import com.example.workify.dataClasses.Worker
 import com.google.firebase.firestore.ktx.firestore
@@ -41,11 +42,19 @@ class MainWorkerProfileFragment : Fragment(R.layout.fragment_main_worker_profile
             commit()
         }
 
-        val btnDescription = view.findViewById<Button>(R.id.btnDescription)
-        val btnServices = view.findViewById<Button>(R.id.btnServices)
-        val btnReviews = view.findViewById<Button>(R.id.btnReviews)
+        val btnDescription = view.findViewById<TextView>(R.id.btnDescription)
+        val btnServices = view.findViewById<TextView>(R.id.btnServices)
+        val btnReviews = view.findViewById<TextView>(R.id.btnReviews)
 
         btnDescription.setOnClickListener {
+            btnDescription.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+            btnServices.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            btnReviews.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+
+            btnDescription.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+            btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+
             workerProfileDescriptionFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flWorkerProfileFragment, workerProfileDescriptionFragment)
@@ -55,6 +64,14 @@ class MainWorkerProfileFragment : Fragment(R.layout.fragment_main_worker_profile
         }
 
         btnServices.setOnClickListener {
+            btnDescription.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            btnServices.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+            btnReviews.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+
+            btnDescription.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+            btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+
             workerProfileServicesFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flWorkerProfileFragment, workerProfileServicesFragment)
@@ -64,6 +81,14 @@ class MainWorkerProfileFragment : Fragment(R.layout.fragment_main_worker_profile
         }
 
         btnReviews.setOnClickListener {
+            btnDescription.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            btnServices.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            btnReviews.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+
+            btnDescription.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+
             workerProfileReviewsFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flWorkerProfileFragment, workerProfileReviewsFragment)

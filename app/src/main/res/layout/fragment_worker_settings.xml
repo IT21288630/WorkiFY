@@ -127,6 +127,20 @@
             </EditText>
 
             <EditText
+                android:id="@+id/etWSPhone"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/round_corners"
+                android:drawableStart="@drawable/phone"
+                android:drawablePadding="10dp"
+                android:hint="@string/WorkerLocation"
+                android:padding="10dp"
+                android:textSize="17dp">
+
+            </EditText>
+
+            <EditText
                 android:id="@+id/etWSDescription"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"

@@ -88,6 +88,7 @@
     <string name="enter_your_description">Enter your description</string>
     <string name="workerCompletebtn">Complete</string>
     <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="re_enter_the_password">Re enter the Password</string>
 
     <string-array name="status">
         <item> Pending </item>

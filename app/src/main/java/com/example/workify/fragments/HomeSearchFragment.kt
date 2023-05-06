@@ -307,8 +307,10 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                         val worker = document2.toObject<Worker>()
                         worker?.price = document.get("hrRate") as String?
 
-                        if (worker?.name == name) {
-                            workers.add(worker)
+                        if (worker != null) {
+                            if(worker.name.lowercase().contains(name, ignoreCase = true)){
+                                workers.add(worker)
+                            }
                         }
                     }
                 }

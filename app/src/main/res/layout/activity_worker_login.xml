@@ -54,6 +54,7 @@
             android:drawableStart="@drawable/email"
             android:drawablePadding="10dp"
             android:hint="@string/email"
+            android:inputType="textEmailAddress"
             android:padding="10dp">
 
         </EditText>
@@ -68,6 +69,7 @@
             android:background="@drawable/round_corners"
             android:drawableStart="@drawable/password"
             android:drawablePadding="10dp"
+            android:inputType="textPassword"
             android:hint="@string/password"
             android:padding="10dp"></EditText>
 

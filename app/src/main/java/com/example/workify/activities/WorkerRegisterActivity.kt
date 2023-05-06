@@ -27,6 +27,7 @@ class WorkerRegisterActivity : AppCompatActivity() {
         val etWEmail = findViewById<EditText>(R.id.etWEmail)
         val etWDistrict = findViewById<EditText>(R.id.etWDistrict)
         val etWPassword = findViewById<EditText>(R.id.etWPassword)
+        val etWRePassword = findViewById<EditText>(R.id.etWRePassword)
         val etWDescription = findViewById<EditText>(R.id.etWDescription)
         val etWPhone = findViewById<EditText>(R.id.etWPhone)
         val workerRegBtn = findViewById<ImageView>(R.id.workerRegBtn)
@@ -36,6 +37,7 @@ class WorkerRegisterActivity : AppCompatActivity() {
             val email = etWEmail.text.toString()
             val district = etWDistrict.text.toString()
             val password = etWPassword.text.toString()
+            val rePassword = etWRePassword.text.toString()
             val description = etWDescription.text.toString()
             val phone = etWPhone.text.toString()
 
@@ -73,6 +75,15 @@ class WorkerRegisterActivity : AppCompatActivity() {
                 etWPassword.error = "Please Enter a Password"
                 return@setOnClickListener
             }
+            if(rePassword.isEmpty()){
+                etWRePassword.error = "Please Enter the Confirm Password"
+                return@setOnClickListener
+            }
+            if(rePassword != password){
+                etWRePassword.error = "Password and the Confirm Password Should Match"
+                return@setOnClickListener
+            }
+
 
 
             val worker = Worker(name, email, district, password, description, 0.0, null, phone)

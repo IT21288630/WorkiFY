@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/miHomeCus"
-        android:icon="@drawable/outline_home"
+        android:icon="@drawable/filled_home"
         android:title="Home" />
 
     <item
         android:id="@+id/miProfileCus"
-        android:icon="@drawable/outline_person"
+        android:icon="@drawable/filled_person"
         android:title="Profile" />
 
     <item
         android:id="@+id/miSettingsCus"
-        android:icon="@drawable/outline_settings"
+        android:icon="@drawable/filled_settings"
         android:title="Settings" />
 </menu>

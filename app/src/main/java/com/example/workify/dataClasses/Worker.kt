@@ -8,5 +8,5 @@ data class Worker(
     var description: String = "",
     var avgRating: Double? = 0.0,
     var price: String? = null,
-    var phone: String? = null,
+    var phone: String? = null
 )

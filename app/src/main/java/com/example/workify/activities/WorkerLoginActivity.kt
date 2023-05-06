@@ -53,7 +53,7 @@ class WorkerLoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun workerLogin(email: String, password: String, etWEmail: EditText, etWPassword: EditText) =
+    public fun workerLogin(email: String, password: String, etWEmail: EditText, etWPassword: EditText) =
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = workerCollectionRef
