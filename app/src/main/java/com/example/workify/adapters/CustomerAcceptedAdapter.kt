@@ -30,18 +30,18 @@ class CustomerAcceptedAdapter(
     private val orderCollectionRef = Firebase.firestore.collection("orders")
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
-        val customerOrderTitle: TextView
+        val customerAcceptedOrderTitle: TextView
 
 
         init {
-            customerOrderTitle = view.findViewById(R.id.customerOrderTitle)
+            customerAcceptedOrderTitle = view.findViewById(R.id.customerAcceptedOrderTitle)
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_customer_accepted_orders, parent, false)
+            .inflate(R.layout.customer_accepted_order, parent, false)
 
         return ViewHolder(view)
     }
@@ -51,7 +51,7 @@ class CustomerAcceptedAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.customerOrderTitle.text = data[position].cusTitle
+        holder.customerAcceptedOrderTitle.text = data[position].cusTitle
 
 
     }
