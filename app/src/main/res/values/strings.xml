@@ -89,6 +89,13 @@
     <string name="workerCompletebtn">Complete</string>
     <string name="enter_your_phone_number">Enter your phone number</string>
     <string name="re_enter_the_password">Re enter the Password</string>
+    <string name="don_t_remember_the_password">Forgot password?</string>
+    <string name="reset_password">Reset</string>
+    <string name="resetpass">Reset Password</string>
+    <string name="enter_a_new_password">Enter a new password</string>
+    <string name="log_in_instead">Sign in instead?</string>
+    <string name="save">Save</string>
+    <string name="service">Service :</string>
 
     <string-array name="status">
         <item> Pending </item>

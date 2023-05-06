@@ -73,6 +73,30 @@
             android:hint="@string/password"
             android:padding="10dp"></EditText>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginStart="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|right"
+                android:text="@string/don_t_remember_the_password"
+                android:textColor="@color/normalText" />
+
+            <TextView
+                android:id="@+id/workerResetPasswordLink"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:gravity="center_vertical"
+                android:text="@string/reset_password"
+                android:textColor="@color/linkText" />
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

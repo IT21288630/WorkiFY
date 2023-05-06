@@ -30,9 +30,15 @@ class WorkerLoginActivity : AppCompatActivity() {
         val etWPassword = findViewById<EditText>(R.id.etWPassword)
         val workerLoginBtn = findViewById<ImageView>(R.id.workerLoginBtn)
         val workerSignUp = findViewById<TextView>(R.id.workerSignUp)
+        val workerResetPasswordLink = findViewById<TextView>(R.id.workerResetPasswordLink)
 
         workerSignUp.setOnClickListener {
             val intent = Intent(this@WorkerLoginActivity, WorkerRegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+        workerResetPasswordLink.setOnClickListener {
+            val intent = Intent(this@WorkerLoginActivity, WorkerResetPasswordActivity::class.java)
             startActivity(intent)
         }
 

@@ -159,8 +159,6 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
                     .await()
 
                 for (document in querySnapshot.documents) {
-                    val worker = document.toObject<Worker>()
-
                     if (name.isNotEmpty()) workerCollectionRef.document(document.id)
                         .update("name", name)
                     if (description.isNotEmpty()) workerCollectionRef.document(document.id)

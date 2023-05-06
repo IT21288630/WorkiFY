@@ -13,14 +13,29 @@
         android:layout_gravity="center_horizontal"
         android:textSize="30dp" />
 
-    <TextView
-        android:id="@+id/tvEditServiceName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Electrical"
-        android:textColor="@color/darkTitle"
+        android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        android:textSize="25dp" />
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/service"
+            android:textColor="@color/darkTitle"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/tvEditServiceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Electrical"
+            android:textColor="@color/textLight"
+            android:textSize="20dp" />
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"

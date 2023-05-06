@@ -207,7 +207,7 @@
                     android:backgroundTint="@color/deleteBtn"
                     android:textColor="@color/primaryBtnTextColor"
                     app:cornerRadius="30dp"
-                    tools:text="@string/DeleteBtn">
+                    android:text="@string/DeleteBtn">
 
                 </Button>
 
@@ -220,7 +220,7 @@
                     android:backgroundTint="@color/primaryBtnColor"
                     android:textColor="@color/primaryBtnTextColor"
                     app:cornerRadius="30dp"
-                    tools:text="@string/DoneBtn">
+                    android:text="@string/save">
 
                 </Button>
             </RelativeLayout>
