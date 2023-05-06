@@ -8,6 +8,11 @@
     <string name="Signup">Sign up</string>
     <string name="pemail">Gayanq1@gmail.com</string>
     <string name="ppassword">**********</string>
+    <string name="iwanttohire">I want to hire</string>
+    <string name="iwanttowork">I want to work</string>
+    <string name="anyjob">Any Job</string>
+    <string name="anytime">Any Time</string>
+    <string name="anywhere">Any Where</string>
     <string name="RegisterTitle">Create Account</string>
     <string name="email">Enter your email</string>
     <string name="district">Select your district</string>

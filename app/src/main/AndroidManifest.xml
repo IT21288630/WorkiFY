@@ -14,10 +14,10 @@
         android:theme="@style/Theme.WorkiFY"
         tools:targetApi="31">
         <activity
-            android:name=".activities.CustomerSignupActivity"
+            android:name=".CustomerSignupActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.CustomerLoginActivity2"
+            android:name=".CustomerLoginActivity2"
             android:exported="false" />
         <activity
             android:name=".activities.WorkerResetPasswordActivity"
