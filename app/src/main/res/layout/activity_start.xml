@@ -72,6 +72,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/hireBtn"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginStart="20dp"
@@ -83,6 +84,7 @@
                 app:cornerRadius="30dp"></Button>
 
             <Button
+                android:id="@+id/workBtn"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginStart="20dp"
