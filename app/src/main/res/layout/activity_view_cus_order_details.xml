@@ -47,6 +47,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/CusOrderDetailsId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
@@ -58,6 +59,7 @@
                     </TextView>
 
                     <EditText
+                        android:id="@+id/CusOrderDetailsName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -81,6 +83,7 @@
                         android:layout_height="wrap_content" />
 
                     <EditText
+                        android:id="@+id/CusOrderDetailsAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -104,6 +107,7 @@
                         android:layout_height="wrap_content" />
 
                     <EditText
+                        android:id="@+id/CusOrderDetailsPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -136,6 +140,7 @@
                             android:layout_height="wrap_content" />
 
                         <EditText
+                            android:id="@+id/CusOrderDetailsTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
@@ -150,6 +155,7 @@
                     </LinearLayout>
 
                     <EditText
+                        android:id="@+id/CusOrderDetailsDesc"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginTop="10dp"
@@ -160,6 +166,7 @@
                         android:drawableStart="@drawable/description"
                         android:drawablePadding="10dp"
                         android:gravity="center_vertical"
+                        android:textSize="20dp"
 
                         android:inputType="text|textMultiLine"
                         android:padding="10dp"></EditText>
@@ -175,6 +182,7 @@
                         android:layout_height="wrap_content" />
 
                     <EditText
+                        android:id="@+id/CusOrderDetailsDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -190,12 +198,12 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/CusOrderUpdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:backgroundTint="@color/primaryBtnColor"
-                    android:text="Update"
+                    android:text="Edit"
                     android:layout_gravity="center"
                     app:cornerRadius="30dp" />
             </LinearLayout>

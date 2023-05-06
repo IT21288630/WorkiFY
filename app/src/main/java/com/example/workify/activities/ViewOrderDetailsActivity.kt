@@ -38,6 +38,10 @@ class ViewOrderDetailsActivity : AppCompatActivity() {
         var curOrderID = intent.getStringExtra("orderID")
         var curWorkerEmail = intent.getStringExtra("workEmail")
 
+        println(curOrderID)
+        println(curWorkerEmail)
+
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = orderCollectionRef

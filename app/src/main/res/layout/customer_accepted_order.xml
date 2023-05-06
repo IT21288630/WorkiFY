@@ -57,28 +57,11 @@
             android:layout_gravity="end"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/CustomerViewDetailsbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="5dp"
-                android:backgroundTint="#6672FF"
-                android:text="@string/NewViewBtn"
-                android:textSize="10sp"
-                app:cornerRadius="30dp"></Button>
 
 
-            <Button
-                android:id="@+id/Customercancelorderbtn"
-                android:layout_width="87dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="#FF1100"
-                android:text="Cancel"
-                android:textSize="10sp"
-                app:cornerRadius="30dp"></Button>
+
+
+
         </LinearLayout>
     </LinearLayout>
 

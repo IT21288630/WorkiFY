@@ -43,7 +43,7 @@ android:orientation="horizontal">
             android:paddingBottom="5dp">
 
             <TextView
-                android:id="@+id/workerOrderTitle"
+                android:id="@+id/customerOrderTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/NewTitleDesc"
@@ -57,28 +57,7 @@ android:orientation="horizontal">
         android:layout_gravity="end"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/AcceptViewDetailsBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="5dp"
-            android:backgroundTint="#6672FF"
-            android:text="@string/NewViewBtn"
-            android:textSize="10sp"
-            app:cornerRadius="30dp"></Button>
 
-        <Button
-
-            android:id="@+id/CompletebtnWorker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="5dp"
-            android:backgroundTint="#4CAF50"
-            android:text="@string/workerCompletebtn"
-            android:textSize="10sp"
-            app:cornerRadius="30dp"></Button>
 
 
     </LinearLayout>
