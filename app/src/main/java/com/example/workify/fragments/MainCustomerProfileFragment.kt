@@ -33,7 +33,7 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
         val email = bundle!!.getString("curCusEmail")
 
         val mBundle = Bundle()
-        mBundle.putString("curCusEmail", bundle!!.getString("curCusEmail"))
+        mBundle.putString("curCusEmail", email)
 
         customerDetailsFragment.arguments = mBundle
         childFragmentManager.beginTransaction().apply {

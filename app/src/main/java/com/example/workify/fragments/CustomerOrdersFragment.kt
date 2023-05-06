@@ -25,7 +25,7 @@ class CustomerOrdersFragment : Fragment(R.layout.fragment_customer_orders) {
         val email = bundle!!.getString("curCusEmail")
 
         val mBundle = Bundle()
-        mBundle.putString("curCustomerEmail", bundle!!.getString("curCustomerEmail"))
+        mBundle.putString("curCusEmail", email)
 
 
 

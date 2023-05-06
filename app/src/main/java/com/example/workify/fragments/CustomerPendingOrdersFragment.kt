@@ -44,12 +44,11 @@ class CustomerPendingOrdersFragment : Fragment(R.layout.fragment_customer_pendin
                     .get()
                     .await()
 
-
-
                 for (document in querySnapshot.documents) {
                     val order = document.toObject<Order>()
 
                     if (order != null) {
+                        println(order.cusEmail)
                         orders.add(order)
                     }
                 }
