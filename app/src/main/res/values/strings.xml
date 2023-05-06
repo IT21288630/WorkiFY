@@ -6,6 +6,8 @@
     <string name="SignIn">Sign In</string>
     <string name="noAccountText">Don\'t have an account?</string>
     <string name="Signup">Sign up</string>
+    <string name="pemail">Gayanq1@gmail.com</string>
+    <string name="ppassword">**********</string>
     <string name="RegisterTitle">Create Account</string>
     <string name="email">Enter your email</string>
     <string name="district">Select your district</string>
@@ -30,6 +32,9 @@
     <string name="RateOutOf">/5.0</string>
     <string name="AllServicesTitle">All Services</string>
     <string name="Painting">Painting</string>
+    <string name="favouritesBtn">favourites</string>
+    <string name="ProfileDetails">My Profile</string>
+    <string name="DetailsBtn">My Details</string>
     <string name="ProfileTitle">Profile</string>
     <string name="DescriptionBtn">Description</string>
     <string name="ServicesBtn">Services</string>
