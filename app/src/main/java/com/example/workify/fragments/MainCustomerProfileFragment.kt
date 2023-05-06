@@ -33,7 +33,7 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
         val email = bundle!!.getString("curCusEmail")
 
         val mBundle = Bundle()
-        mBundle.putString("curCusEmail", bundle!!.getString("curCusEmail"))
+        mBundle.putString("curCusEmail", email)
 
         customerDetailsFragment.arguments = mBundle
         childFragmentManager.beginTransaction().apply {
@@ -65,9 +65,9 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
         }
 
         cusOrdersBtn.setOnClickListener {
-            customerProfileFavFragment.arguments = mBundle
+            customerOrdersFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
-                replace(R.id.flSubCusProfileFragment, customerProfileFavFragment)
+                replace(R.id.flSubCusProfileFragment, customerOrdersFragment)
                 addToBackStack(null)
                 commit()
             }

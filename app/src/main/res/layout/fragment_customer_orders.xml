@@ -18,39 +18,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/top_background" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/navIcon"
-                        android:layout_width="60dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="1dp" />
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="My Orders"
-                    android:textColor="#FFF"
-                    android:textSize="40dp"
-                    android:textStyle="bold"></TextView>
-            </RelativeLayout>
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="Orders"
+                android:textColor="#6672FF"
+                android:textSize="30dp"></TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,15 +39,13 @@
                     android:id="@+id/CustomerOrderSelect"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
-
+                    android:background="@drawable/custom_spinner"
                     android:elevation="3dp"
                     android:entries="@array/status" />
 
                 <FrameLayout
-                    android:id="@+id/flWorkerOrders"
+                    android:id="@+id/flCusOrders"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:layout="@layout/fragment_worker_profile_description"

@@ -43,7 +43,7 @@
                 android:paddingBottom="5dp">
 
                 <TextView
-                    android:id="@+id/customerOrderTitle"
+                    android:id="@+id/customerAcceptedOrderTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/NewTitleDesc"

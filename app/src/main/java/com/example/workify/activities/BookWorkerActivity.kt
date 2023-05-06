@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.workify.R
 import com.example.workify.dataClasses.Order
@@ -23,6 +24,7 @@ class BookWorkerActivity : AppCompatActivity() {
     private lateinit var etTitle: EditText
     private lateinit var etDescription: EditText
     private lateinit var etDate: EditText
+    private lateinit var WorkerDisplayName:TextView
     private lateinit var btnBookWorker: Button
 
 
@@ -32,6 +34,7 @@ class BookWorkerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_worker)
 
+        val workerEmail = intent.getStringExtra("workerEmail")
         etName = findViewById(R.id.cusName)
         etAddress = findViewById(R.id.cusAddress)
         etPhone = findViewById(R.id.cusPhone)
@@ -39,6 +42,9 @@ class BookWorkerActivity : AppCompatActivity() {
         etDescription = findViewById(R.id.cusDesc)
         etDate = findViewById(R.id.cusDate)
         btnBookWorker = findViewById(R.id.bookWorkerbtn)
+        WorkerDisplayName = findViewById(R.id.WorkerDisplayName)
+
+        WorkerDisplayName.text = workerEmail
 
         btnBookWorker.setOnClickListener {
 

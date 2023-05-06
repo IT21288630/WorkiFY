@@ -30,18 +30,18 @@ class CustomerCompletedAdapter(
     private val orderCollectionRef = Firebase.firestore.collection("orders")
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
-        val customerOrderTitle: TextView
+        val customerCompletedOrderTitle: TextView
 
 
         init {
-            customerOrderTitle = view.findViewById(R.id.customerOrderTitle)
+            customerCompletedOrderTitle = view.findViewById(R.id.customerCompletedOrderTitle)
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.worker_completed_order, parent, false)
+            .inflate(R.layout.customer_completed_order, parent, false)
 
         return ViewHolder(view)
     }
@@ -51,7 +51,7 @@ class CustomerCompletedAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.customerOrderTitle.text = data[position].cusTitle
+        holder.customerCompletedOrderTitle.text = data[position].cusTitle
 
     }
 
