@@ -4,6 +4,8 @@ class WorkerReview (
     var workerEmail: String="",
     var title:String="",
     var description: String = "",
-    var stars: Int = 0
+    var stars: Int = 0,
+    var Reccoment: String = ""
+
 
 )
