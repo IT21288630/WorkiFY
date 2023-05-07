@@ -113,6 +113,7 @@
 
     <string name="profile_text">Profile</string>
     <string name="my_name">My Name</string>
+    <string name="AddReveiewCustomer">Add Review</string>
     <string name="testemail_gmail_com">testEmail@gmail.com</string>
     <string name="cutomer_profile_rating">4.2/5.0</string>
     <string name="cutomer_description">Description</string>

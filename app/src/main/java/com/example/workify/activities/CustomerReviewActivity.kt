@@ -24,7 +24,7 @@ import kotlinx.coroutines.withContext
 class CustomerReviewActivity : AppCompatActivity() {
 
 
-    private val ReviewCollectionRef = Firebase.firestore.collection("reviews")
+    private val ReviewCollectionRef = Firebase.firestore.collection("customer_reviews")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.customer_add_review)
@@ -33,75 +33,52 @@ class CustomerReviewActivity : AppCompatActivity() {
         var revStar = findViewById<RatingBar>(R.id.RatingBar)
         var revDescription = findViewById<EditText>(R.id.addcustomRevDescription)
         var revRecommend = findViewById<RadioGroup>(R.id.cusRecoRadio)
-        var revEditBtn = findViewById<Button>(R.id.cusRevSubBtn)
+        var revAddBtn = findViewById<Button>(R.id.cusRevSubBtn)
 
-        var curOrderID = intent.getStringExtra("orderID")
         var curCustomerEmail = intent.getStringExtra("cusEmail")
+        var workerEmail = intent.getStringExtra("workerEmail")
 
 
-        revEditBtn.setOnClickListener {
+        revAddBtn.setOnClickListener {
+
+            val title = revTitle.text.toString()
+            val description = revDescription.text.toString()
+
+
+            var review = Review(
+                revTitle.text.toString(), revRecommend.toString(), revDescription.text.toString(), 4,
+                "workerEmail.toString()", "curCustomerEmail.toString()"
+            )
 
             CoroutineScope(Dispatchers.IO).launch {
+
+                println("this is the coroutinescope dispatcher")
                 try {
                     val querySnapshot = ReviewCollectionRef
-                        .whereEqualTo("cusEmail", curCustomerEmail)
-                        .whereEqualTo("orderID", curOrderID)
-                        .get()
+                        .add(review)
                         .await()
 
-                    for (document in querySnapshot.documents) {
-                        ReviewCollectionRef.document(document.id)
-                            .update("Title", revTitle.text.toString())
-                        ReviewCollectionRef.document(document.id)
-                            .update("Description", revDescription.text.toString())
-                        ReviewCollectionRef.document(document.id)
-                            .update("Star", revStar.numStars.toString())
-                        ReviewCollectionRef.document(document.id)
-                            .update("Recommend", revRecommend.textAlignment.toString())
 
-                    }
+                    /* for (document in querySnapshot.documents) {
+                         ReviewCollectionRef.document(document.id)
+                             .update("Title", revTitle.text.toString())
+                         ReviewCollectionRef.document(document.id)
+                             .update("Description", revDescription.text.toString())
+                         ReviewCollectionRef.document(document.id)
+                             .update("Star", revStar.numStars.toString())
+                         ReviewCollectionRef.document(document.id)
+                             .update("Recommend", revRecommend.textAlignment.toString())
 
+                     }
+ */
 
                 } catch (e: Exception) {
                     println(e.message)
                 }
             }
         }
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val querySnapshot = ReviewCollectionRef
-                    .whereEqualTo("cusEmail", curCustomerEmail)
-                    .whereEqualTo("orderID", curOrderID)
-                    .get()
-                    .await()
 
 
-
-                for (document in querySnapshot.documents) {
-                    val review = document.toObject<Review>()
-
-
-                   /* println(review?.cusName)
-                    println(review?.cusAddress)
-                    println(review?.cusPhone)
-                    println(review?.cusName)
-                    println(review?.cusName)
-                    println(review?.cusName)*/
-
-                    withContext(Dispatchers.Main){
-                        revTitle.setText(review?.Rtitle)
-                        //revRecommend.setText(review?.Rrecomment)
-                        revDescription.setText(review?.RDescription)
-                        //revStar.setText(review?.star)
-
-
-                    }
-
-                }
-
-            } catch (e: Exception) {
-                println(e.message)
-            }
-        }
     }
+
 }
