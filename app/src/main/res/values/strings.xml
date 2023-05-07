@@ -135,6 +135,7 @@
     <string name="cutomerMyReviewDelete2">Delete</string>
     <string name="cutomerMyReviewDelete3">Delete</string>
     <string name="cutomerMyReviewDelete4">Delete</string>
+    <string name="cutomerAddreviewStarHeading">Rate your over experience with this seller</string>
     <string name="cutomer_review_title1">Great Experience with this seller</string>
     <string name="customer_review_title2">Good service</string>
     <string name="customer_review_title3">Great communication</string>
@@ -151,6 +152,7 @@
     <string name="RecommendTitle">Would you recommend this seller to a friend?</string>
     <string name="RadioButtonConditionInEditRev">Yes</string>
     <string name="RadioButtonConditionInEditRev2">No</string>
+    <string name="revProductDes">Product Review</string>
     <string name="PostedProductReviewDescrib">Amazing experience! communication and his great work overall was better than I thought.</string>
     <string name="UpadatingBut">Update</string>
     <string name="CancelBut">Cancel</string>
