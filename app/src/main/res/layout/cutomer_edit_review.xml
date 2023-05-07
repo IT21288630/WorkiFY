@@ -66,11 +66,12 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/cutomerAddreviewStarHeading"
+                            android:layout_width="145dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="100dp"
+                            android:text="@string/edit_review_heading"
                             android:textColor="@color/white"
-                            android:textSize="20dp"></TextView>
+                            android:textSize="25dp" />
 
                     </LinearLayout>
 
@@ -204,8 +205,8 @@
                     <Button
                         android:layout_width="99dp"
                         android:layout_height="50dp"
-                        android:backgroundTint="@color/teal_700"
-                        android:text="@string/AddReviewSubmitBut"
+
+                        android:text="@string/UpadatingBut"
                         app:cornerRadius="30dp"
 
                         />
@@ -213,8 +214,8 @@
                     <Button
                         android:layout_width="99dp"
                         android:layout_height="50dp"
-                        android:backgroundTint="@color/textLight"
-                        android:text="@string/AddReviewLatBut"
+                        android:backgroundTint="@color/deleteBtn"
+                        android:text="@string/CancelBut"
                         app:cornerRadius="30dp" />
 
                 </LinearLayout>

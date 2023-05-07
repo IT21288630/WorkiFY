@@ -124,16 +124,7 @@
     <string name="cutomer_review2">Great work!</string>
     <string name="cutomer_review3">Better than expected!</string>
     <string name="cutomerMyReviewView1">view</string>
-    <string name="cutomerMyReviewView2">view</string>
-    <string name="cutomerMyReviewView3">view</string>
-    <string name="cutomerMyReviewView4">view</string>
-    <string name="cutomerMyReviewEdit1">edit</string>
-    <string name="cutomerMyReviewEdit2">edit</string>
-    <string name="cutomerMyReviewEdit3">edit</string>
-    <string name="cutomerMyReviewEdit4">edit</string>
-    <string name="cutomerMyReviewDelete1">Delete</string>
-    <string name="cutomerMyReviewDelete2">Delete</string>
-    <string name="cutomerMyReviewDelete3">Delete</string>
+    <string name="cutomerMyReviewDelete">Delete</string>
     <string name="cutomerMyReviewDelete4">Delete</string>
     <string name="cutomerAddreviewStarHeading">Rate your over experience with this seller</string>
     <string name="cutomer_review_title1">Great Experience with this seller</string>
@@ -149,7 +140,7 @@
     <string name="StarRatingTitle">Rate your overall experience with this Seller</string>
     <string name="review_title">Review Title</string>
     <string name="Inserted_review">Great communicatio...</string>
-    <string name="RecommendTitle">Would you recommend this seller to a friend?</string>
+    <string name="RecommendTitle">Would you recommend this seller?</string>
     <string name="RadioButtonConditionInEditRev">Yes</string>
     <string name="RadioButtonConditionInEditRev2">No</string>
     <string name="revProductDes">Product Review</string>
