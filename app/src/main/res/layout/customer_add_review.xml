@@ -124,7 +124,7 @@
 
                 <EditText
 
-                    android:id="@+id/editTextTextPersonName3"
+                    android:id="@+id/cutomerRevTitle"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="343dp"
                     android:layout_height="44dp"
@@ -147,6 +147,7 @@
                     android:textStyle="bold" />
 
                 <RadioGroup
+                    android:id="@+id/cusRecoRadio"
                     android:layout_width="match_parent"
                     android:layout_height="69dp"
                     android:orientation="horizontal"
@@ -202,16 +203,17 @@
                     android:padding="20dp">
 
                     <Button
+                        android:id="@+id/cusRevSubBtn"
                         android:layout_width="99dp"
                         android:layout_height="50dp"
                         android:backgroundTint="@color/teal_700"
                         android:text="@string/AddReviewSubmitBut"
-                        app:cornerRadius="30dp"
 
-                        />
+                        app:cornerRadius="30dp" />
 
                     <Button
                         android:layout_width="99dp"
+                        android:layout_marginStart="20dp"
                         android:layout_height="50dp"
                         android:backgroundTint="@color/textLight"
                         android:text="@string/AddReviewLatBut"
