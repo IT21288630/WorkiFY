@@ -5,7 +5,9 @@ class WorkerReview (
     var title:String="",
     var description: String = "",
     var stars: Int = 0,
-    var Reccoment: String = ""
+    var Reccomend: String = ""
 
 
-)
+) {
+
+}

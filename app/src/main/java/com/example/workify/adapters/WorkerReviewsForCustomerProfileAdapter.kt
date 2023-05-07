@@ -16,7 +16,7 @@ class WorkerReviewsForCustomerProfileAdapter(
     private var Context: Context)
     : RecyclerView.Adapter<WorkerReviewsForCustomerProfileAdapter.ViewHolder>(){
 
-    inner class ViewHolder(view:android.view.View) : RecyclerView.ViewHolder(view){
+    inner class ViewHolder(view:android.view.View) : RecyclerView.ViewHolder(view) {
         val Title: TextView
         val Description: ImageView
         val star1: ImageView
@@ -25,23 +25,24 @@ class WorkerReviewsForCustomerProfileAdapter(
         val star4: ImageView
         val star5: ImageView
         val Reccomend: RadioButton
-    }
 
-    init{
-      Title = view.findViewById()
-      Description  = view.findViewById()
-        Recomment = view.findViewById()
-      star1 = view.findViewById ()
-        star2 = view.findViewById ()
-        star3 = view.findViewById ()
-        star4 = view.findViewById ()
-        star5 = view.findViewById ()
 
+        init {
+            Title = view.findViewById(R.id.tvRCName)
+            Description = view.findViewById(R.id.tvRCName)
+            Reccomend = view.findViewById(R.id.tvRCName)
+            star1 = view.findViewById(R.id.tvRCName)
+            star2 = view.findViewById(R.id.tvRCName)
+            star3 = view.findViewById(R.id.tvRCName)
+            star4 = view.findViewById(R.id.tvRCName)
+            star5 = view.findViewById(R.id.tvRCName)
+
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.WorkerReviewsForCustomerProfileAdapter, parent, false)
+            .inflate(R.layout.worker_reviews_for_customer, parent, false)
 
         return ViewHolder(view)
     }
@@ -52,14 +53,10 @@ class WorkerReviewsForCustomerProfileAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.Title.text = data[position].workerEmail
-        holder.Description.text = data[position].description
-        holder.Reccomend.text = data[position].Reccoment
-        when
+
+        holder.Reccomend.text = data[position].Reccomend
+
     }
-
-
-
-
 
 
 
