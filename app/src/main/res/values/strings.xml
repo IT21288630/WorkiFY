@@ -137,7 +137,7 @@
     <string name="popup_delete_confirm">Yes, I want to delete</string>
     <string name="edit_review_heading">Edit Review</string>
     <string name="sellerReviewMode">S</string>
-    <string name="MyreviewMode">m</string>
+    <string name="view_cutomer_review_btn">view</string>
     <string name="StarRatingTitle">Rate your overall experience with this Seller</string>
     <string name="review_title">Review Title</string>
     <string name="Inserted_review">Great communicatio...</string>
