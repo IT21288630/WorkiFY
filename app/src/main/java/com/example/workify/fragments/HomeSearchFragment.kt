@@ -326,6 +326,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view?.context)
                     view?.context?.let { adapter?.setData(workers, it) }
+
                 }
 
             } catch (e: Exception) {
