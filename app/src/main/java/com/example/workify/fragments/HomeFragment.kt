@@ -1,11 +1,16 @@
 package com.example.workify.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.KeyEvent
 import android.view.View
+import android.widget.EditText
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
+import com.example.workify.activities.HomeSearchActivity
 import com.example.workify.adapters.ServicesForHomeAdapter
 import com.example.workify.dataClasses.Category
 import com.google.firebase.firestore.ktx.firestore
@@ -27,6 +32,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHomeServices)
+        val etHomeHelpSearch = view.findViewById<EditText>(R.id.etHomeHelpSearch)
+
+        etHomeHelpSearch.setOnKeyListener { view, keyCode, keyevent ->
+            //If the keyevent is a key-down event on the "enter" button
+            if (keyevent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                var intent = Intent(view.context, HomeSearchActivity::class.java)
+                intent.putExtra("serviceNameFromHome", etHomeHelpSearch.text.toString())
+                startActivity(intent)
+                true
+            } else false
+        }
+
 
         var services = mutableListOf<Category>()
 
