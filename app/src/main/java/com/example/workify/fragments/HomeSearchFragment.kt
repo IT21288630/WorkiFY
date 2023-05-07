@@ -48,10 +48,15 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
 
         val bundle = arguments
         var curService: String? = bundle!!.getString("curService")
+        var serviceNameFromHome: String? = bundle!!.getString("serviceNameFromHome")
 
         tvSearchServiceName.text = curService
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHomeSearchResult)
+
+        if(serviceNameFromHome != null){
+            searchByServiceName(recyclerView, serviceNameFromHome, etSearchNameInput)
+        }
 
         curService?.let { initSearch(it, recyclerView) }
 
@@ -118,6 +123,8 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         }
 
         etSearchNameInput.addTextChangedListener {
+            nameEmpty = false
+
             if (curService != null) {
                 searchByName(recyclerView, etSearchNameInput.text.toString(), curService)
             }
@@ -287,7 +294,6 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
 
     fun searchByName(recyclerView: RecyclerView, name: String, curService: String) {
         var workers = mutableListOf<Worker>()
-        nameEmpty = false
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -310,6 +316,52 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                         if (worker != null) {
                             if(worker.name.lowercase().contains(name, ignoreCase = true)){
                                 workers.add(worker)
+                            }
+                        }
+                    }
+                }
+
+                withContext(Dispatchers.Main) {
+                    val adapter = view?.let { HomeSearchAdapter(workers, it.context) }
+                    recyclerView.adapter = adapter
+                    recyclerView.layoutManager = LinearLayoutManager(view?.context)
+                    view?.context?.let { adapter?.setData(workers, it) }
+                }
+
+            } catch (e: Exception) {
+                println(e.message)
+            }
+        }
+    }
+
+    fun searchByServiceName(recyclerView: RecyclerView, sName: String, etSearchNameInput: EditText) {
+        var workers = mutableListOf<Worker>()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+
+                var querySnapshot = workerCatCollectionRef.get().await()
+
+                for (document in querySnapshot.documents) {
+
+                    if (document.get("cName").toString().lowercase().contains(sName, ignoreCase = true)){
+                        val querySnapshot2 =
+                            workerCollectionRef.whereEqualTo("email", document.get("wEmail")).get()
+                                .await()
+
+                        for (document2 in querySnapshot2.documents) {
+                            val worker = document2.toObject<Worker>()
+                            worker?.price = document.get("hrRate") as String?
+
+                            if (worker != null) {
+                                if (!nameEmpty) {
+                                    if(worker.name.lowercase().contains(etSearchNameInput.text.toString(), ignoreCase = true)){
+                                        workers.add(worker)
+                                    }
+                                }
+                                else{
+                                    workers.add(worker)
+                                }
                             }
                         }
                     }
