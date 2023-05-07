@@ -98,48 +98,10 @@
                     app:shapeAppearanceOverlay="@style/SpecificCornerRounded1"
                     app:srcCompat="@drawable/white_top_buttons" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <TextView
-                        android:id="@+id/cap1"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="100dp"
-                        android:layout_marginTop="80dp"
-                        android:text="@string/delete_the_review_Question"
-                        android:textColor="#535CCC"
-                        android:textSize="20dp"
-                        android:textStyle="bold"></TextView>
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="247dp"
-                    android:layout_height="109dp"
-                    android:layout_marginStart="79dp"
-                    android:layout_marginBottom="0dp"
-                    android:text="@string/delete_review_popup_description"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-
-                    />
-
-
-                </TextView>
-
-            </RelativeLayout>
 
 
 
