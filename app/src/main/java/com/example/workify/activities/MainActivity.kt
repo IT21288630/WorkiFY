@@ -8,9 +8,9 @@ import com.example.workify.R
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.customer_add_review)
 
-        var intent = Intent(this, StartActivity::class.java)
+        var intent = Intent(this, CustomerReviewActivity::class.java)
         startActivity(intent)
     }
 }

@@ -2,11 +2,7 @@ package com.example.workify.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RatingBar
-import android.widget.RadioGroup
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.workify.R
 import com.example.workify.adapters.WorkerPendingAdapter
@@ -34,13 +30,30 @@ class CustomerReviewActivity : AppCompatActivity() {
         var revDescription = findViewById<EditText>(R.id.addcustomRevDescription)
         var revRecommend = findViewById<RadioGroup>(R.id.cusRecoRadio)
         var revAddBtn = findViewById<Button>(R.id.cusRevSubBtn)
+        val ratingScale = findViewById<TextView>(R.id.ratingBarText)
 
         var curCustomerEmail = intent.getStringExtra("cusEmail")
         var workerEmail = intent.getStringExtra("workerEmail")
 
+        revStar.setOnRatingBarChangeListener { ratingBar, fl, b ->
+            ratingScale.text = fl.toString()
+            when(ratingBar.rating.toInt()){
+                1 -> ratingScale.text = "Very Bad"
+                2 -> ratingScale.text = "Bad"
+                3 -> ratingScale.text = "Good"
+                4 -> ratingScale.text = "Very Good"
+                5 -> ratingScale.text = "Love It"
+                else -> ratingScale.text = " "
+
+            }
+
+        }
+
 
         revAddBtn.setOnClickListener {
 
+            val message = revStar.rating.toString()
+            Toast.makeText(this@CustomerReviewActivity, "Rating is: "+message, Toast.LENGTH_LONG).show()
             val title = revTitle.text.toString()
             val description = revDescription.text.toString()
 
