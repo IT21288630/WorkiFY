@@ -68,7 +68,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/cutomerAddreviewStarHeading"
+                            android:text="@string/WorkerAddreviewStarHeading"
                             android:textColor="@color/white"
                             android:textSize="20dp"></TextView>
 
@@ -155,7 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/RecommendTitle"
+                    android:text="@string/RecommendTitleWorker"
                     android:textAlignment="center"
                     android:textColor="@color/newBlue"
                     android:textSize="17dp"
@@ -190,9 +190,9 @@
 
                 <TextView
                     android:id="@+id/cusProducDes"
-                    android:layout_width="131dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:text="@string/revProductDes"
+                    android:text="@string/revCusDes"
                     android:textAlignment="center"
                     android:textColor="@color/newBlue"
                     android:textSize="17dp"
@@ -204,7 +204,7 @@
                     android:layout_width="348dp"
                     android:layout_height="64dp"
 
-                    android:hint="@string/ReviewExampleDes"
+                    android:hint="@string/ReviewExampleDesWorker"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 

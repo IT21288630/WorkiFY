@@ -17,13 +17,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class CustomerReviewActivity : AppCompatActivity() {
+class WorkerReviewActivity : AppCompatActivity() {
 
 
-    private val ReviewCollectionRef = Firebase.firestore.collection("customer_reviews")
+    private val ReviewCollectionRef = Firebase.firestore.collection("worker_reviews")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.customer_add_review)
+        setContentView(R.layout.worker_add_review)
 
         var revTitle = findViewById<EditText>(R.id.cutomerRevTitle)
         var revStar = findViewById<RatingBar>(R.id.RatingBar)
@@ -50,21 +50,17 @@ class CustomerReviewActivity : AppCompatActivity() {
 
             }
 
-
-
         }
-
-
 
         revAddBtn.setOnClickListener {
 
 
             if(revStar.rating.toInt() < 3){
-                Toast.makeText(this@CustomerReviewActivity, "We Are sorry for your bad experience!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@WorkerReviewActivity, "We Are sorry for your bad experience!", Toast.LENGTH_SHORT).show()
 
             }
             else{
-                Toast.makeText(this@CustomerReviewActivity, "Try our other services too", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@WorkerReviewActivity, "Keep going, You doing Great!", Toast.LENGTH_SHORT).show()
             }
 
             val message = revStar.rating.toString()
@@ -81,10 +77,6 @@ class CustomerReviewActivity : AppCompatActivity() {
             else if(revRecoNo.isChecked.toString() == "true"){
                 revRecommend = "No"
             }
-
-
-
-
 
 
             var review = Review(
