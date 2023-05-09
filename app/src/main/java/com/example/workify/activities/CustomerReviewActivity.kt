@@ -50,28 +50,45 @@ class CustomerReviewActivity : AppCompatActivity() {
 
             }
 
-
-
-        }
-
-
-
-        revAddBtn.setOnClickListener {
-
-
-            if(revStar.rating.toInt() < 3){
-                Toast.makeText(this@CustomerReviewActivity, "We Are sorry for your bad experience!", Toast.LENGTH_SHORT).show()
+            if(revStar.rating.toInt() == 1){
+                Toast.makeText(this@CustomerReviewActivity, "We Are sorry for your bad experience with this seller", Toast.LENGTH_LONG).show()
 
             }
+            else if(revStar.rating.toInt() == 2){
+                Toast.makeText(this@CustomerReviewActivity, "Hope you got your work done", Toast.LENGTH_SHORT).show()
+
+            }
+
+
             else{
                 Toast.makeText(this@CustomerReviewActivity, "Try our other services too", Toast.LENGTH_SHORT).show()
             }
 
-            val message = revStar.rating.toString()
+        }
+
+
+        revAddBtn.setOnClickListener {
 
             val title = revTitle.text.toString()
             val description = revDescription.text.toString()
             val star = revStar.rating.toInt()
+
+            if(title.isEmpty()){
+                revTitle.error = "Please Enter a Valid Title to your Review"
+                return@setOnClickListener
+            }
+
+            if(description.isEmpty()){
+                revDescription.error = "Please Enter a Valid Description"
+                return@setOnClickListener
+            }
+
+            if(revStar.rating.toInt() < 1){
+                Toast.makeText(this, "Please submit a rating", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val message = revStar.rating.toString()
 
 
             var revRecommend = "yes"
@@ -83,13 +100,9 @@ class CustomerReviewActivity : AppCompatActivity() {
             }
 
 
-
-
-
-
             var review = Review(
                 revTitle.text.toString(), revRecommend, revDescription.text.toString(), revStar.rating.toInt(),
-                "workerEmail.toString()", "curCustomerEmail.toString()"
+                workerEmail.toString(), curCustomerEmail.toString()
             )
 
             CoroutineScope(Dispatchers.IO).launch {
@@ -99,12 +112,14 @@ class CustomerReviewActivity : AppCompatActivity() {
                     val querySnapshot = ReviewCollectionRef
                         .add(review)
                         .await()
+                    Toast.makeText(this@CustomerReviewActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
+
 
 
                     /* for (document in querySnapshot.documents) {
                          ReviewCollectionRef.document(document.id)
                              .update("Title", revTitle.text.toString())
-                         ReviewCollectionRef.document(document.id)
+                         ReviewCollectionRef.document(document.id)`
                              .update("Description", revDescription.text.toString())
                          ReviewCollectionRef.document(document.id)
                              .update("Star", revStar.numStars.toString())
@@ -115,6 +130,8 @@ class CustomerReviewActivity : AppCompatActivity() {
  */
 
                 } catch (e: Exception) {
+                    Toast.makeText(this@CustomerReviewActivity, "Something wrong, try again!", Toast.LENGTH_SHORT).show()
+
                     println(e.message)
                 }
             }

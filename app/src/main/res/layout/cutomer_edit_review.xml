@@ -88,6 +88,17 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/ratingBarText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="63dp"
+                    android:layout_marginLeft="180dp"
+                    android:text=" "
+                    android:textColor="@color/teal_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
                 <RatingBar
                     android:id="@+id/RatingBar"
                     android:layout_width="wrap_content"
@@ -99,7 +110,7 @@
                     android:numStars="5"
                     android:progressTint="#FFCC00"
                     android:rating="0"
-                    android:stepSize="0.5"
+                    android:stepSize="1"
                     android:textColor="@color/black" />
             </RelativeLayout>
 
@@ -131,7 +142,7 @@
                     android:layout_height="44dp"
                     android:backgroundTint="@color/background"
                     android:ems="10"
-                    android:hint="@string/ReviewExampleTitle"
+                    android:hint=" "
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
                     app:cornerRadius="30dp" />
@@ -154,15 +165,16 @@
                     android:padding="5dp">
 
                     <RadioButton
-                        android:id="@+id/radioButton"
+                        android:id="@+id/radioRecYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="#000"
+                        android:checked="true"
                         android:text="Yes"
                         android:textColor="@color/black" />
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/radioRecNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="No"
@@ -187,7 +199,7 @@
                     android:layout_width="348dp"
                     android:layout_height="64dp"
 
-                    android:hint="@string/ReviewExampleDes"
+                    android:hint=" "
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
@@ -203,6 +215,7 @@
                     android:padding="20dp">
 
                     <Button
+                        android:id="@+id/editReviewUpdateBtn"
                         android:layout_width="99dp"
                         android:layout_height="50dp"
 
@@ -212,6 +225,7 @@
                         />
 
                     <Button
+                        android:id="@+id/editReviewCancelBtn"
                         android:layout_width="99dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="20dp"

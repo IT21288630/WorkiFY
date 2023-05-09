@@ -73,6 +73,54 @@
             android:text="@string/ReviewDesc">
 
         </TextView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ShowreviewcutomerViewBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="#6672FF"
+                android:text="@string/view_cutomer_review_btn"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                app:cornerRadius="30dp">
+
+            </Button>
+
+            <Button
+                android:id="@+id/ShowreviewcutomerEditBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="#6672FF"
+                android:text="@string/edit_review_heading"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                app:cornerRadius="30dp">
+
+            </Button>
+
+            <Button
+                android:id="@+id/ShowreviewcutomerDeleteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/deleteBtn"
+                android:text="@string/cutomerMyReviewDelete"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                app:cornerRadius="30dp">
+
+            </Button>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 
