@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/miProfile"
-        android:title="Profile"
+        android:title=""
         android:icon="@drawable/filled_person"/>
 
     <item android:id="@+id/miNotification"
-        android:title="Notification"
+        android:title=""
         android:icon="@drawable/filled_notification"/>
 
     <item android:id="@+id/miSettings"
-        android:title="Settings"
+        android:title=""
         android:icon="@drawable/filled_settings"/>
 </menu>

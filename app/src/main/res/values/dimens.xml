@@ -12,4 +12,35 @@
     <dimen name="largeText">20sp</dimen>
     <dimen name="mediumText">18sp</dimen>
     <dimen name="smallText">15sp</dimen>
+
+    <dimen name="view_review_description_navi">0dp</dimen>
+    <dimen name="view_review_description_naviHeight">0dp</dimen>
+    <dimen name="layout_height">400dp</dimen>
+    <dimen name="layout_marginBottom">-1dp</dimen>
+    <dimen name="layout_width">0dp</dimen>
+    <dimen name="viewReviewHeadtitle">25dp</dimen>
+    <dimen name="descript_navi_button">115dp</dimen>
+    <dimen name="navigation_box">11dp</dimen>
+    <dimen name="review_title_marginTop">60dp</dimen>
+    <dimen name="MarginBottomview12">80dp</dimen>
+    <dimen name="Layout_margin_review_title">32dp</dimen>
+    <dimen name="CutomerNameSizeOnProfile">20dp</dimen>
+    <dimen name="ReviewStarOnProfileCutomer">18dp</dimen>
+    <dimen name="ReviewStarOnProfileCutomerHeight">18dp</dimen>
+    <dimen name="SellerProfilePhotoOnCutomerReviewWidth">60dp</dimen>
+    <dimen name="SellerProfilePhotoOnCutomerReviewHeight">60dp</dimen>
+    <dimen name="Dots3NavIconMarginStart">256dp</dimen>
+    <dimen name="TextHeddingSize">30dp</dimen>
+    <dimen name="StarRatingTitleTextSize">15dp</dimen>
+    <dimen name="radioButtonHeight">28dp</dimen>
+    <dimen name="DeletePopUpTextSize">19dp</dimen>
+    <dimen name="DeletePopUpDesTextWidth">237dp</dimen>
+    <dimen name="DeletePopUpDesTextHeight">101dp</dimen>
+    <dimen name="DeletePopUpTextBottom">8dp</dimen>
+    <dimen name="DeletePopUpConfButWidth">260dp</dimen>
+    <dimen name="DeletePopUpConfButHeight">50dp</dimen>
+    <dimen name="DeletePopCancelWidth">265dp</dimen>
+    <dimen name="DeletePopCancelHeight">50dp</dimen>
+
+
 </resources>

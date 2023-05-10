@@ -111,6 +111,52 @@
     <string name="save">Save</string>
     <string name="service">Service :</string>
 
+    <string name="profile_text">Profile</string>
+    <string name="my_name">My Name</string>
+    <string name="AddReveiewCustomer">Add Review</string>
+    <string name="testemail_gmail_com">testEmail@gmail.com</string>
+    <string name="cutomer_profile_rating">4.2/5.0</string>
+    <string name="cutomer_description">Description</string>
+    <string name="cutomer_orders">Orders</string>
+    <string name="customer_reviews">Reviews</string>
+    <string name="cutomer_my_reviews">My reviews</string>
+    <string name="cutomer_reviews_from_sellers">Reviews from sellers</string>
+    <string name="cutomer_reviewList">Great Experience</string>
+    <string name="cutomer_review2">Great work!</string>
+    <string name="cutomer_review3">Better than expected!</string>
+    <string name="cutomerMyReviewView1">view</string>
+    <string name="cutomerMyReviewDelete">Delete</string>
+    <string name="cutomerMyReviewDelete4">Delete</string>
+    <string name="cutomerAddreviewStarHeading">Rate your over experience with this seller</string>
+    <string name="WorkerAddreviewStarHeading">Rate your over experience with this Buyer</string>
+    <string name="cutomer_review_title1">Great Experience with this seller</string>
+    <string name="customer_review_title2">Good service</string>
+    <string name="customer_review_title3">Great communication</string>
+    <string name="delete_the_review_Question">Are you sure you want to delete the review?</string>
+    <string name="delete_review_popup_description">If you click yes, the review will be deleted permanently. You wont be able to recover!</string>
+    <string name="Popupcancel">Cancel</string>
+    <string name="popup_delete_confirm">Yes, I want to delete</string>
+    <string name="edit_review_heading">Edit Review</string>
+    <string name="sellerReviewMode">S</string>
+    <string name="view_cutomer_review_btn">view</string>
+    <string name="StarRatingTitle">Rate your overall experience with this Seller</string>
+    <string name="review_title">Review Title</string>
+    <string name="Inserted_review">Great communicatio...</string>
+    <string name="RecommendTitle">Would you recommend this seller?</string>
+    <string name="RecommendTitleWorker">Would you recommend this Buyer?</string>
+    <string name="RadioButtonConditionInEditRev">Yes</string>
+    <string name="RadioButtonConditionInEditRev2">No</string>
+    <string name="revProductDes">Product Review</string>
+    <string name="revCusDes">Full Review</string>
+    <string name="PostedProductReviewDescrib">Amazing experience! communication and his great work overall was better than I thought.</string>
+    <string name="UpadatingBut">Update</string>
+    <string name="CancelBut">Cancel</string>
+    <string name="AddReviewSubmitBut">Submit</string>
+    <string name="AddReviewLatBut">Later</string>
+    <string name="ReviewExampleTitle">Example: Great communication</string>
+    <string name="ReviewExampleDes">Example: Amazing experience! communication and his great work overall was better than I thought.</string>
+    <string name="ReviewExampleDesWorker">Example: Amazing experience with this Buyer. Very friendly.</string>
+
     <string-array name="status">
         <item> Pending </item>
         <item> Accepted </item>

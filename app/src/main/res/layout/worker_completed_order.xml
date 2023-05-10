@@ -15,52 +15,70 @@ android:orientation="horizontal">
     android:layout_gravity="top"
     app:srcCompat="@drawable/profile" />
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="135dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="20dp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/NewOrdersID"
-            android:textSize="15dp"
-            android:textStyle="bold"></TextView>
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/workerOrderTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/NewTitleDesc"
-                android:textSize="15sp"></TextView>
+                android:text="@string/NewOrdersID"
+                android:textSize="15dp"
+                android:textStyle="bold"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/workerOrderTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/NewTitleDesc"
+                    android:textSize="15sp"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal">
+
+
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/AddReviewCustomerCompleteOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:orientation="horizontal">
-
-
-
-
-    </LinearLayout>
-</LinearLayout>
+        android:layout_marginStart="95dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#6672FF"
+        android:text="@string/AddReveiewCustomer"
+        android:textSize="10sp"
+        app:cornerRadius="30dp"></Button>
 
 </LinearLayout>

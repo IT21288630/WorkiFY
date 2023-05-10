@@ -53,6 +53,7 @@ class WorkerCompletedAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.workerOrderTitle.text = data[position].cusTitle
 
+
     }
 
     fun setData(data: List<Order>, context: Context) {

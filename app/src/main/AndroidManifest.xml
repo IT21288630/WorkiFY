@@ -25,6 +25,11 @@
         <activity
             android:name=".activities.WorkerResetPasswordActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".activities.CustomerReviewActivity"
+            android:exported="false" />
+
         <activity
             android:name=".activities.ViewCusOrderDetailsActivity"
             android:exported="false" />
