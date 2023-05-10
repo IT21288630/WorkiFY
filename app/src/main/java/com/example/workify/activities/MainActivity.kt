@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.customer_add_review)
 
-        var intent = Intent(this, CustomerReviewActivity::class.java)
+        var intent = Intent(this, StartActivity::class.java)
         startActivity(intent)
     }
 }
