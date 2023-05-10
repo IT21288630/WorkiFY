@@ -31,11 +31,18 @@ class CustomerLoginActivity2 : AppCompatActivity() {
         val etWPassword = findViewById<EditText>(R.id.etWPassword)
         val workerLoginBtn = findViewById<ImageView>(R.id.workerLoginBtn)
         val workerSignUp = findViewById<TextView>(R.id.workerSignUp)
+        val workerResetPasswordLink = findViewById<TextView>(R.id.workerResetPasswordLink)
 
         workerSignUp.setOnClickListener {
             val intent = Intent(this@CustomerLoginActivity2, CustomerSignupActivity::class.java)
             startActivity(intent)
         }
+
+        workerResetPasswordLink.setOnClickListener {
+            val intent = Intent(this@CustomerLoginActivity2, WorkerResetPasswordActivity::class.java)
+            startActivity(intent)
+        }
+
 
         workerLoginBtn.setOnClickListener {
             val email = etWEmail.text.toString()
