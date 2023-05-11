@@ -36,13 +36,7 @@
                     android:layout_marginStart="10dp"
                     android:src="@drawable/logo_white_removebg_preview"></ImageView>
 
-                <ImageView
-                    android:id="@+id/navIcon"
-                    android:layout_width="60dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="1dp"
-                    app:srcCompat="@drawable/icons8_menu_rounded_60" />
+
 
 
                 <TextView
@@ -68,10 +62,8 @@
                     android:id="@+id/WorkerOrderSelect"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
-
+                    android:background="@drawable/custom_spinner"
                     android:elevation="3dp"
                     android:entries="@array/status" />
 

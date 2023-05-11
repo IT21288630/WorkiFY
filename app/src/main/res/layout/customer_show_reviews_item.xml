@@ -96,18 +96,6 @@
         android:layout_gravity="end"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/ShowreviewcutomerViewBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#6672FF"
-            android:text="@string/view_cutomer_review_btn"
-            android:textSize="10sp"
-            android:textColor="@color/white"
-            app:cornerRadius="30dp">
-
-        </Button>
 
         <Button
             android:id="@+id/ShowreviewcutomerEditBtn"

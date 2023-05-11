@@ -34,12 +34,14 @@ class CustomerCompletedAdapter(
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val customerCompletedOrderTitle: TextView
+        val CusCompletedOrderId : TextView
         val AddReviewCustomerCompleteOrder: Button
 
 
         init {
             customerCompletedOrderTitle = view.findViewById(R.id.customerCompletedOrderTitle)
             AddReviewCustomerCompleteOrder = view.findViewById(R.id.AddReviewCustomerCompleteOrder)
+            CusCompletedOrderId = view.findViewById(R.id.CusCompletedOrderId)
         }
     }
 
@@ -56,6 +58,7 @@ class CustomerCompletedAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.customerCompletedOrderTitle.text = data[position].cusTitle
+        holder.CusCompletedOrderId.text = "Order ID: " + data[position].orderID
 
         holder.AddReviewCustomerCompleteOrder.setOnClickListener {
             var intent = Intent(context, CustomerReviewActivity::class.java)

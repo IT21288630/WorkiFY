@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.workify.R
 import com.example.workify.dataClasses.Order
+import com.example.workify.testClasses.IT21256646TestClass
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -44,9 +45,6 @@ class BookWorkerActivity : AppCompatActivity() {
         etDescription = findViewById(R.id.cusDesc)
         etDate = findViewById(R.id.cusDate)
         btnBookWorker = findViewById(R.id.bookWorkerbtn)
-        WorkerDisplayName = findViewById(R.id.WorkerDisplayName)
-
-        WorkerDisplayName.text = workerEmail
 
         btnBookWorker.setOnClickListener {
 
@@ -58,9 +56,39 @@ class BookWorkerActivity : AppCompatActivity() {
             val cusDate = etDate.text.toString()
             val orderID = getRandomString()
 
+            if(cusName.isEmpty()){
+                etName.error = "Please Enter a name"
+                return@setOnClickListener
+            }
+            if(cusAddress.isEmpty()){
+                etAddress.error = "Please Enter a Address"
+                return@setOnClickListener
+            }
+            if(cusPhone.isEmpty()){
+                etPhone.error = "Please Enter a Phone"
+                return@setOnClickListener
+            }
+            if(cusTitle.isEmpty()){
+                etTitle.error = "Please Enter a Title"
+                return@setOnClickListener
+            }
+            if(cusDesc.isEmpty()){
+                etDescription.error = "Please Enter a Description"
+                return@setOnClickListener
+            }
+            if(cusDate.isEmpty()){
+                etDate.error = "Please Enter a Date"
+                return@setOnClickListener
+            }
+
+            //IT21256646TestClass.DetailsEmptyCheck(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDesc)
+
+            //IT21256646TestClass.ValideData(cusPhone)
+
             val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,cusEmail,intent.getStringExtra("workerEmail"),"Pending",orderID)
             orderWorker(order)
 
+            finish()
         }
     }
 

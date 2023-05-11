@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
+    android:paddingTop="50dp"
     tools:context=".activities.CustomerLoginActivity2">
 
     <ScrollView
@@ -24,37 +24,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="237dp"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/top_background" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/navIcon"
-                        android:layout_width="60dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="1dp"
-                        app:srcCompat="@drawable/icons8_menu_rounded_60" />
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="10dp"
-                        android:src="@drawable/logo_white_removebg_preview"></ImageView>
-                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="110dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -70,15 +44,14 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="100dp"
                             android:text="@string/edit_review_heading"
-                            android:textColor="@color/white"
+                            android:textColor="@color/darkTitle"
                             android:textSize="25dp" />
 
                     </LinearLayout>
 
 
-
-
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -92,8 +65,8 @@
                     android:id="@+id/ratingBarText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="63dp"
                     android:layout_marginLeft="180dp"
+                    android:layout_marginTop="63dp"
                     android:text=" "
                     android:textColor="@color/teal_700"
                     android:textSize="20dp"
@@ -130,7 +103,7 @@
                     android:layout_height="33dp"
                     android:text="@string/review_title"
                     android:textAlignment="center"
-                    android:textColor="@color/newBlue"
+                    android:textColor="@color/textLight"
                     android:textSize="17dp"
                     android:textStyle="bold" />
 
@@ -154,7 +127,7 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/RecommendTitle"
                     android:textAlignment="center"
-                    android:textColor="@color/newBlue"
+                    android:textColor="@color/textLight"
                     android:textSize="17dp"
                     android:textStyle="bold" />
 
@@ -189,7 +162,7 @@
                     android:layout_height="30dp"
                     android:text="@string/revProductDes"
                     android:textAlignment="center"
-                    android:textColor="@color/newBlue"
+                    android:textColor="@color/textLight"
                     android:textSize="17dp"
                     android:textStyle="bold" />
 
@@ -198,7 +171,9 @@
                     android:id="@+id/addcustomRevDescription"
                     android:layout_width="348dp"
                     android:layout_height="64dp"
-
+                    android:background="@drawable/round_corners"
+                    android:drawableStart="@drawable/description"
+                    android:drawablePadding="10dp"
                     android:hint="description"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
@@ -218,7 +193,7 @@
                         android:id="@+id/editReviewUpdateBtn"
                         android:layout_width="99dp"
                         android:layout_height="50dp"
-
+                        android:backgroundTint="@color/primaryBtnColor"
                         android:text="@string/UpadatingBut"
                         app:cornerRadius="30dp"
 
@@ -229,8 +204,9 @@
                         android:layout_width="99dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="20dp"
-                        android:backgroundTint="@color/deleteBtn"
+                        android:backgroundTint="@color/secondaryBtnColor"
                         android:text="@string/CancelBut"
+                        android:textColor="@color/secondaryBtnTextColor"
                         app:cornerRadius="30dp" />
 
                 </LinearLayout>
@@ -239,9 +215,7 @@
             </LinearLayout>
 
 
-
         </LinearLayout>
-
 
 
     </ScrollView>
