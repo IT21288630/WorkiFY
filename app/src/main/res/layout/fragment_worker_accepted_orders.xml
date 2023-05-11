@@ -25,8 +25,6 @@
             android:id="@+id/etSearchAcceptedOrders"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:background="@drawable/list_border_style"
             android:drawableStart="@drawable/search_bar_icon"
             android:drawablePadding="10dp"

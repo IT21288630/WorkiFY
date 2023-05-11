@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.workify.R
 import com.example.workify.dataClasses.Order
+import com.example.workify.testClasses.IT21256646TestClass
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -55,9 +56,14 @@ class BookWorkerActivity : AppCompatActivity() {
             val cusDate = etDate.text.toString()
             val orderID = getRandomString()
 
+            IT21256646TestClass.DetailsEmptyCheck(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDesc)
+
+            IT21256646TestClass.ValideData(cusPhone)
+
             val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,cusEmail,intent.getStringExtra("workerEmail"),"Pending",orderID)
             orderWorker(order)
 
+            finish()
         }
     }
 
