@@ -18,16 +18,10 @@ import kotlinx.coroutines.withContext
 class CustomerEditReviewActivity : AppCompatActivity() {
 
 
-
-    private val TAG = "CustomerEditReviewActivity"
-
     private lateinit var revTitle: EditText
     private lateinit var revDescription : EditText
     private lateinit var revStar : RatingBar
 
-    //private lateinit var progressBar : ProgressBar
-
-    private var db = Firebase.firestore
 
     private val customerCollectionRef = Firebase.firestore.collection("customer_reviews")
 
@@ -37,6 +31,8 @@ class CustomerEditReviewActivity : AppCompatActivity() {
 
         var CustomerEmail = intent.getStringExtra("customer_email")
         var id =intent.getStringExtra("rev_ID")
+
+        println("This is the id in the begning: "+ id)
 
         revTitle = findViewById(R.id.cutomerRevTitle)
         revStar = findViewById(R.id.RatingBar)
@@ -76,7 +72,6 @@ class CustomerEditReviewActivity : AppCompatActivity() {
 
         revUpdateBtn.setOnClickListener {
 
-
             val message = revStar.rating.toString()
 
             val title = revTitle.text.toString()
@@ -105,62 +100,71 @@ class CustomerEditReviewActivity : AppCompatActivity() {
                 revRecommend = "No"
             }
 
-
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val querySnapshot = customerCollectionRef
                         .whereEqualTo("customer_email", CustomerEmail)
+                        .whereEqualTo("rev_ID", id)
                         .get()
                         .await()
 
+                    println("This is the id in the 1st coro: "+ id)
                     for (document in querySnapshot.documents) {
                         customerCollectionRef.document(document.id)
                             .update("title", revTitle.text.toString())
                         customerCollectionRef.document(document.id)
                             .update("description", revDescription.text.toString())
 
-                    }
 
+
+                        withContext(Dispatchers.Main){
+                            Toast.makeText(
+                                this@CustomerEditReviewActivity,
+                                "Updated!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                        }
+
+                    }
 
                 } catch (e: Exception) {
                     println(e.message)
                 }
             }
 
+
+
+
         }
+
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = customerCollectionRef
                     .whereEqualTo("customer_email", CustomerEmail)
+                    .whereEqualTo("rev_ID", id)
                     .get()
                     .await()
 
+                println("Retrieving")
+                println(CustomerEmail + id)
 
                 for (document in querySnapshot.documents) {
-                    val review = document.toObject<Review>()
 
-                    println(review?.title)
-                    println(review?.description)
-                    println(review?.customer_email)
+                    println("Review title : "+document.get("title").toString())
 
-                    Toast.makeText(
-                        this@CustomerEditReviewActivity,
-                        "Updated!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    withContext(Dispatchers.Main){
-                        revTitle.setText(review?.title)
-                        revDescription.setText(review?.description)
-
-                    }
+                    revTitle.setText(document.get("title").toString())
+                    revDescription.setText(document.get("description").toString())
 
                 }
+
 
             } catch (e: Exception) {
                 println(e.message)
             }
         }
+
         revCancelBtn.setOnClickListener {
             val intent = Intent(this@CustomerEditReviewActivity, CustomerActivity::class.java)
             startActivity(intent)
