@@ -46,6 +46,7 @@ class ServicesForHomeAdapter(
         holder.ivServiceHome.setOnClickListener {
             var intent = Intent(context, HomeSearchActivity::class.java)
             intent.putExtra("service", data[position].name)
+            intent.putExtra("curCusEmail", data[position].name)
             context.startActivity(intent)
         }
     }
