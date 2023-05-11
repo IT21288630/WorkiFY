@@ -30,6 +30,11 @@
             android:name=".activities.CustomerReviewActivity"
             android:exported="false" />
 
+
+        <activity
+            android:name=".activities.CustomerEditReviewActivity"
+            android:exported="false" />
+
         <activity
             android:name=".activities.ViewCusOrderDetailsActivity"
             android:exported="false" />

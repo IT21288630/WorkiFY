@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-class CustomerReviewAddActivity : AppCompatActivity() {
+class CustomerReviewActivity : AppCompatActivity() {
 
 
     private val ReviewCollectionRef = Firebase.firestore.collection("customer_reviews")
@@ -50,17 +50,17 @@ class CustomerReviewAddActivity : AppCompatActivity() {
             }
 
             if(revStar.rating.toInt() == 1){
-                Toast.makeText(this@CustomerReviewAddActivity, "We Are sorry for your bad experience with this seller", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@CustomerReviewActivity, "We Are sorry for your bad experience with this seller", Toast.LENGTH_LONG).show()
 
             }
             else if(revStar.rating.toInt() == 2){
-                Toast.makeText(this@CustomerReviewAddActivity, "Hope you got your work done", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CustomerReviewActivity, "Hope you got your work done", Toast.LENGTH_SHORT).show()
 
             }
 
 
             else{
-                Toast.makeText(this@CustomerReviewAddActivity, "Try our other services too", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CustomerReviewActivity, "Try our other services too", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -112,7 +112,7 @@ class CustomerReviewAddActivity : AppCompatActivity() {
                     val querySnapshot = ReviewCollectionRef
                         .add(review)
                         .await()
-                    Toast.makeText(this@CustomerReviewAddActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CustomerReviewActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
 
 
                     /* for (document in querySnapshot.documents) {

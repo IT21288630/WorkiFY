@@ -13,7 +13,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
-import com.example.workify.adapters.CustomerReviewsForWorkerProfileAdapter
 import com.example.workify.adapters.HomeSearchAdapter
 import com.example.workify.dataClasses.Worker
 import com.google.firebase.firestore.Query
