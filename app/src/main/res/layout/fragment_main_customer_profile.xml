@@ -110,7 +110,7 @@
                         android:backgroundTint="#FFF"
                         android:layout_marginEnd="5dp"
                         android:text="@string/DetailsBtn"
-                        android:textColor="@color/white"
+                        android:textColor="#6672FF"
                         android:textSize="10sp"
                         app:cornerRadius="30dp"></Button>
 
