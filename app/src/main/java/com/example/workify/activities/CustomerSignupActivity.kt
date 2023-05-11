@@ -1,5 +1,6 @@
 package com.example.workify.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -35,6 +36,23 @@ class CustomerSignupActivity : AppCompatActivity() {
             val district = etWDistrict.text.toString()
             val password = etWPassword.text.toString()
 
+            if(name.isEmpty()){
+                etWName.error = "Please Enter Your Name"
+                return@setOnClickListener
+            }
+            if(email.isEmpty()){
+                etWEmail.error = "Please Enter Your Email"
+                return@setOnClickListener
+            }
+            if(district.isEmpty()){
+                etWDistrict.error = "Please Enter Your District"
+                return@setOnClickListener
+            }
+            if(password.isEmpty()){
+                etWPassword.error = "Please Enter a Password"
+                return@setOnClickListener
+            }
+
 
             val customer = Customer(name, email, district, password)
 
@@ -50,6 +68,9 @@ class CustomerSignupActivity : AppCompatActivity() {
 
             withContext(Dispatchers.Main) {
                 Toast.makeText(this@CustomerSignupActivity, "Customer added", Toast.LENGTH_LONG).show()
+                var intent = Intent(this@CustomerSignupActivity, CustomerLoginActivity2::class.java)
+                startActivity(intent)
+                finish()
             }
 
         } catch (e: Exception) {

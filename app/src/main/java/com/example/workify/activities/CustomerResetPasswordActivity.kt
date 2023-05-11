@@ -34,7 +34,7 @@ class CustomerResetPasswordActivity : AppCompatActivity() {
         tvWorkerSignInInsteadLink.setOnClickListener {
             val intent = Intent(
                 this@CustomerResetPasswordActivity,
-                WorkerLoginActivity::class.java
+                CustomerLoginActivity2::class.java
             )
             startActivity(intent)
         }

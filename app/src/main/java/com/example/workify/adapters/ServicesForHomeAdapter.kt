@@ -14,7 +14,8 @@ import com.squareup.picasso.Picasso
 
 class ServicesForHomeAdapter(
     private var data: List<Category>,
-    private var context: Context
+    private var context: Context,
+    private var email: String
 ) :
     RecyclerView.Adapter<ServicesForHomeAdapter.ViewHolder>() {
 
@@ -46,7 +47,7 @@ class ServicesForHomeAdapter(
         holder.ivServiceHome.setOnClickListener {
             var intent = Intent(context, HomeSearchActivity::class.java)
             intent.putExtra("service", data[position].name)
-            intent.putExtra("curCusEmail", data[position].name)
+            intent.putExtra("curCusEmail", email)
             context.startActivity(intent)
         }
     }

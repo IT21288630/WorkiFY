@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activities.WorkerReviewShowActivity">
+    >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCustomerReviewsForWorkerProfile"
+        android:id="@+id/rvCustomerReviewsForCusProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/customer_review_for_worker" />
+         />
 </FrameLayout>

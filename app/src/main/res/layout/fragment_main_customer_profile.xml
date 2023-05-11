@@ -73,17 +73,17 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvWorkerNameSett"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/WorkerName"
                             android:textColor="@color/white"
                             android:textSize="30dp"></TextView>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:id="@+id/tvWorkerEmailSett"
+                            android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/WorkerEmail"
-                            android:textColor="@color/white"
+                            android:textColor="@color/emailInProfile"
                             android:textSize="20dp"></TextView>
                     </LinearLayout>
                 </LinearLayout>
@@ -102,6 +102,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+
                     <Button
                         android:id="@+id/cusDetailsBtn"
                         android:layout_width="wrap_content"
@@ -109,7 +110,7 @@
                         android:backgroundTint="#6672FF"
                         android:layout_marginEnd="5dp"
                         android:text="@string/DetailsBtn"
-                        android:textColor="#FFF"
+                        android:textColor="@color/white"
                         android:textSize="10sp"
                         app:cornerRadius="30dp"></Button>
 

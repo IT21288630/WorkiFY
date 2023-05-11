@@ -73,7 +73,8 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
                 commit()
             }
         }
-        cusRevBtn.setOnClickListener{
+
+        cusRevBtn.setOnClickListener {
             customerReviewFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flSubCusProfileFragment, customerReviewFragment)

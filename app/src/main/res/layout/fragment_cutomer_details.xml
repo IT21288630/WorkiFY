@@ -29,10 +29,12 @@
                 android:textSize="30dp"></TextView>
 
 
-            <EditText
-                android:id="@+id/name"
+
+            <TextView
+                android:id="@+id/etWSName"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:inputType="none"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
@@ -40,10 +42,11 @@
                 android:drawableStart="@drawable/name"
                 android:drawablePadding="10dp"
                 android:hint="@string/WorkerName"
-                android:padding="10dp"></EditText>
+                android:padding="10dp"></TextView>
 
 
-            <EditText
+            <TextView
+                android:id="@+id/etWSEmail"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_margin="20dp"
@@ -51,9 +54,10 @@
                 android:drawableStart="@drawable/email"
                 android:drawablePadding="10dp"
                 android:hint="@string/pemail"
-                android:padding="10dp"></EditText>
+                android:padding="10dp"></TextView>
 
-            <EditText
+            <TextView
+                android:id="@+id/etWSDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginEnd="20dp"
@@ -63,19 +67,9 @@
                 android:drawableStart="@drawable/location"
                 android:drawablePadding="10dp"
                 android:hint="@string/WorkerLocation"
-                android:padding="10dp"></EditText>
+                android:padding="10dp"></TextView>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/round_corners"
-                android:drawableStart="@drawable/password"
-                android:drawablePadding="10dp"
-                android:hint="@string/ppassword"
-                android:padding="10dp" />
+
 
 
         </LinearLayout>

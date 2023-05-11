@@ -1,9 +1,8 @@
 package com.example.workify.dataClasses
 
-class CustomerReview(
+class CustomerFav (
     var customer_email: String = "",
     var description: String = "",
     var stars: Int = 0,
-    var title: String = "",
     var worker_email: String = ""
 )

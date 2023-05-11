@@ -34,11 +34,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHomeServices)
         val etHomeHelpSearch = view.findViewById<EditText>(R.id.etHomeHelpSearch)
 
+        val bundle = arguments
+        val email = bundle!!.getString("curCusEmail")
+
         etHomeHelpSearch.setOnKeyListener { view, keyCode, keyevent ->
             //If the keyevent is a key-down event on the "enter" button
             if (keyevent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 var intent = Intent(view.context, HomeSearchActivity::class.java)
                 intent.putExtra("serviceNameFromHome", etHomeHelpSearch.text.toString())
+                intent.putExtra("curCusEmail", email)
                 startActivity(intent)
                 true
             } else false
@@ -63,10 +67,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = ServicesForHomeAdapter(services, view.context)
+                    val adapter = email?.let { ServicesForHomeAdapter(services, view.context, it) }
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = GridLayoutManager(view.context, 3)
-                    adapter.setData(services, view.context)
+                    adapter?.setData(services, view.context)
                 }
 
 
