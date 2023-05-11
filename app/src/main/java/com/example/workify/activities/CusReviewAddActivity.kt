@@ -14,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 //for customer
 class CusReviewAddActivity : AppCompatActivity() {
@@ -102,7 +103,6 @@ class CusReviewAddActivity : AppCompatActivity() {
             else if(revRecoNo.isChecked.toString() == "true"){
                 revRecommend = "No"
             }
-            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
 
             var review = Review(
                 revTitle.text.toString(), revRecommend, revDescription.text.toString(), revStar.rating.toInt(),
@@ -116,7 +116,10 @@ class CusReviewAddActivity : AppCompatActivity() {
                         .add(review)
                         .await()
 
-                    Toast.makeText(this@CusReviewAddActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(this@CusReviewAddActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
+                    }
+
 
 
                 } catch (e: Exception) {

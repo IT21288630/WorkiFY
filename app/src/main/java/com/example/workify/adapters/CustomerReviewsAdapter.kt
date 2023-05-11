@@ -28,7 +28,7 @@ class CustomerReviewsAdapter(
         val sellers_review_name_on_cus_profile: TextView
 
 
-        val ShowreviewcutomerViewBtn: Button
+
         val ShowreviewcutomerEditBtn: Button
         val ShowreviewcutomerDeleteBtn: Button
 
@@ -39,7 +39,7 @@ class CustomerReviewsAdapter(
             sellers_review_description_on_cus_profile = view.findViewById(R.id.sellers_review_description_on_cus_profile)
 //            sellers_review_star_on_cus_profile = view.findViewById(R.id.sellers_review_star_on_sel_profile)
 
-            ShowreviewcutomerViewBtn = view.findViewById(R.id.ShowreviewcutomerViewBtn)
+
             ShowreviewcutomerEditBtn = view.findViewById(R.id.ShowreviewcutomerEditBtn)
             ShowreviewcutomerDeleteBtn= view.findViewById(R.id.ShowreviewcutomerDeleteBtn)
         }
@@ -61,14 +61,7 @@ class CustomerReviewsAdapter(
         holder.sellers_review_description_on_cus_profile.text = data[position].description
         //holder.sellers_review_star_on_cus_profile.text = data[position].stars.toString()
 
-        holder.ShowreviewcutomerViewBtn.setOnClickListener {
 
-            var intent = Intent(context, ViewFullReviewActivity::class.java)
-            intent.putExtra("customer_email", data[position].customer_email)
-            intent.putExtra("rev_ID", data[position].rev_ID)
-            context.startActivity(intent)
-
-        }
 
         holder.ShowreviewcutomerEditBtn.setOnClickListener {
 
