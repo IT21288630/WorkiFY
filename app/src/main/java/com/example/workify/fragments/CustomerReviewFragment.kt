@@ -10,7 +10,7 @@ import com.example.workify.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class CustomerReviewFragment : Fragment()  {
+class CustomerReviewFragment : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
@@ -27,8 +27,7 @@ class CustomerReviewFragment : Fragment()  {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_customer_review, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_customer_review, container, false)
     }
     companion object {
         @JvmStatic
