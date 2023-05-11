@@ -1,28 +1,34 @@
 package com.example.workify.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
 import com.example.workify.adapters.ChatAdapter
-import com.example.workify.adapters.ServicesForSettingsAdapter
-import com.example.workify.dataClasses.Category
 import com.example.workify.dataClasses.ChatMessage
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.google.type.DateTime
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class ChatActivity : AppCompatActivity() {
 
     private val chatCollectionRef = Firebase.firestore.collection("chats")
+    private val customerWorkerMsgCollectionRef =
+        Firebase.firestore.collection("customer_worker_msg")
     private var chats = mutableListOf<ChatMessage>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,22 +42,60 @@ class ChatActivity : AppCompatActivity() {
 
         val tvMsgSenderEmail = findViewById<TextView>(R.id.tvMsgSenderEmail)
         val rvChatMsgs = findViewById<RecyclerView>(R.id.rvChatMsgs)
+        val etMessage = findViewById<EditText>(R.id.etMessage)
+        val ivMsgSent = findViewById<ImageView>(R.id.ivMsgSent)
 
         tvMsgSenderEmail.text = otherEmail
 
-        if (wEmail != null && cEmail!= null && myEmail!= null) {
+        if (wEmail != null && cEmail != null && myEmail != null) {
             getMessages(rvChatMsgs, wEmail, cEmail, myEmail)
+        }
+
+        ivMsgSent.setOnClickListener {
+            if (etMessage.text.toString().isEmpty()) {
+                return@setOnClickListener
+            }
+
+            var chatMsg: ChatMessage? = null
+
+            if (otherEmail != null && myEmail != null) {
+                chatMsg = ChatMessage(myEmail, otherEmail, etMessage.text.toString(), Date(), wEmail, cEmail)
+            }
+
+            etMessage.text = null
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    if (chatMsg != null) {
+                        chatCollectionRef.add(chatMsg).await()
+                    }
+
+                    if (wEmail != null && cEmail != null && myEmail != null) {
+                        getMessages(rvChatMsgs, wEmail, cEmail, myEmail)
+                    }
+
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@ChatActivity, e.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
         }
     }
 
-    private fun getMessages(recyclerView: RecyclerView, wEmail: String, cEmail: String, myEmail: String) {
+    private fun getMessages(
+        recyclerView: RecyclerView,
+        wEmail: String,
+        cEmail: String,
+        myEmail: String
+    ) {
         chats.clear()
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = chatCollectionRef
-                    .whereEqualTo("wEmail", wEmail)
-                    .whereEqualTo("cEmail", cEmail)
+                    .whereEqualTo("wemail", wEmail)
+                    .whereEqualTo("cemail", cEmail)
                     .orderBy("date", Query.Direction.ASCENDING)
                     .get()
                     .await()
