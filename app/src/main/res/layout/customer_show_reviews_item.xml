@@ -30,14 +30,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/sellers_review_name_on_Sel_profile"
+                android:id="@+id/sellers_review_name_on_cus_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/WorkerName"
+                android:text="Worker rev for Cus"
                 android:textSize="20dp"></TextView>
 
             <TextView
-                android:id="@+id/sellers_review_title_on_Sel_profile"
+                android:id="@+id/sellers_review_title_on_cus_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Title"
@@ -51,7 +51,7 @@
                 android:paddingBottom="5dp">
 
                 <TextView
-                    android:id="@+id/sellers_review_star_on_sel_profile"
+                    android:id="@+id/sellers_review_star_on_cus_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rate"
@@ -60,10 +60,11 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/starsInCustomer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/RateOutOf"
+                    android:text=" "
                     android:textSize="15sp">
 
                 </TextView>

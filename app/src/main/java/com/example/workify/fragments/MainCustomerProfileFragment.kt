@@ -28,6 +28,7 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
         val customerProfileFavFragment = CustomerProfileFavFragment()
         val customerDetailsFragment = CustomerDetailsFragment()
         val customerOrdersFragment = CustomerOrdersFragment()
+        val customerReviewFragment = CustomerReviewFragment()
 
         val bundle = arguments
         val email = bundle!!.getString("curCusEmail")
@@ -68,6 +69,14 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
             customerOrdersFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flSubCusProfileFragment, customerOrdersFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
+        cusRevBtn.setOnClickListener{
+            customerReviewFragment.arguments = mBundle
+            childFragmentManager.beginTransaction().apply {
+                replace(R.id.flSubCusProfileFragment, customerReviewFragment)
                 addToBackStack(null)
                 commit()
             }

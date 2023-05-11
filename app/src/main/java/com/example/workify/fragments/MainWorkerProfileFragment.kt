@@ -28,7 +28,7 @@ class MainWorkerProfileFragment : Fragment(R.layout.fragment_main_worker_profile
 
         val workerProfileDescriptionFragment = WorkerProfileDescriptionFragment()
         val workerProfileServicesFragment = WorkerProfileServicesFragment()
-        val workerProfileReviewsFragment = WorkerProfileReviewsFragment()
+        //val workerProfileReviewsFragment = WorkerProfileReviewsFragment()
 
         val bundle = arguments
         val email = bundle!!.getString("curWorkerEmail")
@@ -89,12 +89,12 @@ class MainWorkerProfileFragment : Fragment(R.layout.fragment_main_worker_profile
             btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
             btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.white))
 
-            workerProfileReviewsFragment.arguments = mBundle
+     /*       workerProfileReviewsFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flWorkerProfileFragment, workerProfileReviewsFragment)
                 addToBackStack(null)
                 commit()
-            }
+            }*/
         }
 
         val tvWorkerName = view.findViewById<TextView>(R.id.tvWorkerName)

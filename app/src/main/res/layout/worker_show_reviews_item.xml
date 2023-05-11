@@ -30,11 +30,18 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/sellers_review_name_on_cus_profile"
+                android:id="@+id/sellers_review_name_on_Sel_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/WorkerName"
                 android:textSize="20dp"></TextView>
+
+            <TextView
+                android:id="@+id/sellers_review_title_on_Sel_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="15dp"></TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +51,7 @@
                 android:paddingBottom="5dp">
 
                 <TextView
-                    android:id="@+id/sellers_review_star_on_cus_profile"
+                    android:id="@+id/sellers_review_star_on_sel_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rate"

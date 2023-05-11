@@ -2,25 +2,23 @@ package com.example.workify.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import android.widget.*
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.workify.R
-import com.example.workify.adapters.WorkerPendingAdapter
+
 import com.example.workify.dataClasses.Review
-import com.example.workify.dataClasses.Order
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
-class CustomerReviewActivity : AppCompatActivity() {
+class CustomerReviewAddActivity : AppCompatActivity() {
 
 
     private val ReviewCollectionRef = Firebase.firestore.collection("customer_reviews")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.customer_add_review)
@@ -38,6 +36,7 @@ class CustomerReviewActivity : AppCompatActivity() {
         var curCustomerEmail = intent.getStringExtra("cusEmail")
         var workerEmail = intent.getStringExtra("workerEmail")
 
+
         revStar.setOnRatingBarChangeListener { ratingBar, fl, b ->
             ratingScale.text = fl.toString()
             when(ratingBar.rating.toInt()){
@@ -51,17 +50,17 @@ class CustomerReviewActivity : AppCompatActivity() {
             }
 
             if(revStar.rating.toInt() == 1){
-                Toast.makeText(this@CustomerReviewActivity, "We Are sorry for your bad experience with this seller", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@CustomerReviewAddActivity, "We Are sorry for your bad experience with this seller", Toast.LENGTH_LONG).show()
 
             }
             else if(revStar.rating.toInt() == 2){
-                Toast.makeText(this@CustomerReviewActivity, "Hope you got your work done", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CustomerReviewAddActivity, "Hope you got your work done", Toast.LENGTH_SHORT).show()
 
             }
 
 
             else{
-                Toast.makeText(this@CustomerReviewActivity, "Try our other services too", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CustomerReviewAddActivity, "Try our other services too", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -107,13 +106,13 @@ class CustomerReviewActivity : AppCompatActivity() {
 
             CoroutineScope(Dispatchers.IO).launch {
 
+
                 println("this is the coroutinescope dispatcher")
                 try {
                     val querySnapshot = ReviewCollectionRef
                         .add(review)
                         .await()
-                    Toast.makeText(this@CustomerReviewActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(this@CustomerReviewAddActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
 
 
                     /* for (document in querySnapshot.documents) {
@@ -130,7 +129,6 @@ class CustomerReviewActivity : AppCompatActivity() {
  */
 
                 } catch (e: Exception) {
-                    Toast.makeText(this@CustomerReviewActivity, "Something wrong, try again!", Toast.LENGTH_SHORT).show()
 
                     println(e.message)
                 }

@@ -1,12 +1,12 @@
 package com.example.workify.fragments
-
+/*
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
-import com.example.workify.adapters.CustomerReviewsForWorkerProfileAdapter
+import com.example.workify.adapters.cust_revi_on_workerAdapter
 import com.example.workify.dataClasses.CustomerReview
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -50,7 +50,7 @@ class WorkerProfileReviewsFragment : Fragment(R.layout.fragment_worker_profile_r
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = CustomerReviewsForWorkerProfileAdapter(reviews, view.context)
+                    val adapter = cust_revi_on_workerAdapter(reviews)
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view.context)
                     adapter.setData(reviews, view.context)
@@ -62,4 +62,4 @@ class WorkerProfileReviewsFragment : Fragment(R.layout.fragment_worker_profile_r
         }
     }
 
-}
+}*/

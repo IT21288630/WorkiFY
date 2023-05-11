@@ -97,15 +97,15 @@ class CustomerEditReviewActivity : AppCompatActivity() {
 
                     for (document in querySnapshot.documents) {
                         customerCollectionRef.document(document.id)
-                             .update("Title", revTitle.text.toString())
+                            .update("Title", revTitle.text.toString())
                         customerCollectionRef.document(document.id)
-                             .update("Description", revDescription.text.toString())
+                            .update("Description", revDescription.text.toString())
                         customerCollectionRef.document(document.id)
-                             .update("Star", revStar.rating.toInt())
+                            .update("Star", revStar.rating.toInt())
                         customerCollectionRef.document(document.id)
-                             .update("Recommend", revRecommend)
+                            .update("Recommend", revRecommend)
 
-                     }
+                    }
 
                 } catch (e: Exception) {
                     println(e.message)
@@ -137,9 +137,9 @@ class CustomerEditReviewActivity : AppCompatActivity() {
                         revTitle.setText(review?.title)
                         revDescription.setText(review?.description)
                         revStar.setNumStars((review?.stars!!))
-                        revRecommend.setText(review?.recomment)
-                        etDesc.setText(review?.cusDesc)
-                        etDate.setText(review?.cusDesc)
+                        // revRecommend.setText(review?.recomment)
+                        // etDesc.setText(review?.cusDesc)
+                        //  etDate.setText(review?.cusDesc)
                     }
 
                 }
