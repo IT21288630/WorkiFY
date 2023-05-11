@@ -42,6 +42,12 @@
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textSize="15dp"></TextView>
+            <TextView
+                android:id="@+id/sellers_review_description_on_cus_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="description"
+                android:textSize="15dp"></TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"

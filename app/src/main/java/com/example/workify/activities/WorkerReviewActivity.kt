@@ -1,7 +1,5 @@
 package com.example.workify.activities
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -9,9 +7,7 @@ import android.widget.*
 import com.example.workify.R
 
 import com.example.workify.dataClasses.Review
-import com.example.workify.dataClasses.Order
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -32,7 +32,9 @@
             android:name=".activities.CustomerReviewActivity"
             android:exported="false" />
 
-
+        <activity
+            android:name=".activities.ViewRevCusActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.CustomerEditReviewActivity"
             android:exported="false" />
