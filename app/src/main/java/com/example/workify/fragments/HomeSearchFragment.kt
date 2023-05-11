@@ -1,12 +1,10 @@
 package com.example.workify.fragments
 
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.AdapterView
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
@@ -49,17 +47,20 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         val bundle = arguments
         var curService: String? = bundle!!.getString("curService")
         var serviceNameFromHome: String? = bundle!!.getString("serviceNameFromHome")
+        var myEmail = bundle!!.getString("curCusEmail")
 
         tvSearchServiceName.text = "Workers related to $curService"
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHomeSearchResult)
 
-        if (serviceNameFromHome != null) {
-            searchByServiceName(recyclerView, serviceNameFromHome, etSearchNameInput)
+        if (serviceNameFromHome != null && myEmail != null) {
+            searchByServiceName(recyclerView, serviceNameFromHome, etSearchNameInput, myEmail)
         }
 
         curService?.let {
-            serviceClickSearch(it, recyclerView)
+            if (myEmail != null) {
+                serviceClickSearch(it, recyclerView, myEmail)
+            }
         }
 
         spSearchFilterSelect.onItemSelectedListener =
@@ -72,12 +73,15 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                         1 -> {
                             val filter = "avgRatings"
                             curService?.let {
-                                filteredSearch(
-                                    it,
-                                    recyclerView,
-                                    filter,
-                                    etSearchNameInput
-                                )
+                                if (myEmail != null) {
+                                    filteredSearch(
+                                        it,
+                                        recyclerView,
+                                        filter,
+                                        etSearchNameInput,
+                                        myEmail
+                                    )
+                                }
                             }
 
                         }
@@ -85,24 +89,30 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                         2 -> {
                             val filter = "lowToHigh"
                             curService?.let {
-                                filteredSearch(
-                                    it,
-                                    recyclerView,
-                                    filter,
-                                    etSearchNameInput
-                                )
+                                if (myEmail != null) {
+                                    filteredSearch(
+                                        it,
+                                        recyclerView,
+                                        filter,
+                                        etSearchNameInput,
+                                        myEmail
+                                    )
+                                }
                             }
 
                         }
                         3 -> {
                             val filter = "highToLow"
                             curService?.let {
-                                filteredSearch(
-                                    it,
-                                    recyclerView,
-                                    filter,
-                                    etSearchNameInput
-                                )
+                                if (myEmail != null) {
+                                    filteredSearch(
+                                        it,
+                                        recyclerView,
+                                        filter,
+                                        etSearchNameInput,
+                                        myEmail
+                                    )
+                                }
                             }
 
                         }
@@ -122,8 +132,8 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         etSearchNameInput.addTextChangedListener {
             nameEmpty = false
 
-            if (curService != null) {
-                searchByName(recyclerView, etSearchNameInput.text.toString(), curService)
+            if (curService != null && myEmail != null) {
+                searchByName(recyclerView, etSearchNameInput.text.toString(), curService, myEmail)
             }
 
             if (etSearchNameInput.text.toString().isEmpty()) {
@@ -132,7 +142,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         }
     }
 
-    fun serviceClickSearch(curService: String, recyclerView: RecyclerView) {
+    fun serviceClickSearch(curService: String, recyclerView: RecyclerView, myEmail: String) {
         var workerEmails = mutableListOf<String>()
         var workers = mutableListOf<Worker>()
 
@@ -161,7 +171,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = view?.let { HomeSearchAdapter(workers, it.context) }
+                    val adapter = view?.let { HomeSearchAdapter(workers, it.context, myEmail) }
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view?.context)
                     view?.context?.let { adapter?.setData(workers, it) }
@@ -177,7 +187,8 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         curService: String,
         recyclerView: RecyclerView,
         filter: String,
-        etSearchNameInput: EditText
+        etSearchNameInput: EditText,
+        myEmail: String
     ) {
         var workers = mutableListOf<Worker>()
 
@@ -249,7 +260,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = view?.context?.let { HomeSearchAdapter(workers, it) }
+                    val adapter = view?.context?.let { HomeSearchAdapter(workers, it, myEmail) }
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view?.context)
                     view?.context?.let { adapter?.setData(workers, it) }
@@ -261,7 +272,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         }
     }
 
-    fun searchByName(recyclerView: RecyclerView, name: String, curService: String) {
+    fun searchByName(recyclerView: RecyclerView, name: String, curService: String, myEmail:String) {
         var workers = mutableListOf<Worker>()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -291,7 +302,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = view?.let { HomeSearchAdapter(workers, it.context) }
+                    val adapter = view?.let { HomeSearchAdapter(workers, it.context, myEmail) }
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view?.context)
                     view?.context?.let { adapter?.setData(workers, it) }
@@ -307,7 +318,8 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
     fun searchByServiceName(
         recyclerView: RecyclerView,
         sName: String,
-        etSearchNameInput: EditText
+        etSearchNameInput: EditText,
+        myEmail: String
     ) {
         var workers = mutableListOf<Worker>()
 
@@ -347,7 +359,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = view?.let { HomeSearchAdapter(workers, it.context) }
+                    val adapter = view?.let { HomeSearchAdapter(workers, it.context, myEmail) }
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view?.context)
                     view?.context?.let { adapter?.setData(workers, it) }

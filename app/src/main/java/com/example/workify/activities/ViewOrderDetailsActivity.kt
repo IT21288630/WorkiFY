@@ -33,6 +33,7 @@ class ViewOrderDetailsActivity : AppCompatActivity() {
         var etTitle = findViewById<TextView>(R.id.OrderDetailsTitle)
         var etDesc = findViewById<TextView>(R.id.OrderDetailsDesc)
         var etDate = findViewById<TextView>(R.id.OrderDetailsDate)
+        var etDonebtn = findViewById<Button>(R.id.OrderConfirm)
 
 
         var curOrderID = intent.getStringExtra("orderID")
@@ -40,6 +41,12 @@ class ViewOrderDetailsActivity : AppCompatActivity() {
 
         println(curOrderID)
         println(curWorkerEmail)
+
+        etDonebtn.setOnClickListener {
+
+            finish();
+
+        }
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
