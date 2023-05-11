@@ -156,6 +156,7 @@
     <string name="ReviewExampleTitle">Example: Great communication</string>
     <string name="ReviewExampleDes">Example: Amazing experience! communication and his great work overall was better than I thought.</string>
     <string name="ReviewExampleDesWorker">Example: Amazing experience with this Buyer. Very friendly.</string>
+    <string name="signout">SignOut</string>
 
     <string-array name="status">
         <item> Pending </item>

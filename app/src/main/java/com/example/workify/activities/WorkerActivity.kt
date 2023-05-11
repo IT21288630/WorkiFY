@@ -8,8 +8,19 @@ import com.example.workify.fragments.WorkerOrdersFragment
 import com.example.workify.fragments.MainWorkerProfileFragment
 import com.example.workify.fragments.WorkerSettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class WorkerActivity : AppCompatActivity() {
+
+    private val workerCollectionRef = Firebase.firestore.collection("workers")
+    private var currentEmail: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_worker)
@@ -23,6 +34,10 @@ class WorkerActivity : AppCompatActivity() {
 
         val mBundle = Bundle()
         mBundle.putString("curWorkerEmail", intent.getStringExtra("curWorkerEmail"))
+
+        currentEmail = intent.getStringExtra("curWorkerEmail")
+
+        getToken()
 
         setCurrentFragment(mainWorkerProfileFragment, mBundle)
 
@@ -42,6 +57,27 @@ class WorkerActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flWorkerFragment, fragment)
             commit()
+        }
+    }
+
+    private fun getToken() {
+        FirebaseMessaging.getInstance().token.addOnSuccessListener(this::updateToken)
+    }
+
+    private fun updateToken(token: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot =
+                    workerCollectionRef.whereEqualTo("email", currentEmail).get().await()
+
+                for (document in querySnapshot.documents) {
+                    workerCollectionRef.document(document.id)
+                        .update("fcmToken", token)
+                }
+            } catch (e: Exception) {
+                println(e.message)
+            }
+
         }
     }
 
