@@ -23,10 +23,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class WorkerPendingAdapter(
     private var data: List<Order>,
-    private var context: Context
+    private var context: Context,
+    private var email: String
 ) :
     RecyclerView.Adapter<WorkerPendingAdapter.ViewHolder>() {
 
@@ -34,12 +36,14 @@ class WorkerPendingAdapter(
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val workerOrderTitle: TextView
+        val pendingOrderId:TextView
         val AcceptbtnWorker: Button
         val RejectbtnWorker: Button
         val ViewOrderDetails:Button
 
         init {
             workerOrderTitle = view.findViewById(R.id.workerOrderTitle)
+            pendingOrderId = view.findViewById(R.id.pendingOrderId)
             AcceptbtnWorker = view.findViewById(R.id.AcceptbtnWorker)
             RejectbtnWorker = view.findViewById(R.id.RejectbtnWorker)
             ViewOrderDetails = view.findViewById(R.id.ViewOrderDetails)
@@ -59,6 +63,7 @@ class WorkerPendingAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.workerOrderTitle.text = data[position].cusTitle
+        holder.pendingOrderId.text = "Order ID: " + data[position].orderID
 
         holder.ViewOrderDetails.setOnClickListener {
             var intent = Intent(context, ViewOrderDetailsActivity::class.java)
@@ -70,6 +75,8 @@ class WorkerPendingAdapter(
 
         holder.RejectbtnWorker.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
+
+                var orders = mutableListOf<Order>()
                 try {
                     val querySnapshot = orderCollectionRef
                         .whereEqualTo("orderID",data[position].orderID)
@@ -78,6 +85,24 @@ class WorkerPendingAdapter(
 
                     for (document in querySnapshot.documents) {
                         orderCollectionRef.document(document.id).delete()
+                    }
+
+                    val querySnapshot2 = orderCollectionRef
+                        .whereEqualTo("workEmail", email)
+                        .whereEqualTo("orderStatus", "Pending")
+                        .get()
+                        .await()
+
+                    for (document2 in querySnapshot2.documents){
+                        var order = document2.toObject<Order>()
+
+                        if (order != null) {
+                            orders.add(order)
+                        }
+                    }
+
+                    withContext(Dispatchers.Main){
+                        setData(orders, context)
                     }
 
 
@@ -91,9 +116,11 @@ class WorkerPendingAdapter(
         holder.AcceptbtnWorker.setOnClickListener {
 
             CoroutineScope(Dispatchers.IO).launch {
+                var orders = mutableListOf<Order>()
+
                 try {
                     val querySnapshot = orderCollectionRef
-                        .whereEqualTo("workEmail","qwe")
+                        .whereEqualTo("workEmail",email)
                         .whereEqualTo("orderID",data[position].orderID)
                         .get()
                         .await()
@@ -111,6 +138,24 @@ class WorkerPendingAdapter(
                         orderCollectionRef.document(document.id)
                             .update("orderStatus", "Accepted")
 
+                    }
+
+                    val querySnapshot2 = orderCollectionRef
+                        .whereEqualTo("workEmail", email)
+                        .whereEqualTo("orderStatus", "Pending")
+                        .get()
+                        .await()
+
+                    for (document2 in querySnapshot2.documents){
+                        var order = document2.toObject<Order>()
+
+                        if (order != null) {
+                            orders.add(order)
+                        }
+                    }
+
+                    withContext(Dispatchers.Main){
+                        setData(orders, context)
                     }
 
                 } catch (e: Exception) {
