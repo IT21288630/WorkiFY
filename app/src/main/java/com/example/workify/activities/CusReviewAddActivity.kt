@@ -103,7 +103,6 @@ class CusReviewAddActivity : AppCompatActivity() {
             else if(revRecoNo.isChecked.toString() == "true"){
                 revRecommend = "No"
             }
-            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
 
             var review = Review(
                 revTitle.text.toString(), revRecommend, revDescription.text.toString(), revStar.rating.toInt(),

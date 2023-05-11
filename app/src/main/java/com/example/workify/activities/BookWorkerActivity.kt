@@ -56,9 +56,34 @@ class BookWorkerActivity : AppCompatActivity() {
             val cusDate = etDate.text.toString()
             val orderID = getRandomString()
 
-            IT21256646TestClass.DetailsEmptyCheck(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDesc)
+            if(cusName.isEmpty()){
+                etName.error = "Please Enter a name"
+                return@setOnClickListener
+            }
+            if(cusAddress.isEmpty()){
+                etAddress.error = "Please Enter a Address"
+                return@setOnClickListener
+            }
+            if(cusPhone.isEmpty()){
+                etPhone.error = "Please Enter a Phone"
+                return@setOnClickListener
+            }
+            if(cusTitle.isEmpty()){
+                etTitle.error = "Please Enter a Title"
+                return@setOnClickListener
+            }
+            if(cusDesc.isEmpty()){
+                etDescription.error = "Please Enter a Description"
+                return@setOnClickListener
+            }
+            if(cusDate.isEmpty()){
+                etDate.error = "Please Enter a Date"
+                return@setOnClickListener
+            }
 
-            IT21256646TestClass.ValideData(cusPhone)
+            //IT21256646TestClass.DetailsEmptyCheck(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDesc)
+
+            //IT21256646TestClass.ValideData(cusPhone)
 
             val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,cusEmail,intent.getStringExtra("workerEmail"),"Pending",orderID)
             orderWorker(order)

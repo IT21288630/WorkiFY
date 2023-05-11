@@ -1,46 +1,67 @@
 package com.example.workify.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.workify.R
+import com.example.workify.dataClasses.Customer
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import com.example.workify.dataClasses.Customer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class CustomerDetailsFragment : Fragment(R.layout.fragment_cutomer_details) {
 
-   /* private lateinit var etWSName: TextView
-    private lateinit var etWSEmail: TextView
-    private lateinit var etWSDistrict: TextView
-    private val db = Firebase.firestore
+    private val workerCollectionRef = Firebase.firestore.collection("customers")
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_cutomer_details, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        etWSName = view.findViewById(R.id.etWSName)
-        etWSEmail = view.findViewById(R.id.etWSEmail)
-        etWSDistrict = view.findViewById(R.id.etWSDistrict)
 
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val ref = db.collection("Customers").document(userId)
 
-        ref.get().addOnSuccessListener { documentSnapshot ->
-            if (documentSnapshot.exists()) {
-                val customer = documentSnapshot.toObject<Customer>()
-                etWSName.text = customer?.name
-                etWSEmail.text = customer?.email
-                etWSDistrict.text = customer?.district
+        val bundle = arguments
+        val email = bundle!!.getString("curCusEmail")
+
+        val mBundle = Bundle()
+        mBundle.putString("curCusEmail", email)
+
+
+
+
+
+        val tvWorkerName = view.findViewById<TextView>(R.id.etWSName)
+        val tvWorkerEmail = view.findViewById<TextView>(R.id.etWSEmail)
+        val tvWorkerDis = view.findViewById<TextView>(R.id.etWSDistrict)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
+
+                for (document in querySnapshot.documents) {
+                    val worker = document.toObject<Customer>()
+
+                    if (worker != null) {
+                        withContext(Dispatchers.Main) {
+                            tvWorkerName.text = worker.name
+                            tvWorkerEmail.text = worker.email
+                            tvWorkerDis.text = worker.district
+                        }
+                    }
+                }
+
+            } catch (e: Exception) {
+                println(e.message)
             }
-        }.addOnFailureListener { exception ->
-            Toast.makeText(requireContext(), "Failed to load customer details: ${exception.message}", Toast.LENGTH_SHORT).show()
         }
-        return view
-    }*/
+    }
 }
