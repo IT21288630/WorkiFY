@@ -1,13 +1,12 @@
 package com.example.workify.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import com.example.workify.R
 import com.example.workify.dataClasses.Order
 import com.example.workify.dataClasses.Review
-import com.example.workify.dataClasses.Worker
+import com.google.firebase.firestore.auth.FirebaseAuthCredentialsProvider
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -19,16 +18,28 @@ import kotlinx.coroutines.withContext
 
 class CustomerEditReviewActivity : AppCompatActivity() {
 
-    private val customerCollectionRef = Firebase.firestore.collection("customer_reviews")
+    private var CustomerEmail = "qwer"
+    private  var workerEmail ="bnb"
+
+    private val TAG = "CustomerEditReviewActivity"
+
+    private lateinit var revTitle: EditText
+    private lateinit var revDescription : EditText
+    private lateinit var revStar : RatingBar
+
+    //private lateinit var progressBar : ProgressBar
+
+    private var db = Firebase.firestore
+
+    private val customerCollectionRef = Firebase.firestore.collection("worker_reviews")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cutomer_edit_review)
 
-
-        var revTitle = findViewById<EditText>(R.id.cutomerRevTitle)
-        var revStar = findViewById<RatingBar>(R.id.RatingBar)
-        var revDescription = findViewById<EditText>(R.id.addcustomRevDescription)
+        revTitle = findViewById(R.id.cutomerRevTitle)
+        revStar = findViewById(R.id.RatingBar)
+        revDescription = findViewById(R.id.addcustomRevDescription)
 
         var revRecoYes = findViewById<RadioButton>(R.id.radioRecYes)
         var revRecoNo = findViewById<RadioButton>(R.id.radioRecNo)
@@ -38,9 +49,6 @@ class CustomerEditReviewActivity : AppCompatActivity() {
 
         val ratingScale = findViewById<TextView>(R.id.ratingBarText)
 
-        var curCustomerEmail = intent.getStringExtra("cusEmail")
-        var workerEmail = intent.getStringExtra("workerEmail")
-
 
         var revRecommend = "yes"
         if(revRecoYes.isChecked.toString() == "true"){
@@ -49,6 +57,7 @@ class CustomerEditReviewActivity : AppCompatActivity() {
         else if(revRecoNo.isChecked.toString() == "true"){
             revRecommend = "No"
         }
+
 
         revStar.setOnRatingBarChangeListener { ratingBar, fl, b ->
             ratingScale.text = fl.toString()
@@ -67,12 +76,19 @@ class CustomerEditReviewActivity : AppCompatActivity() {
         revUpdateBtn.setOnClickListener {
 
 
-            if(revStar.rating.toInt() < 3){
-                Toast.makeText(this@CustomerEditReviewActivity, "We Are sorry for your bad experience!", Toast.LENGTH_SHORT).show()
+            if (revStar.rating.toInt() < 3) {
+                Toast.makeText(
+                    this@CustomerEditReviewActivity,
+                    "We Are sorry for your bad experience!",
+                    Toast.LENGTH_SHORT
+                ).show()
 
-            }
-            else{
-                Toast.makeText(this@CustomerEditReviewActivity, "Keep going, You doing Great!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    this@CustomerEditReviewActivity,
+                    "Keep going, You doing Great!",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             val message = revStar.rating.toString()
@@ -81,42 +97,60 @@ class CustomerEditReviewActivity : AppCompatActivity() {
             val description = revDescription.text.toString()
             val star = revStar.rating.toInt()
 
+            if (title.isEmpty()) {
+                revTitle.error = "Please Enter a Valid Title to your Review"
+                return@setOnClickListener
+            }
 
+            if (description.isEmpty()) {
+                revDescription.error = "Please Enter a Valid Description"
+                return@setOnClickListener
+            }
 
+            if (revStar.rating.toInt() < 1) {
+                Toast.makeText(this, "Please submit a rating", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            var revRecommend = "yes"
+            if (revRecoYes.isChecked.toString() == "true") {
+                revRecommend = "Yes"
+            } else if (revRecoNo.isChecked.toString() == "true") {
+                revRecommend = "No"
+            }
 
 
             CoroutineScope(Dispatchers.IO).launch {
-
-                println("this is the coroutinescope dispatcher")
                 try {
                     val querySnapshot = customerCollectionRef
-                        .whereEqualTo("customer_email", curCustomerEmail)
+                        .whereEqualTo("customer_email", CustomerEmail)
+                        .whereEqualTo("worker_email", workerEmail)
                         .get()
                         .await()
 
-
                     for (document in querySnapshot.documents) {
                         customerCollectionRef.document(document.id)
-                            .update("Title", revTitle.text.toString())
+                            .update("title", revTitle.text.toString())
                         customerCollectionRef.document(document.id)
-                            .update("Description", revDescription.text.toString())
+                            .update("description", revDescription.text.toString())
                         customerCollectionRef.document(document.id)
-                            .update("Star", revStar.rating.toInt())
+                            .update("stars", revStar.rating.toInt())
                         customerCollectionRef.document(document.id)
-                            .update("Recommend", revRecommend)
+                            .update("stars", revRecommend)
 
                     }
+
 
                 } catch (e: Exception) {
                     println(e.message)
                 }
             }
+
         }
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = customerCollectionRef
-                    .whereEqualTo("customer_email", curCustomerEmail)
-                    .whereEqualTo("worker_email", workerEmail)
+                    .whereEqualTo("cusEmail", CustomerEmail)
                     .get()
                     .await()
 
@@ -126,20 +160,14 @@ class CustomerEditReviewActivity : AppCompatActivity() {
                     val review = document.toObject<Review>()
 
                     println(review?.title)
-                    println(review?.customer_email)
                     println(review?.description)
-                    println(review?.stars)
-                    println(review?.recomment)
-                    println(review?.worker_email)
+                    println(review?.customer_email)
+
 
                     withContext(Dispatchers.Main){
-
                         revTitle.setText(review?.title)
                         revDescription.setText(review?.description)
-                        revStar.setNumStars((review?.stars!!))
-                        // revRecommend.setText(review?.recomment)
-                        // etDesc.setText(review?.cusDesc)
-                        //  etDate.setText(review?.cusDesc)
+
                     }
 
                 }
@@ -149,8 +177,8 @@ class CustomerEditReviewActivity : AppCompatActivity() {
             }
         }
 
-
     }
+
 
 }
 
