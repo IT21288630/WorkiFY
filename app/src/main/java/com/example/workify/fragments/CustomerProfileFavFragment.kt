@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
 import com.example.workify.adapters.CustomerFavAdapter
-import com.example.workify.adapters.CustomerReviewsForWorkerProfileAdapter
 import com.example.workify.dataClasses.CustomerFav
 import com.example.workify.dataClasses.CustomerReview
 import com.google.firebase.firestore.ktx.firestore
