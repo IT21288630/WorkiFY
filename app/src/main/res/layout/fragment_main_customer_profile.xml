@@ -101,10 +101,10 @@
                         android:id="@+id/cusDetailsBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#6672FF"
+                        android:backgroundTint="#FFF"
                         android:layout_marginEnd="5dp"
                         android:text="@string/DetailsBtn"
-                        android:textColor="@color/white"
+                        android:textColor="#6672FF"
                         android:textSize="10sp"
                         app:cornerRadius="30dp"></Button>
 

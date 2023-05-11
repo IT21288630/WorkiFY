@@ -77,7 +77,7 @@ class CustomerResetPasswordActivity : AppCompatActivity() {
                         ).show()
                         val intent = Intent(
                             this@CustomerResetPasswordActivity,
-                            WorkerLoginActivity::class.java
+                            CustomerLoginActivity2::class.java
                         )
                         startActivity(intent)
                     }

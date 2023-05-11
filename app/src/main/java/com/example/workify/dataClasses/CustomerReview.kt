@@ -6,5 +6,5 @@ class CustomerReview(
     var stars: Int = 0,
     var title: String = "",
     var worker_email: String = "",
-    var revid:String=""
-)
+    var rev_ID:String=""
+   )

@@ -70,7 +70,7 @@ class CustomerSettingFragment : Fragment(R.layout.fragment_customer_setting) {
 
         btnWorkerEdit.setOnClickListener {
             if (email != null) {
-                updateWorker(
+                updateCustomer(
                     email,
                     etWSName.text.toString(),
                     etWSDistrict.text.toString(),
@@ -131,7 +131,7 @@ class CustomerSettingFragment : Fragment(R.layout.fragment_customer_setting) {
         }
     }
 
-    private fun updateWorker(
+    private fun updateCustomer(
         email: String,
         name: String,
         district: String,
