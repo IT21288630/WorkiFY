@@ -1,5 +1,6 @@
 package com.example.workify.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -67,6 +68,9 @@ class CustomerSignupActivity : AppCompatActivity() {
 
             withContext(Dispatchers.Main) {
                 Toast.makeText(this@CustomerSignupActivity, "Customer added", Toast.LENGTH_LONG).show()
+                var intent = Intent(this@CustomerSignupActivity, CustomerLoginActivity2::class.java)
+                startActivity(intent)
+                finish()
             }
 
         } catch (e: Exception) {
