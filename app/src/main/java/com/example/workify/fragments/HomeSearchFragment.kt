@@ -49,7 +49,12 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         var serviceNameFromHome: String? = bundle!!.getString("serviceNameFromHome")
         var myEmail = bundle!!.getString("curCusEmail")
 
-        tvSearchServiceName.text = "Workers related to $curService"
+        if (serviceNameFromHome != null){
+            tvSearchServiceName.text = "Workers related to \"$serviceNameFromHome\""
+        }
+        else if(curService != null){
+            tvSearchServiceName.text = "Workers related to \"$curService\""
+        }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHomeSearchResult)
 
