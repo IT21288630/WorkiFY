@@ -14,7 +14,7 @@
         android:theme="@style/Theme.WorkiFY"
         tools:targetApi="31">
         <activity
-            android:name=".ChatActivity"
+            android:name=".activities.ChatActivity"
             android:exported="false" />
         <activity
             android:name=".activities.CustomerResetPasswordActivity"

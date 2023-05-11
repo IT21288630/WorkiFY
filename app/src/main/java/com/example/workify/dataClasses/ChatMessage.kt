@@ -6,5 +6,5 @@ data class ChatMessage(
     var senderEmail: String = "",
     var receiverEmail: String = "",
     var message: String = "",
-    var date: DateTime? = null,
+    var sendDate: DateTime? = null,
 )

@@ -3,24 +3,12 @@ package com.example.workify.adapters
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.*
-import com.example.workify.activities.BookWorkerActivity
-import com.example.workify.dataClasses.Category
+import com.example.workify.activities.ChatActivity
 import com.example.workify.dataClasses.Customer
-import com.example.workify.dataClasses.Worker
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class MsgForWorkerAdapter(
     private var data: List<Customer>,
@@ -57,6 +45,9 @@ class MsgForWorkerAdapter(
         holder.lyMsgItem.setOnClickListener {
             var intent = Intent(context, ChatActivity::class.java)
             intent.putExtra("senderEmail", data[position].email)
+            intent.putExtra("receiverEmail", email)
+            intent.putExtra("cEmail", data[position].email)
+            intent.putExtra("wEmail", email)
             context.startActivity(intent)
         }
     }
