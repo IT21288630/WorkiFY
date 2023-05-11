@@ -35,6 +35,23 @@ class CustomerSignupActivity : AppCompatActivity() {
             val district = etWDistrict.text.toString()
             val password = etWPassword.text.toString()
 
+            if(name.isEmpty()){
+                etWName.error = "Please Enter Your Name"
+                return@setOnClickListener
+            }
+            if(email.isEmpty()){
+                etWEmail.error = "Please Enter Your Email"
+                return@setOnClickListener
+            }
+            if(district.isEmpty()){
+                etWDistrict.error = "Please Enter Your District"
+                return@setOnClickListener
+            }
+            if(password.isEmpty()){
+                etWPassword.error = "Please Enter a Password"
+                return@setOnClickListener
+            }
+
 
             val customer = Customer(name, email, district, password)
 

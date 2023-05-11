@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.workify.R
+import com.example.workify.dataClasses.Customer
 import com.example.workify.dataClasses.Worker
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -21,6 +22,8 @@ import kotlinx.coroutines.withContext
  * A simple [Fragment] subclass.
  */
 class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_profile) {
+
+    private val workerCollectionRef = Firebase.firestore.collection("customers")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -72,6 +75,33 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
                 commit()
             }
         }
+        val tvWorkerName = view.findViewById<TextView>(R.id.tvWorkerNameSett)
+        val tvWorkerEmail = view.findViewById<TextView>(R.id.tvWorkerEmailSett)
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
+
+                for (document in querySnapshot.documents) {
+                    val worker = document.toObject<Customer>()
+
+                    if (worker != null) {
+                        withContext(Dispatchers.Main){
+                            tvWorkerName.text = worker.name
+                            tvWorkerEmail.text = worker.email
+                        }
+                    }
+                }
+
+            } catch (e: Exception) {
+                println(e.message)
+            }
+        }
     }
+
 
 }

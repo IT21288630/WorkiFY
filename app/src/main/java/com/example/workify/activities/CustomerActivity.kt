@@ -33,6 +33,8 @@ class CustomerActivity : AppCompatActivity() {
         }
     }
 
+
+
     fun setCurrentFragment(fragment: Fragment, mBundle: Bundle) {
         fragment.arguments = mBundle
         supportFragmentManager.beginTransaction().apply {
