@@ -122,7 +122,6 @@ class CustomerReviewsAdapter(
             }
         }
 
-
     }
 
     fun setData(data: List<CustomerReview>, context: Context) {
