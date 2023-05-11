@@ -20,7 +20,7 @@ import kotlinx.coroutines.withContext
 
 class ViewRevCusActivity : FragmentActivity() {
 
-    private val reviewCollectionRef = Firebase.firestore.collection("worker_reviews")
+    private val reviewCollectionRef = Firebase.firestore.collection("customer_reviews")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

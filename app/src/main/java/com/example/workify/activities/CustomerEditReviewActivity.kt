@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 
 class CustomerEditReviewActivity : AppCompatActivity() {
 
-    private var CustomerEmail = "qwer"
+    private var CustomerEmail = "kamal@gmail.com"
     private  var workerEmail ="bnb"
 
     private val TAG = "CustomerEditReviewActivity"
@@ -31,7 +31,7 @@ class CustomerEditReviewActivity : AppCompatActivity() {
 
     private var db = Firebase.firestore
 
-    private val customerCollectionRef = Firebase.firestore.collection("worker_reviews")
+    private val customerCollectionRef = Firebase.firestore.collection("customer_reviews")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,21 +76,6 @@ class CustomerEditReviewActivity : AppCompatActivity() {
         revUpdateBtn.setOnClickListener {
 
 
-            if (revStar.rating.toInt() < 3) {
-                Toast.makeText(
-                    this@CustomerEditReviewActivity,
-                    "We Are sorry for your bad experience!",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            } else {
-                Toast.makeText(
-                    this@CustomerEditReviewActivity,
-                    "Keep going, You doing Great!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
             val message = revStar.rating.toString()
 
             val title = revTitle.text.toString()
@@ -124,7 +109,6 @@ class CustomerEditReviewActivity : AppCompatActivity() {
                 try {
                     val querySnapshot = customerCollectionRef
                         .whereEqualTo("customer_email", CustomerEmail)
-                        .whereEqualTo("worker_email", workerEmail)
                         .get()
                         .await()
 
@@ -133,10 +117,6 @@ class CustomerEditReviewActivity : AppCompatActivity() {
                             .update("title", revTitle.text.toString())
                         customerCollectionRef.document(document.id)
                             .update("description", revDescription.text.toString())
-                        customerCollectionRef.document(document.id)
-                            .update("stars", revStar.rating.toInt())
-                        customerCollectionRef.document(document.id)
-                            .update("stars", revRecommend)
 
                     }
 
@@ -150,10 +130,9 @@ class CustomerEditReviewActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val querySnapshot = customerCollectionRef
-                    .whereEqualTo("cusEmail", CustomerEmail)
+                    .whereEqualTo("customer_email", CustomerEmail)
                     .get()
                     .await()
-
 
 
                 for (document in querySnapshot.documents) {
@@ -163,6 +142,11 @@ class CustomerEditReviewActivity : AppCompatActivity() {
                     println(review?.description)
                     println(review?.customer_email)
 
+                    Toast.makeText(
+                        this@CustomerEditReviewActivity,
+                        "Updated!",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
                     withContext(Dispatchers.Main){
                         revTitle.setText(review?.title)
