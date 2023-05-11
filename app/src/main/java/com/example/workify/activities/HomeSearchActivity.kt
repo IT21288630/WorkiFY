@@ -3,11 +3,8 @@ package com.example.workify.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.workify.fragments.HomeSearchFragment
 import com.example.workify.R
-import com.example.workify.fragments.CustomerSettingFragment
-import com.example.workify.fragments.HomeFragment
-import com.example.workify.fragments.MainCustomerProfileFragment
+import com.example.workify.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeSearchActivity : AppCompatActivity() {
@@ -21,6 +18,7 @@ class HomeSearchActivity : AppCompatActivity() {
         val homeSearchFragment = HomeSearchFragment()
         val mainCustomerProfileFragment = MainCustomerProfileFragment()
         val customerSettingsFragment = CustomerSettingFragment()
+        val customerMessagesFragment = CustomerMessagesFragment()
 
         val mBundle = Bundle()
         mBundle.putString("curService", intent.getStringExtra("service"))
@@ -33,6 +31,7 @@ class HomeSearchActivity : AppCompatActivity() {
                 R.id.miHomeCus -> setCurrentFragment(homeFragment, mBundle)
                 R.id.miProfileCus -> setCurrentFragment(mainCustomerProfileFragment, mBundle)
                 R.id.miSettingsCus -> setCurrentFragment(customerSettingsFragment, mBundle)
+                R.id.miMessageCus -> setCurrentFragment(customerMessagesFragment, mBundle)
             }
             true
         }
