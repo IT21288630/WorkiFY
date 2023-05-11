@@ -24,10 +24,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class CustomerPendingAdapter(
     private var data: List<Order>,
-    private var context: Context
+    private var context: Context,
+    private var email: String
 ) :
     RecyclerView.Adapter<CustomerPendingAdapter.ViewHolder>() {
 
@@ -35,6 +37,7 @@ class CustomerPendingAdapter(
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val customerOrderTitle: TextView
+        val customerPendingOrderId: TextView
         val CustomerViewDetailsbtn: Button
         val Customercancelorderbtn: Button
 
@@ -43,6 +46,7 @@ class CustomerPendingAdapter(
             customerOrderTitle = view.findViewById(R.id.customerOrderTitle)
             CustomerViewDetailsbtn = view.findViewById(R.id.CustomerViewDetailsbtn)
             Customercancelorderbtn = view.findViewById(R.id.Customercancelorderbtn)
+            customerPendingOrderId = view.findViewById(R.id.customerPendingOrderId)
 
         }
     }
@@ -60,6 +64,7 @@ class CustomerPendingAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.customerOrderTitle.text = data[position].cusTitle
+        holder.customerPendingOrderId.text = "Order ID: " + data[position].orderID
 
         holder.CustomerViewDetailsbtn.setOnClickListener {
             var intent = Intent(context, ViewCusOrderDetailsActivity::class.java)
@@ -71,6 +76,7 @@ class CustomerPendingAdapter(
 
         holder.Customercancelorderbtn.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
+                var orders = mutableListOf<Order>()
                 try {
                     val querySnapshot = orderCollectionRef
                         .whereEqualTo("orderID",data[position].orderID)
@@ -79,6 +85,24 @@ class CustomerPendingAdapter(
 
                     for (document in querySnapshot.documents) {
                         orderCollectionRef.document(document.id).delete()
+                    }
+
+                    val querySnapshot2 = orderCollectionRef
+                        .whereEqualTo("cusEmail", email)
+                        .whereEqualTo("orderStatus", "Pending")
+                        .get()
+                        .await()
+
+                    for (document2 in querySnapshot2.documents){
+                        var order = document2.toObject<Order>()
+
+                        if (order != null) {
+                            orders.add(order)
+                        }
+                    }
+
+                    withContext(Dispatchers.Main){
+                        setData(orders, context)
                     }
 
 

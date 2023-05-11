@@ -191,4 +191,22 @@
     <string name="dismiss_error">Dismiss</string>
     <string name="messages">Messages</string>
     <string name="message">Message</string>
+    <string name="completed_orders_worker">Completed Orders</string>
+    <string name="accepted_orders_worker">Accepted Orders</string>
+    <string name="search_orders_worker_accepted">Search Orders</string>
+    <string name="orders_customer">Orders</string>
+    <string name="completed_orders_customers">Completed Orders</string>
+    <string name="search_orders_completed_customer">Search Orders</string>
+    <string name="accepted_orders_customer">Accepted Orders</string>
+    <string name="cancel_customer_pending">Cancel</string>
+    <string name="view_order_worker_id">#Od23234</string>
+    <string name="view_cus_order_id">#Od23234</string>
+    <string name="edit_cus_order_btn">Edit</string>
+    <string name="done_view_order">Done</string>
+    <string name="name_cus">Name</string>
+    <string name="address_cus">Address</string>
+    <string name="phone_cus">Phone</string>
+    <string name="title_cus">Title</string>
+    <string name="date_cus">Date</string>
+    <string name="book_worker_btn_cus">Book Worker</string>
 </resources>

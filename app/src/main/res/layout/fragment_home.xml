@@ -73,13 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <ImageView
-                            android:id="@+id/navIcon"
-                            android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="1dp"
-                            app:srcCompat="@drawable/icons8_menu_rounded_60" />
+
 
                         <ImageView
                             android:layout_width="180dp"

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.workify.R
 import com.example.workify.adapters.WorkerPendingAdapter
@@ -64,11 +65,14 @@ class ViewCusOrderDetailsActivity : AppCompatActivity() {
                             .update("cusDate", etDate.text.toString())
                     }
 
-
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(this@ViewCusOrderDetailsActivity, "Order details Updated", Toast.LENGTH_LONG).show()
+                    }
                 } catch (e: Exception) {
                     println(e.message)
                 }
             }
+            finish()
         }
         CoroutineScope(Dispatchers.IO).launch {
             try {

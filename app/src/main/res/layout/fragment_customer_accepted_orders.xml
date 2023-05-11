@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:text="Accepted Orders"
+            android:text="@string/accepted_orders_customer"
             android:textColor="@color/secondaryTitle"
             android:textSize="25sp"></TextView>
 

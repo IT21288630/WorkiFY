@@ -54,7 +54,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="20dp"
                         android:textColor="@color/secondaryTitle"
-                        android:text="#Od23234">
+                        android:text="@string/view_order_worker_id">
 
                     </TextView>
 
@@ -203,7 +203,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:backgroundTint="@color/primaryBtnColor"
-                    android:text="Done"
+                    android:text="@string/done_view_order"
                     android:layout_gravity="center"
                     app:cornerRadius="30dp" />
             </LinearLayout>

@@ -56,10 +56,10 @@ class CustomerPendingOrdersFragment : Fragment(R.layout.fragment_customer_pendin
 
 
                 withContext(Dispatchers.Main) {
-                    val adapter = CustomerPendingAdapter(orders, view.context)
+                    val adapter = email?.let { CustomerPendingAdapter(orders, view.context, it) }
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view.context)
-                    adapter.setData(orders, view.context)
+                    adapter?.setData(orders, view.context)
 
 
                 }

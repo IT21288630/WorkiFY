@@ -31,10 +31,12 @@ class CustomerAcceptedAdapter(
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val customerAcceptedOrderTitle: TextView
+        val CusAcceptedOrderID:TextView
 
 
         init {
             customerAcceptedOrderTitle = view.findViewById(R.id.customerAcceptedOrderTitle)
+            CusAcceptedOrderID = view.findViewById(R.id.CusAcceptedOrderID)
 
         }
     }
@@ -52,6 +54,7 @@ class CustomerAcceptedAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.customerAcceptedOrderTitle.text = data[position].cusTitle
+        holder.CusAcceptedOrderID.text = "Order ID: " + data[position].orderID
 
 
     }

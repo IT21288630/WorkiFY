@@ -20,55 +20,9 @@
 
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/WorkerDetails"
-                android:textColor="#6672FF"
-                android:textSize="30dp"
-                android:textStyle="normal"></TextView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|fill_horizontal"
-                    android:layout_marginStart="20dp"
-                    app:srcCompat="@drawable/profile" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/WorkerDisplayName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginStart="5dp"
-                        android:text="@string/WorkerName"
-                        android:textSize="20dp"></TextView>
-
-                    <Button
-                        android:id="@+id/viewDetails"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|center_horizontal"
-                        android:backgroundTint="@color/primaryBtnColor"
-                        android:gravity="center"
-                        android:text="@string/ViewProfile"
-                        app:cornerRadius="30dp" />
-                </LinearLayout>
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/MyDetails"
@@ -106,7 +60,7 @@
                         android:background="@drawable/round_corners"
                         android:drawableStart="@drawable/name"
                         android:drawablePadding="10dp"
-                        android:hint="Name"
+                        android:hint="@string/name_cus"
                         android:padding="10dp"
                         android:textSize="20dp"></EditText>
                 </LinearLayout>
@@ -130,7 +84,7 @@
                         android:background="@drawable/round_corners"
                         android:drawableStart="@drawable/location"
                         android:drawablePadding="10dp"
-                        android:hint="Address"
+                        android:hint="@string/address_cus"
                         android:padding="10dp"
                         android:textSize="20dp"></EditText>
                 </LinearLayout>
@@ -154,7 +108,7 @@
                         android:background="@drawable/round_corners"
                         android:drawableStart="@drawable/phone"
                         android:drawablePadding="10dp"
-                        android:hint="Phone"
+                        android:hint="@string/phone_cus"
                         android:padding="10dp"
                         android:textSize="20dp"></EditText>
                 </LinearLayout>
@@ -186,7 +140,7 @@
                             android:background="@drawable/round_corners"
                             android:drawableStart="@drawable/description"
                             android:drawablePadding="10dp"
-                            android:hint="Title"
+                            android:hint="@string/title_cus"
                             android:padding="10dp"
                             android:textSize="20dp"></EditText>
                     </LinearLayout>
@@ -225,7 +179,7 @@
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/round_corners"
-                        android:hint="Date"
+                        android:hint="@string/date_cus"
                         android:drawablePadding="10dp"
                         android:drawableStart="@drawable/calendar"
                         android:padding="10dp"
@@ -239,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:backgroundTint="@color/primaryBtnColor"
-                    android:text="Book Worker"
+                    android:text="@string/book_worker_btn_cus"
                     app:cornerRadius="30dp" />
             </LinearLayout>
         </LinearLayout>

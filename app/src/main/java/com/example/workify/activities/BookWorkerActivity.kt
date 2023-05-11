@@ -44,9 +44,6 @@ class BookWorkerActivity : AppCompatActivity() {
         etDescription = findViewById(R.id.cusDesc)
         etDate = findViewById(R.id.cusDate)
         btnBookWorker = findViewById(R.id.bookWorkerbtn)
-        WorkerDisplayName = findViewById(R.id.WorkerDisplayName)
-
-        WorkerDisplayName.text = workerEmail
 
         btnBookWorker.setOnClickListener {
 
