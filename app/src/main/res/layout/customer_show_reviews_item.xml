@@ -116,8 +116,8 @@
             android:layout_marginEnd="10dp"
             android:backgroundTint="#6672FF"
             android:text="@string/edit_review_heading"
-            android:textSize="10sp"
             android:textColor="@color/white"
+            android:textSize="10sp"
             app:cornerRadius="30dp">
 
         </Button>

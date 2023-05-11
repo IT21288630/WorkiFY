@@ -17,8 +17,7 @@ import kotlinx.coroutines.withContext
 
 class CustomerEditReviewActivity : AppCompatActivity() {
 
-    private var CustomerEmail = "kamal@gmail.com"
-    private  var workerEmail ="bnb"
+
 
     private val TAG = "CustomerEditReviewActivity"
 
@@ -35,6 +34,9 @@ class CustomerEditReviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.customer_edit_review)
+
+        var CustomerEmail = intent.getStringExtra("customer_email")
+        var id =intent.getStringExtra("rev_ID")
 
         revTitle = findViewById(R.id.cutomerRevTitle)
         revStar = findViewById(R.id.RatingBar)
