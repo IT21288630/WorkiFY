@@ -61,7 +61,6 @@ class CustomerReviewsAdapter(
 
         holder.ShowreviewcutomerViewBtn.setOnClickListener {
             var intent = Intent(context, CustomerReviewActivity::class.java)
-            intent.putExtra("orderID", data[position].id)
             intent.putExtra("customer_email", data[position].customer_email)
             context.startActivity(intent)
         }
