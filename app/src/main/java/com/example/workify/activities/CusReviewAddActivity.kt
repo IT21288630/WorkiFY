@@ -51,7 +51,6 @@ class CusReviewAddActivity : AppCompatActivity() {
                 else -> ratingScale.text = " "
 
             }
-
             if(revStar.rating.toInt() == 1){
                 Toast.makeText(this@CusReviewAddActivity, "We Are sorry for your bad experience with this seller", Toast.LENGTH_LONG).show()
 
@@ -60,7 +59,6 @@ class CusReviewAddActivity : AppCompatActivity() {
                 Toast.makeText(this@CusReviewAddActivity, "Hope you got your work done", Toast.LENGTH_SHORT).show()
 
             }
-
 
             else{
                 Toast.makeText(this@CusReviewAddActivity, "Try our other services too", Toast.LENGTH_SHORT).show()
@@ -75,7 +73,7 @@ class CusReviewAddActivity : AppCompatActivity() {
 
 
         revAddBtn.setOnClickListener {
-
+            val orderId = getRandomString()
             val title = revTitle.text.toString()
             val description = revDescription.text.toString()
 
@@ -108,7 +106,7 @@ class CusReviewAddActivity : AppCompatActivity() {
 
             var review = Review(
                 revTitle.text.toString(), revRecommend, revDescription.text.toString(), revStar.rating.toInt(),
-                workerEmail.toString(), curCustomerEmail.toString()
+                workerEmail.toString(), curCustomerEmail.toString(), orderId
             )
 
             CoroutineScope(Dispatchers.IO).launch {
@@ -131,6 +129,12 @@ class CusReviewAddActivity : AppCompatActivity() {
 
 
 
+    }
+    fun getRandomString() : String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..5)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 
 }

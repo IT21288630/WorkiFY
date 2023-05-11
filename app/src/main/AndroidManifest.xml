@@ -26,6 +26,9 @@
             android:name=".activities.CustomerLoginActivity2"
             android:exported="false" />
         <activity
+            android:name=".activities.ViewFullReviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.WorkerResetPasswordActivity"
             android:exported="false" />
         <activity

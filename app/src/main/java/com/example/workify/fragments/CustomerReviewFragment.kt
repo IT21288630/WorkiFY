@@ -34,7 +34,7 @@ class CustomerReviewFragment : Fragment(R.layout.fragment_customer_profile_revie
         val email = bundle!!.getString("curCusEmail")
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvCustomerReviewsForCusProfile)
-        var reviews = mutableListOf<Review>()
+        var reviews = mutableListOf<CustomerReview>()
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -44,7 +44,7 @@ class CustomerReviewFragment : Fragment(R.layout.fragment_customer_profile_revie
                     .await()
 
                 for (document in querySnapshot.documents) {
-                    val review = document.toObject<Review>()
+                    val review = document.toObject<CustomerReview>()
 
                     if (review != null) {
                         reviews.add(review)

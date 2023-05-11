@@ -38,7 +38,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // val revSearchService = view.findViewById<>()
+        // val revSearchService = view.findViewById<>()
         val tvSearchServiceName = view.findViewById<TextView>(R.id.tvSearchServiceName)
         val spSearchFilterSelect = view.findViewById<Spinner>(R.id.spSearchFilterSelect)
         val etSearchNameInput = view.findViewById<EditText>(R.id.etSearchNameInput)
@@ -49,7 +49,11 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         var serviceNameFromHome: String? = bundle!!.getString("serviceNameFromHome")
         var myEmail = bundle!!.getString("curCusEmail")
 
-        tvSearchServiceName.text = "Workers related to $curService"
+        if (serviceNameFromHome != null) {
+            tvSearchServiceName.text = "Workers related to \"$serviceNameFromHome\""
+        } else if (curService != null) {
+            tvSearchServiceName.text = "Workers related to \"$curService\""
+        }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHomeSearchResult)
 
@@ -272,7 +276,12 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         }
     }
 
-    fun searchByName(recyclerView: RecyclerView, name: String, curService: String, myEmail:String) {
+    fun searchByName(
+        recyclerView: RecyclerView,
+        name: String,
+        curService: String,
+        myEmail: String
+    ) {
         var workers = mutableListOf<Worker>()
 
         CoroutineScope(Dispatchers.IO).launch {
