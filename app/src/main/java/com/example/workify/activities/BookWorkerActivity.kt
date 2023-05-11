@@ -58,7 +58,7 @@ class BookWorkerActivity : AppCompatActivity() {
             val cusDate = etDate.text.toString()
             val orderID = getRandomString()
 
-            val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,null,intent.getStringExtra("workerEmail"),"Pending",orderID)
+            val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,cusEmail,intent.getStringExtra("workerEmail"),"Pending",orderID)
             orderWorker(order)
 
         }
