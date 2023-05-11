@@ -29,7 +29,7 @@ import kotlinx.coroutines.withContext
  * A simple [Fragment] subclass.
  */
 class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
-
+    private val rewCatCollectionRef = Firebase.firestore.collection("customer_reviews")
     private val workerCatCollectionRef = Firebase.firestore.collection("worker_cat")
     private val workerCollectionRef = Firebase.firestore.collection("workers")
     private var serviceEmpty = false
@@ -38,6 +38,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+       // val revSearchService = view.findViewById<>()
         val tvSearchServiceName = view.findViewById<TextView>(R.id.tvSearchServiceName)
         val spSearchFilterSelect = view.findViewById<Spinner>(R.id.spSearchFilterSelect)
         val etSearchNameInput = view.findViewById<EditText>(R.id.etSearchNameInput)

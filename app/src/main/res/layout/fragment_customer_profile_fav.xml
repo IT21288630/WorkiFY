@@ -4,11 +4,31 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-tools:context=".fragments.WorkerProfileReviewsFragment">
+tools:context=".fragments.CustomerProfileFavFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="Favorites"
+            android:textColor="#6672FF"
+            android:textSize="30dp"></TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCustomerReviewsForWorkerProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rvCustomerReviewsForWorkerProfile"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+
 </FrameLayout>
