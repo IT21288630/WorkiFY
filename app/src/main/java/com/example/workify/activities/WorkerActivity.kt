@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.workify.R
+import com.example.workify.fragments.WorkerMessagesFragment
 import com.example.workify.fragments.WorkerOrdersFragment
 import com.example.workify.fragments.MainWorkerProfileFragment
 import com.example.workify.fragments.WorkerSettingsFragment
@@ -29,6 +30,7 @@ class WorkerActivity : AppCompatActivity() {
             findViewById<BottomNavigationView>(R.id.workerBottomNavigationView)
         val mainWorkerProfileFragment = MainWorkerProfileFragment()
         val workerSettingsFragment = WorkerSettingsFragment()
+        val workerMessagesFragment = WorkerMessagesFragment()
 
         val workerOrdersFragment = WorkerOrdersFragment()
 
@@ -46,6 +48,7 @@ class WorkerActivity : AppCompatActivity() {
                 R.id.miProfile -> setCurrentFragment(mainWorkerProfileFragment, mBundle)
                 R.id.miSettings -> setCurrentFragment(workerSettingsFragment, mBundle)
                 R.id.miNotification -> setCurrentFragment(workerOrdersFragment, mBundle)
+                R.id.miMessage -> setCurrentFragment(workerMessagesFragment, mBundle)
             }
             true
         }
