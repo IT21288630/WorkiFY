@@ -63,6 +63,14 @@ class ChatAdapter(
 
         }else{
             holder.tvChatMsg.background = ContextCompat.getDrawable(context, R.drawable.background_receive_message)
+            val params = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.START
+            }
+            holder.tvChatMsg.layoutParams = params
+            holder.tvMsgSentTime.layoutParams = params
         }
 
 
