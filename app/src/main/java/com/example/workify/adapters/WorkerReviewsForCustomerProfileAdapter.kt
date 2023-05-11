@@ -64,8 +64,8 @@ class WorkerReviewsForCustomerProfileAdapter(
 
         holder.ShowreviewcutomerViewBtn.setOnClickListener {
             var intent = Intent(Context, CustomerEditReviewActivity::class.java)
-            intent.putExtra("orderID", data[position].id)
             intent.putExtra("customer_email", data[position].customer_email)
+            intent.putExtra("worker_email", data[position].worker_email)
             Context.startActivity(intent)
         }
 
@@ -74,7 +74,7 @@ class WorkerReviewsForCustomerProfileAdapter(
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val querySnapshot = rewCollectionRef
-                        .whereEqualTo("orderID",data[position].id)
+                        .whereEqualTo("customer_email",data[position].customer_email)
                         .get()
                         .await()
 

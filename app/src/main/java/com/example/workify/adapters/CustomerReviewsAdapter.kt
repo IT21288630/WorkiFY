@@ -29,7 +29,9 @@ class CustomerReviewsAdapter(
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val sellers_review_title_on_cus_profile: TextView
         val sellers_review_description_on_cus_profile: TextView
-        val sellers_review_star_on_sel_profile: RatingBar
+        val sellers_review_star_on_cus_profile: RatingBar
+        val sellers_review_name_on_cus_profile: TextView
+
 
         val ShowreviewcutomerViewBtn: Button
         val ShowreviewcutomerEditBtn: Button
@@ -37,9 +39,10 @@ class CustomerReviewsAdapter(
 
 
         init {
+            sellers_review_name_on_cus_profile = view.findViewById(R.id.sellers_review_name_on_cus_profile)
             sellers_review_title_on_cus_profile = view.findViewById(R.id.sellers_review_title_on_cus_profile)
             sellers_review_description_on_cus_profile = view.findViewById(R.id.sellers_review_description_on_cus_profile)
-            sellers_review_star_on_sel_profile = view.findViewById(R.id.sellers_review_star_on_sel_profile)
+            sellers_review_star_on_cus_profile = view.findViewById(R.id.sellers_review_star_on_sel_profile)
 
             ShowreviewcutomerViewBtn = view.findViewById(R.id.ShowreviewcutomerViewBtn)
             ShowreviewcutomerEditBtn = view.findViewById(R.id.ShowreviewcutomerEditBtn)
@@ -48,16 +51,22 @@ class CustomerReviewsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_worker_profile_reviews, parent, false)
-        return ViewHolder(itemView)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.customer_show_reviews_item, parent, false)
+        return ViewHolder(view)
     }
     override fun getItemCount(): Int {
         return data.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.ShowreviewcutomerViewBtn.text = data[position].title
+
+        holder.sellers_review_name_on_cus_profile.text = data[position].customer_email
+        holder.sellers_review_title_on_cus_profile.text = data[position].title
+        holder.sellers_review_description_on_cus_profile.text = data[position].description
+        holder.sellers_review_star_on_cus_profile.rating = data[position].stars.toFloat()
+
+
 
         holder.ShowreviewcutomerViewBtn.setOnClickListener {
             var intent = Intent(context, CustomerReviewActivity::class.java)
@@ -67,16 +76,7 @@ class CustomerReviewsAdapter(
 
 
     }
-    class myViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        val name : TextView = itemView.findViewById(R.id.sellers_review_name_on_Sel_profile)
-        val revtitle : TextView = itemView.findViewById(R.id.sellers_review_title_on_Sel_profile)
-        //val revdescription : TextView = itemView.findViewById(R.id.tvRCName)
-        val revstar : TextView = itemView.findViewById(R.id.sellers_review_star_on_sel_profile)
-        //val revrecommend : TextView = itemView.findViewById(R.id.tvRCName)
-
-
-    }
     fun setData(data: List<Review>, context: Context) {
         this.data = data
         this.context = context

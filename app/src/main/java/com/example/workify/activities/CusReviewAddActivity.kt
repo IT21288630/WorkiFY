@@ -68,6 +68,11 @@ class CusReviewAddActivity : AppCompatActivity() {
 
         }
 
+        laterBtn.setOnClickListener{
+            val intent = Intent(this@CusReviewAddActivity, CustomerActivity::class.java)
+            startActivity(intent)
+        }
+
 
         revAddBtn.setOnClickListener {
 
@@ -99,7 +104,7 @@ class CusReviewAddActivity : AppCompatActivity() {
             else if(revRecoNo.isChecked.toString() == "true"){
                 revRecommend = "No"
             }
-
+            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
 
             var review = Review(
                 revTitle.text.toString(), revRecommend, revDescription.text.toString(), revStar.rating.toInt(),
@@ -112,7 +117,9 @@ class CusReviewAddActivity : AppCompatActivity() {
                     val querySnapshot = ReviewCollectionRef
                         .add(review)
                         .await()
+
                     Toast.makeText(this@CusReviewAddActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
+
 
                 } catch (e: Exception) {
 
@@ -121,10 +128,7 @@ class CusReviewAddActivity : AppCompatActivity() {
             }
         }
 
-        laterBtn.setOnClickListener{
-            val intent = Intent(this@CusReviewAddActivity, CustomerActivity::class.java)
-            startActivity(intent)
-        }
+
 
 
     }

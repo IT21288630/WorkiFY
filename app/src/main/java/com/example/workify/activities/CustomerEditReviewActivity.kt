@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.*
 import com.example.workify.R
 import com.example.workify.dataClasses.Review
-import com.example.workify.fragments.CustomerReviewFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
