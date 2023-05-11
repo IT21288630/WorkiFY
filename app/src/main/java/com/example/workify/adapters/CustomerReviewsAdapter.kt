@@ -61,6 +61,14 @@ class CustomerReviewsAdapter(
         holder.sellers_review_description_on_cus_profile.text = data[position].description
         //holder.sellers_review_star_on_cus_profile.text = data[position].stars.toString()
 
+        holder.ShowreviewcutomerViewBtn.setOnClickListener {
+
+            var intent = Intent(context, ViewFullReviewActivity::class.java)
+            intent.putExtra("customer_email", data[position].customer_email)
+            intent.putExtra("rev_ID", data[position].rev_ID)
+            context.startActivity(intent)
+
+        }
 
         holder.ShowreviewcutomerEditBtn.setOnClickListener {
 
