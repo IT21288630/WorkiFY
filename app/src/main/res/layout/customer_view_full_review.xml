@@ -109,7 +109,7 @@
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressTint="#FFCC00"
-                    android:rating="4"
+                    android:rating="3"
                     android:stepSize="1"
                     android:textColor="@color/black" />
             </RelativeLayout>
@@ -125,7 +125,7 @@
                 android:padding="20dp">
 
                 <TextView
-                    android:id="@+id/textView17"
+
                     android:layout_width="wrap_content"
                     android:layout_height="33dp"
                     android:text="@string/review_title"
@@ -142,7 +142,7 @@
                     android:layout_height="44dp"
                     android:backgroundTint="@color/background"
                     android:ems="10"
-                    android:hint=" "
+                    android:hint="title"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
                     app:cornerRadius="30dp" />
@@ -185,7 +185,6 @@
                 </RadioGroup>
 
                 <TextView
-                    android:id="@+id/cusProducDes"
                     android:layout_width="131dp"
                     android:layout_height="30dp"
                     android:text="@string/revProductDes"
@@ -195,12 +194,11 @@
                     android:textStyle="bold" />
 
                 <EditText
-
                     android:id="@+id/addcustomRevDescription"
                     android:layout_width="348dp"
                     android:layout_height="64dp"
 
-                    android:hint=" "
+                    android:hint="description"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
