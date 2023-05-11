@@ -23,6 +23,7 @@ class HomeSearchActivity : AppCompatActivity() {
         val mBundle = Bundle()
         mBundle.putString("curService", intent.getStringExtra("service"))
         mBundle.putString("serviceNameFromHome", intent.getStringExtra("serviceNameFromHome"))
+        mBundle.putString("curCusEmail", intent.getStringExtra("curCusEmail"))
 
         setCurrentFragment(homeSearchFragment, mBundle)
 
