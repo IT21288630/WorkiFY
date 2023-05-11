@@ -14,4 +14,8 @@
         android:id="@+id/miSettingsCus"
         android:icon="@drawable/filled_settings"
         android:title="" />
+
+    <item android:id="@+id/miMessageCus"
+        android:title=""
+        android:icon="@drawable/filled_message"/>
 </menu>
