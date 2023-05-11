@@ -260,44 +260,6 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         }
     }
 
-    fun noServiceSearch(recyclerView: RecyclerView) {
-        var workers = mutableListOf<Worker>()
-        var workerEmails = mutableListOf<String>()
-        serviceEmpty = true
-
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val querySnapshot =
-                    workerCatCollectionRef.get().await()
-
-                for (document in querySnapshot.documents) {
-                    val querySnapshot2 =
-                        workerCollectionRef.whereEqualTo("email", document.get("wEmail")).get()
-                            .await()
-
-                    for (document2 in querySnapshot2.documents) {
-                        val worker = document2.toObject<Worker>()
-                        worker?.price = document.get("hrRate") as String?
-
-                        if (worker != null) {
-                            workers.add(worker)
-                        }
-                    }
-                }
-
-                withContext(Dispatchers.Main) {
-                    val adapter = view?.let { HomeSearchAdapter(workers, it.context) }
-                    recyclerView.adapter = adapter
-                    recyclerView.layoutManager = LinearLayoutManager(view?.context)
-                    view?.context?.let { adapter?.setData(workers, it) }
-                }
-
-            } catch (e: Exception) {
-                println(e.message)
-            }
-        }
-    }
-
     fun searchByName(recyclerView: RecyclerView, name: String, curService: String) {
         var workers = mutableListOf<Worker>()
 
