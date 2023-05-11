@@ -10,8 +10,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
 import com.example.workify.activities.CustomerEditReviewActivity
-import com.example.workify.activities.ViewFullReviewActivity
 import com.example.workify.dataClasses.CustomerReview
+import com.example.workify.dataClasses.Order
+import com.example.workify.dataClasses.Review
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class CustomerReviewsAdapter(
     private var data : List<CustomerReview>,
@@ -20,7 +29,7 @@ class CustomerReviewsAdapter(
 
     RecyclerView.Adapter<CustomerReviewsAdapter.ViewHolder>(){
 
-
+    private val revCollectionRef = Firebase.firestore.collection("customer_reviews")
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val sellers_review_title_on_cus_profile: TextView
         val sellers_review_description_on_cus_profile: TextView
@@ -61,14 +70,6 @@ class CustomerReviewsAdapter(
         holder.sellers_review_description_on_cus_profile.text = data[position].description
         //holder.sellers_review_star_on_cus_profile.text = data[position].stars.toString()
 
-        holder.ShowreviewcutomerViewBtn.setOnClickListener {
-
-            var intent = Intent(context, ViewFullReviewActivity::class.java)
-            intent.putExtra("customer_email", data[position].customer_email)
-            intent.putExtra("rev_ID", data[position].rev_ID)
-            context.startActivity(intent)
-
-        }
 
         holder.ShowreviewcutomerEditBtn.setOnClickListener {
 
@@ -81,10 +82,44 @@ class CustomerReviewsAdapter(
         }
 
         holder.ShowreviewcutomerDeleteBtn.setOnClickListener {
-            var intent = Intent(context, CustomerEditReviewActivity::class.java)
-            intent.putExtra("customer_email", data[position].customer_email)
-            intent.putExtra("rev_ID", data[position].rev_ID)
-            context.startActivity(intent)
+
+
+            CoroutineScope(Dispatchers.IO).launch {
+                var reviews = mutableListOf<CustomerReview>()
+                try {
+                    val querySnapshot = revCollectionRef
+                        .whereEqualTo("rev_ID",data[position].rev_ID)
+                        .get()
+                        .await()
+
+                    for (document in querySnapshot.documents) {
+                        revCollectionRef.document(document.id).delete()
+                    }
+
+                    val querySnapshot2 = revCollectionRef
+                        .whereEqualTo("customer_email",  data[position].customer_email)
+                        .whereEqualTo("rev_ID", data[position].rev_ID)
+                        .get()
+                        .await()
+
+                    for (document2 in querySnapshot2.documents){
+                        var review = document2.toObject<CustomerReview>()
+
+                        if (review != null) {
+                            reviews.add(review)
+                        }
+                    }
+
+                    withContext(Dispatchers.Main){
+
+                        setData(reviews, context)
+                    }
+
+
+                } catch (e: Exception) {
+                    println(e.message)
+                }
+            }
         }
 
 

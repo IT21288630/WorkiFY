@@ -101,7 +101,7 @@ class CustomerReviewActivity : AppCompatActivity() {
 
             var review = Review(
                 revTitle.text.toString(), revRecommend, revDescription.text.toString(), revStar.rating.toInt(),
-                workerEmail.toString(), curCustomerEmail.toString()
+                workerEmail.toString(), curCustomerEmail.toString(),
             )
 
             CoroutineScope(Dispatchers.IO).launch {

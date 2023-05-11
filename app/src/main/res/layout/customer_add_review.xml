@@ -10,6 +10,17 @@
     android:paddingTop="50dp"
     tools:context=".activities.CustomerLoginActivity2">
 
+    <TextView
+        android:id="@+id/ratingBarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="-22dp"
+        android:text=" "
+        android:textColor="@color/teal_700"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,16 +80,7 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/ratingBarText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="63dp"
-                    android:layout_marginLeft="180dp"
-                    android:text=" "
-                    android:textColor="@color/teal_700"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+
 
                 <RatingBar
                     android:id="@+id/RatingBar"

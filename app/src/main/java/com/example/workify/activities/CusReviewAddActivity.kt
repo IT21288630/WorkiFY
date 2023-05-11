@@ -14,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 //for customer
 class CusReviewAddActivity : AppCompatActivity() {
@@ -73,7 +74,7 @@ class CusReviewAddActivity : AppCompatActivity() {
 
 
         revAddBtn.setOnClickListener {
-            val orderId = getRandomString()
+            val revId = getRandomString()
             val title = revTitle.text.toString()
             val description = revDescription.text.toString()
 
@@ -106,7 +107,7 @@ class CusReviewAddActivity : AppCompatActivity() {
 
             var review = Review(
                 revTitle.text.toString(), revRecommend, revDescription.text.toString(), revStar.rating.toInt(),
-                workerEmail.toString(), curCustomerEmail.toString(), orderId
+                workerEmail.toString(), curCustomerEmail.toString(), revId
             )
 
             CoroutineScope(Dispatchers.IO).launch {
@@ -116,7 +117,12 @@ class CusReviewAddActivity : AppCompatActivity() {
                         .add(review)
                         .await()
 
-                    Toast.makeText(this@CusReviewAddActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(this@CusReviewAddActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
+
+                    }
+
+
 
 
                 } catch (e: Exception) {
