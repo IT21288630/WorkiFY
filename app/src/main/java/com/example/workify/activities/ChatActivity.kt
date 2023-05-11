@@ -26,8 +26,6 @@ import java.util.*
 class ChatActivity : AppCompatActivity() {
 
     private val chatCollectionRef = Firebase.firestore.collection("chats")
-    private val customerWorkerMsgCollectionRef =
-        Firebase.firestore.collection("customer_worker_msg")
     private var chats = mutableListOf<ChatMessage>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +45,7 @@ class ChatActivity : AppCompatActivity() {
         tvMsgSenderEmail.text = otherEmail
 
         if (wEmail != null && cEmail != null && myEmail != null) {
-            getMessages(rvChatMsgs, wEmail, cEmail, myEmail)
+            //getMessages(rvChatMsgs, wEmail, cEmail, myEmail)
             realTime(rvChatMsgs, wEmail, cEmail, myEmail)
         }
 
@@ -160,7 +158,12 @@ class ChatActivity : AppCompatActivity() {
                             recyclerView.adapter = adapter
                             recyclerView.layoutManager = LinearLayoutManager(this@ChatActivity)
                             adapter.setData(chats, this@ChatActivity)
-                            recyclerView.smoothScrollToPosition(chats.size - 1)
+                            if (chats.size == 0){
+                                recyclerView.smoothScrollToPosition(0)
+                            }else{
+                                recyclerView.smoothScrollToPosition(chats.size - 1)
+                            }
+
                         }
                     }
 
