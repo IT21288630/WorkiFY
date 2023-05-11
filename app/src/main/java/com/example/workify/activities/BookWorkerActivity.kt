@@ -35,6 +35,8 @@ class BookWorkerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_book_worker)
 
         val workerEmail = intent.getStringExtra("workerEmail")
+        val cusEmail = intent.getStringExtra("cusEmail")
+
         etName = findViewById(R.id.cusName)
         etAddress = findViewById(R.id.cusAddress)
         etPhone = findViewById(R.id.cusPhone)
@@ -56,7 +58,7 @@ class BookWorkerActivity : AppCompatActivity() {
             val cusDate = etDate.text.toString()
             val orderID = getRandomString()
 
-            val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,null,intent.getStringExtra("workerEmail"),"Pending",orderID)
+            val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,cusEmail,intent.getStringExtra("workerEmail"),"Pending",orderID)
             orderWorker(order)
 
         }

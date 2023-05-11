@@ -34,27 +34,7 @@ class WorkerPendingOrdersFragment : Fragment(R.layout.fragment_worker_pending_or
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvWorkerPending)
 
-        /*orderCollectionRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-            firebaseFirestoreException?.let {
-                println(it.message)
-                return@addSnapshotListener
-            }
-            querySnapshot?.let {
 
-                for (document in querySnapshot.documents) {
-                    val order = document.toObject<Order>()
-
-                    if (order != null) {
-                        orders.add(order)
-                    }
-                }
-
-                val adapter = WorkerPendingAdapter(orders, view.context)
-                recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(view.context)
-                adapter.setData(orders, view.context)
-            }
-        }*/
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -75,10 +55,10 @@ class WorkerPendingOrdersFragment : Fragment(R.layout.fragment_worker_pending_or
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = WorkerPendingAdapter(orders, view.context)
+                    val adapter = email?.let { WorkerPendingAdapter(orders, view.context, it) }
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view.context)
-                    adapter.setData(orders, view.context)
+                    adapter?.setData(orders, view.context)
                 }
 
             } catch (e: Exception) {
