@@ -56,13 +56,13 @@ class CustomerSignupActivity : AppCompatActivity() {
 
             val customer = Customer(name, email, district, password)
 
-            saveWorker(customer)
+            saveCustomer(customer)
         }
 
 
     }
 
-    private fun saveWorker(worker: Customer) = CoroutineScope(Dispatchers.IO).launch {
+    private fun saveCustomer(worker: Customer) = CoroutineScope(Dispatchers.IO).launch {
         try {
             workerCollectionRef.add(worker).await()
 

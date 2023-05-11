@@ -57,11 +57,11 @@ class CustomerLoginActivity2 : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            workerLogin(email, password)
+            customerLogin(email, password)
         }
     }
 
-    private fun workerLogin(email: String, password: String) =
+    private fun customerLogin(email: String, password: String) =
         CoroutineScope(Dispatchers.IO).launch {
             try {
 
