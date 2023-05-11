@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/miProfile"
-        android:title=""
-        android:icon="@drawable/filled_person"/>
+    <item
+        android:id="@+id/miProfile"
+        android:icon="@drawable/filled_person"
+        android:title="" />
 
-    <item android:id="@+id/miNotification"
-        android:title=""
-        android:icon="@drawable/filled_notification"/>
+    <item
+        android:id="@+id/miNotification"
+        android:icon="@drawable/filled_notification"
+        android:title="" />
 
-    <item android:id="@+id/miSettings"
-        android:title=""
-        android:icon="@drawable/filled_settings"/>
+    <item
+        android:id="@+id/miMessage"
+        android:icon="@drawable/filled_message"
+        android:title="" />
 
-    <item android:id="@+id/miMessage"
-        android:title=""
-        android:icon="@drawable/filled_message"/>
+    <item
+        android:id="@+id/miSettings"
+        android:icon="@drawable/filled_settings"
+        android:title="" />
+
 </menu>
