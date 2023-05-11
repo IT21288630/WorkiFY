@@ -39,7 +39,7 @@ class CustomerLoginActivity2 : AppCompatActivity() {
         }
 
         workerResetPasswordLink.setOnClickListener {
-            val intent = Intent(this@CustomerLoginActivity2, WorkerResetPasswordActivity::class.java)
+            val intent = Intent(this@CustomerLoginActivity2, CustomerResetPasswordActivity::class.java)
             startActivity(intent)
         }
 
@@ -48,6 +48,15 @@ class CustomerLoginActivity2 : AppCompatActivity() {
             val email = etWEmail.text.toString()
             val password = etWPassword.text.toString()
 
+            if(email.isEmpty()){
+                etWEmail.error = "Please Enter Your Email"
+                return@setOnClickListener
+            }
+            if(password.isEmpty()){
+                etWPassword.error = "Please Enter Your Password"
+                return@setOnClickListener
+            }
+
             workerLogin(email, password)
         }
     }
@@ -55,6 +64,7 @@ class CustomerLoginActivity2 : AppCompatActivity() {
     private fun workerLogin(email: String, password: String) =
         CoroutineScope(Dispatchers.IO).launch {
             try {
+
                 val querySnapshot = workerCollectionRef
                     .whereEqualTo("email", email)
                     .whereEqualTo("password", password)

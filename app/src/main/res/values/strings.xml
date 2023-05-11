@@ -6,8 +6,8 @@
     <string name="SignIn">Sign In</string>
     <string name="noAccountText">Don\'t have an account?</string>
     <string name="Signup">Sign up</string>
-    <string name="pemail">Gayanq1@gmail.com</string>
-    <string name="ppassword">**********</string>
+    <string name="pemail">gayanq1@gmail.com</string>
+    <string name="ppassword">******</string>
     <string name="iwanttohire">I want to hire</string>
     <string name="iwanttowork">I want to work</string>
     <string name="anyjob">Any Job</string>
@@ -23,8 +23,8 @@
     <string name="description">Enter something about you</string>
     <string name="haveAccountText">Already have an account?</string>
     <string name="SettingsTitle">Settings</string>
-    <string name="WorkerName">My Name</string>
-    <string name="WorkerEmail">testEmail@gmail.com</string>
+    <string name="WorkerName">gayan</string>
+    <string name="WorkerEmail">gayanq1@gmail.com</string>
     <string name="WorkerLocation">Kandy</string>
     <string name="WorkerDescription">Lorem Ipsum  dummy text typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="CategoriesTitle">Categories</string>
