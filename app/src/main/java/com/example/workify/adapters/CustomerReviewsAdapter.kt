@@ -12,24 +12,25 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
 import com.example.workify.activities.CustomerReviewActivity
+import com.example.workify.dataClasses.CustomerReview
 import com.example.workify.dataClasses.Order
 import com.example.workify.dataClasses.Review
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.checkerframework.checker.units.qual.C
 
 class CustomerReviewsAdapter(
-    private var data : List<Review>,
+    private var data : List<CustomerReview>,
     private var context: Context
     ) :
 
     RecyclerView.Adapter<CustomerReviewsAdapter.ViewHolder>(){
 
-    private val rewCollectionRef = Firebase.firestore.collection("customer_reviews")
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val sellers_review_title_on_cus_profile: TextView
         val sellers_review_description_on_cus_profile: TextView
-        val sellers_review_star_on_cus_profile: RatingBar
+        val sellers_review_star_on_cus_profile: TextView
         val sellers_review_name_on_cus_profile: TextView
 
 
@@ -64,9 +65,7 @@ class CustomerReviewsAdapter(
         holder.sellers_review_name_on_cus_profile.text = data[position].customer_email
         holder.sellers_review_title_on_cus_profile.text = data[position].title
         holder.sellers_review_description_on_cus_profile.text = data[position].description
-        holder.sellers_review_star_on_cus_profile.rating = data[position].stars.toFloat()
-
-
+        //holder.sellers_review_star_on_cus_profile.text = data[position].stars.toString()
 
         holder.ShowreviewcutomerViewBtn.setOnClickListener {
             var intent = Intent(context, CustomerReviewActivity::class.java)
@@ -77,7 +76,7 @@ class CustomerReviewsAdapter(
 
     }
 
-    fun setData(data: List<Review>, context: Context) {
+    fun setData(data: List<CustomerReview>, context: Context) {
         this.data = data
         this.context = context
         notifyDataSetChanged()
