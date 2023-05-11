@@ -13,6 +13,7 @@ import com.example.workify.R
 import com.example.workify.adapters.ChatAdapter
 import com.example.workify.dataClasses.ChatMessage
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -113,6 +114,7 @@ class ChatActivity : AppCompatActivity() {
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(this@ChatActivity)
                     adapter.setData(chats, this@ChatActivity)
+                    recyclerView.smoothScrollToPosition(chats.size - 1)
                 }
 
 
@@ -121,4 +123,6 @@ class ChatActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }
