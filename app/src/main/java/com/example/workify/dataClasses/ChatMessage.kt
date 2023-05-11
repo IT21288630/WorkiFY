@@ -8,5 +8,6 @@ data class ChatMessage(
     var message: String = "",
     var date: Date? = null,
     var wEmail: String? = "",
-    var cEmail: String? = ""
+    var cEmail: String? = "",
+    var senderName: String? = null
     )

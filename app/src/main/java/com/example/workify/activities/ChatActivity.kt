@@ -41,8 +41,13 @@ class ChatActivity : AppCompatActivity() {
         val rvChatMsgs = findViewById<RecyclerView>(R.id.rvChatMsgs)
         val etMessage = findViewById<EditText>(R.id.etMessage)
         val ivMsgSent = findViewById<ImageView>(R.id.ivMsgSent)
+        val ivMsgBack = findViewById<ImageView>(R.id.ivMsgBack)
 
         tvMsgSenderEmail.text = otherEmail
+
+        ivMsgBack.setOnClickListener {
+            finish()
+        }
 
         if (wEmail != null && cEmail != null && myEmail != null) {
             //getMessages(rvChatMsgs, wEmail, cEmail, myEmail)
