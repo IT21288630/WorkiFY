@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 class WorkerReviewActivity : AppCompatActivity() {
 
 
-    private val ReviewCollectionRef = Firebase.firestore.collection("worker_reviews")
+    private val ReviewCollectionRef = Firebase.firestore.collection("customer_reviews")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,19 +115,6 @@ class WorkerReviewActivity : AppCompatActivity() {
                         .await()
                     Toast.makeText(this@WorkerReviewActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
 
-
-                    /* for (document in querySnapshot.documents) {
-                         ReviewCollectionRef.document(document.id)
-                             .update("Title", revTitle.text.toString())
-                         ReviewCollectionRef.document(document.id)`
-                             .update("Description", revDescription.text.toString())
-                         ReviewCollectionRef.document(document.id)
-                             .update("Star", revStar.numStars.toString())
-                         ReviewCollectionRef.document(document.id)
-                             .update("Recommend", revRecommend.textAlignment.toString())
-
-                     }
- */
 
                 } catch (e: Exception) {
 
