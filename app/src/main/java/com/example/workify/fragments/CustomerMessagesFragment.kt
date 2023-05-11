@@ -1,15 +1,16 @@
 package com.example.workify.fragments
-/*
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
-import com.example.workify.adapters.cust_revi_on_workerAdapter
-import com.example.workify.dataClasses.CustomerReview
+import com.example.workify.adapters.MsgForCustomerAdapter
+import com.example.workify.adapters.MsgForWorkerAdapter
+import com.example.workify.dataClasses.Customer
+import com.example.workify.dataClasses.Worker
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,46 +21,46 @@ import kotlinx.coroutines.withContext
 /**
  * A simple [Fragment] subclass.
  */
-class WorkerProfileReviewsFragment : Fragment(R.layout.fragment_worker_profile_reviews) {
+class CustomerMessagesFragment : Fragment(R.layout.fragment_customer_messages) {
 
-    private val reviewCollectionRef = Firebase.firestore.collection("customer_reviews")
+    private val customerWorkerMsgCollectionRef =
+        Firebase.firestore.collection("customer_worker_msg")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val bundle = arguments
-        val email = bundle!!.getString("curWorkerEmail")
+        val email = bundle!!.getString("curCusEmail")
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rvCustomerReviewsForWorkerProfile)
+        var workers = mutableListOf<Worker>()
 
-        var reviews = mutableListOf<CustomerReview>()
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rvCustomerMsg)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val querySnapshot = reviewCollectionRef
-                    .whereEqualTo("worker_email", email)
+                val querySnapshot = customerWorkerMsgCollectionRef
+                    .whereEqualTo("cEmail", email)
                     .get()
                     .await()
 
                 for (document in querySnapshot.documents) {
-                    val review = document.toObject<CustomerReview>()
+                    val worker = Worker()
 
-                    if (review != null) {
-                        reviews.add(review)
-                    }
+                    worker.email = document.get("wEmail").toString()
+
+                    workers.add(worker)
                 }
 
                 withContext(Dispatchers.Main) {
-                    val adapter = cust_revi_on_workerAdapter(reviews)
+                    val adapter = email?.let { MsgForCustomerAdapter(workers, view.context, it) }
                     recyclerView.adapter = adapter
-                    recyclerView.layoutManager = LinearLayoutManager(view.context)
-                    adapter.setData(reviews, view.context)
+                    recyclerView.layoutManager = LinearLayoutManager(context)
+                    adapter?.setData(workers, view.context)
                 }
-
             } catch (e: Exception) {
                 println(e.message)
             }
         }
     }
 
-}*/
+}

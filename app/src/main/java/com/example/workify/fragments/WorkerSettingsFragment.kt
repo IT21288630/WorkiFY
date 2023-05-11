@@ -14,6 +14,7 @@ import com.example.workify.activities.WorkerLoginActivity
 import com.example.workify.adapters.ServicesForSettingsAdapter
 import com.example.workify.dataClasses.Category
 import com.example.workify.dataClasses.Worker
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -46,13 +47,18 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
         val ivAddServiceBtn = view.findViewById<ImageView>(R.id.ivAddServiceBtn)
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvSettingsServices)
         val workerDeleteProfileBtn = view.findViewById<Button>(R.id.workerDeleteProfileBtn)
+        val tvWorkerSignOut = view.findViewById<TextView>(R.id.tvWorkerSignOut)
 
         ivAddServiceBtn.setOnClickListener {
             if (email != null) {
                 displayDialog(view.context, email, recyclerView)
             }
+        }
 
-
+        tvWorkerSignOut.setOnClickListener {
+            if (email != null) {
+                workerSignOut(email)
+            }
         }
 
         workerDeleteProfileBtn.setOnClickListener {
@@ -304,6 +310,29 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
 
                 for (document in querySnapshot.documents) {
                     workerCollectionRef.document(document.id).delete()
+                }
+
+                withContext(Dispatchers.Main) {
+                    var intent = Intent(context, WorkerLoginActivity::class.java)
+                    startActivity(intent)
+                }
+
+            } catch (e: Exception) {
+                println(e.message)
+            }
+        }
+    }
+
+    private fun workerSignOut(email: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
+
+                for (document in querySnapshot.documents) {
+                    workerCollectionRef.document(document.id).update("fcmToken", FieldValue.delete())
                 }
 
                 withContext(Dispatchers.Main) {
