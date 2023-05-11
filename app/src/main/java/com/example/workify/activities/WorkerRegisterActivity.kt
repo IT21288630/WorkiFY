@@ -1,5 +1,6 @@
 package com.example.workify.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -99,7 +100,10 @@ class WorkerRegisterActivity : AppCompatActivity() {
             workerCollectionRef.add(worker).await()
 
             withContext(Dispatchers.Main) {
-                Toast.makeText(this@WorkerRegisterActivity, "Worker added", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@WorkerRegisterActivity, "Successfully Registered", Toast.LENGTH_LONG).show()
+                var intent = Intent(this@WorkerRegisterActivity, WorkerLoginActivity::class.java)
+                startActivity(intent)
+                finish()
             }
 
         } catch (e: Exception) {

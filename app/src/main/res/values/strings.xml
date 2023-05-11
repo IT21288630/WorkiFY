@@ -156,6 +156,7 @@
     <string name="ReviewExampleTitle">Example: Great communication</string>
     <string name="ReviewExampleDes">Example: Amazing experience! communication and his great work overall was better than I thought.</string>
     <string name="ReviewExampleDesWorker">Example: Amazing experience with this Buyer. Very friendly.</string>
+    <string name="signout">SignOut</string>
 
     <string-array name="status">
         <item> Pending </item>
@@ -170,4 +171,22 @@
         <item> Completed </item>
 
     </string-array>
+    <string name="title_activity_view_rev_cus">Leanback ViewRevCusActivity</string>
+    <string name="browse_title">Videos by Your Company</string>
+    <string name="related_movies">Related Videos</string>
+    <string name="grid_view">Grid View</string>
+    <string name="error_fragment">Error Fragment</string>
+    <string name="personal_settings">Personal Settings</string>
+    <string name="watch_trailer_1">Watch trailer</string>
+    <string name="watch_trailer_2">FREE</string>
+    <string name="rent_1">Rent By Day</string>
+    <string name="rent_2">From $1.99</string>
+    <string name="buy_1">Buy and Own</string>
+    <string name="buy_2">AT $9.99</string>
+    <string name="movie">Movie</string>
+
+    <!-- Error messages -->
+    <string name="error_fragment_message">An error occurred</string>
+    <string name="dismiss_error">Dismiss</string>
+    <string name="messages">Messages</string>
 </resources>

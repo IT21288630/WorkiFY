@@ -35,11 +35,13 @@ class WorkerLoginActivity : AppCompatActivity() {
         workerSignUp.setOnClickListener {
             val intent = Intent(this@WorkerLoginActivity, WorkerRegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         workerResetPasswordLink.setOnClickListener {
             val intent = Intent(this@WorkerLoginActivity, WorkerResetPasswordActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         workerLoginBtn.setOnClickListener {
@@ -92,6 +94,7 @@ class WorkerLoginActivity : AppCompatActivity() {
                         var intent = Intent(this@WorkerLoginActivity, WorkerActivity::class.java)
                         intent.putExtra("curWorkerEmail", email)
                         startActivity(intent)
+                        finish()
                     }
                 }
 

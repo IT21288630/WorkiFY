@@ -109,7 +109,7 @@
                     android:isIndicator="false"
                     android:numStars="5"
                     android:progressTint="#FFCC00"
-                    android:rating="0"
+                    android:rating="4"
                     android:stepSize="1"
                     android:textColor="@color/black" />
             </RelativeLayout>
@@ -142,7 +142,7 @@
                     android:layout_height="44dp"
                     android:backgroundTint="@color/background"
                     android:ems="10"
-                    android:hint=" "
+                    android:hint="Title"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
                     app:cornerRadius="30dp" />
@@ -199,7 +199,7 @@
                     android:layout_width="348dp"
                     android:layout_height="64dp"
 
-                    android:hint=" "
+                    android:hint="description"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 

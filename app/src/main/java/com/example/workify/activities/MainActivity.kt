@@ -12,5 +12,6 @@ class MainActivity : AppCompatActivity() {
 
         var intent = Intent(this, StartActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

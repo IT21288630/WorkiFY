@@ -17,6 +17,7 @@ class CustomerActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val mainCustomerProfileFragment = MainCustomerProfileFragment()
         val customerSettingsFragment = CustomerSettingFragment()
+        val customerMessagesFragment = CustomerMessagesFragment()
 
         val mBundle = Bundle()
         mBundle.putString("curCusEmail", intent.getStringExtra("curCusEmail"))
@@ -28,6 +29,7 @@ class CustomerActivity : AppCompatActivity() {
                 R.id.miHomeCus -> setCurrentFragment(homeFragment, mBundle)
                 R.id.miProfileCus -> setCurrentFragment(mainCustomerProfileFragment, mBundle)
                 R.id.miSettingsCus -> setCurrentFragment(customerSettingsFragment, mBundle)
+                R.id.miMessageCus -> setCurrentFragment(customerMessagesFragment, mBundle)
             }
             true
         }

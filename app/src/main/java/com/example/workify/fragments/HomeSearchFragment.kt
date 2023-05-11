@@ -1,6 +1,7 @@
 package com.example.workify.fragments
 
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.AdapterView
@@ -13,7 +14,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
-import com.example.workify.adapters.CustomerReviewsForWorkerProfileAdapter
 import com.example.workify.adapters.HomeSearchAdapter
 import com.example.workify.dataClasses.Worker
 import com.google.firebase.firestore.Query
@@ -42,7 +42,6 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
 
         val tvSearchServiceName = view.findViewById<TextView>(R.id.tvSearchServiceName)
         val spSearchFilterSelect = view.findViewById<Spinner>(R.id.spSearchFilterSelect)
-        val ivSearchRemoveService = view.findViewById<ImageView>(R.id.ivSearchRemoveService)
         val etSearchNameInput = view.findViewById<EditText>(R.id.etSearchNameInput)
         val lyServiceFilter = view.findViewById<LinearLayout>(R.id.lyServiceFilter)
 
@@ -50,15 +49,17 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         var curService: String? = bundle!!.getString("curService")
         var serviceNameFromHome: String? = bundle!!.getString("serviceNameFromHome")
 
-        tvSearchServiceName.text = curService
+        tvSearchServiceName.text = "Workers related to $curService"
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHomeSearchResult)
 
-        if(serviceNameFromHome != null){
+        if (serviceNameFromHome != null) {
             searchByServiceName(recyclerView, serviceNameFromHome, etSearchNameInput)
         }
 
-        curService?.let { initSearch(it, recyclerView) }
+        curService?.let {
+            serviceClickSearch(it, recyclerView)
+        }
 
         spSearchFilterSelect.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
@@ -117,11 +118,6 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
 
             }
 
-        ivSearchRemoveService.setOnClickListener {
-            noServiceSearch(recyclerView)
-            lyServiceFilter.visibility = View.INVISIBLE
-        }
-
         etSearchNameInput.addTextChangedListener {
             nameEmpty = false
 
@@ -129,13 +125,14 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                 searchByName(recyclerView, etSearchNameInput.text.toString(), curService)
             }
 
-            if(etSearchNameInput.text.toString().isEmpty()){
+            if (etSearchNameInput.text.toString().isEmpty()) {
                 nameEmpty = true
             }
         }
     }
 
-    fun initSearch(curService: String, recyclerView: RecyclerView) {
+    fun serviceClickSearch(curService: String, recyclerView: RecyclerView) {
+        var workerEmails = mutableListOf<String>()
         var workers = mutableListOf<Worker>()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -144,13 +141,17 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                     workerCatCollectionRef.whereEqualTo("cName", curService).get().await()
 
                 for (document in querySnapshot.documents) {
-                    val querySnapshot2 =
-                        workerCollectionRef.whereEqualTo("email", document.get("wEmail")).get()
-                            .await()
+                    workerEmails.add(document.get("wEmail").toString())
+                }
 
-                    for (document2 in querySnapshot2.documents) {
-                        val worker = document2.toObject<Worker>()
-                        worker?.price = document.get("hrRate") as String?
+                workerEmails.distinct()
+
+                for (email in workerEmails) {
+                    val querySnapshot2 =
+                        workerCollectionRef.whereEqualTo("email", email).get().await()
+
+                    for (document in querySnapshot2.documents) {
+                        var worker = document.toObject<Worker>()
 
                         if (worker != null) {
                             workers.add(worker)
@@ -215,23 +216,27 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                 }
 
                 for (document in querySnapshot?.documents!!) {
-                    var querySnapshot2: QuerySnapshot? = null
 
-                    querySnapshot2 = if (nameEmpty) {
+                    var querySnapshot2 =
                         workerCollectionRef.whereEqualTo("email", document.get("wEmail")).get()
                             .await()
-                    } else {
-                        workerCollectionRef.whereEqualTo("email", document.get("wEmail"))
-                            .whereEqualTo("name", etSearchNameInput.text.toString()).get()
-                            .await()
-                    }
 
                     for (document2 in querySnapshot2.documents) {
                         val worker = document2.toObject<Worker>()
                         worker?.price = document.get("hrRate") as String?
 
                         if (worker != null) {
-                            workers.add(worker)
+                            if (!nameEmpty) {
+                                if (worker.name.lowercase().contains(
+                                        etSearchNameInput.text.toString(),
+                                        ignoreCase = true
+                                    )
+                                ) {
+                                    workers.add(worker)
+                                }
+                            } else {
+                                workers.add(worker)
+                            }
                         }
                     }
                 }
@@ -244,43 +249,6 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
 
                 withContext(Dispatchers.Main) {
                     val adapter = view?.context?.let { HomeSearchAdapter(workers, it) }
-                    recyclerView.adapter = adapter
-                    recyclerView.layoutManager = LinearLayoutManager(view?.context)
-                    view?.context?.let { adapter?.setData(workers, it) }
-                }
-
-            } catch (e: Exception) {
-                println(e.message)
-            }
-        }
-    }
-
-    fun noServiceSearch(recyclerView: RecyclerView) {
-        var workers = mutableListOf<Worker>()
-        serviceEmpty = true
-
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val querySnapshot =
-                    workerCatCollectionRef.get().await()
-
-                for (document in querySnapshot.documents) {
-                    val querySnapshot2 =
-                        workerCollectionRef.whereEqualTo("email", document.get("wEmail")).get()
-                            .await()
-
-                    for (document2 in querySnapshot2.documents) {
-                        val worker = document2.toObject<Worker>()
-                        worker?.price = document.get("hrRate") as String?
-
-                        if (worker != null) {
-                            workers.add(worker)
-                        }
-                    }
-                }
-
-                withContext(Dispatchers.Main) {
-                    val adapter = view?.let { HomeSearchAdapter(workers, it.context) }
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view?.context)
                     view?.context?.let { adapter?.setData(workers, it) }
@@ -314,7 +282,7 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
                         worker?.price = document.get("hrRate") as String?
 
                         if (worker != null) {
-                            if(worker.name.lowercase().contains(name, ignoreCase = true)){
+                            if (worker.name.lowercase().contains(name, ignoreCase = true)) {
                                 workers.add(worker)
                             }
                         }
@@ -335,7 +303,11 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
         }
     }
 
-    fun searchByServiceName(recyclerView: RecyclerView, sName: String, etSearchNameInput: EditText) {
+    fun searchByServiceName(
+        recyclerView: RecyclerView,
+        sName: String,
+        etSearchNameInput: EditText
+    ) {
         var workers = mutableListOf<Worker>()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -345,7 +317,9 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
 
                 for (document in querySnapshot.documents) {
 
-                    if (document.get("cName").toString().lowercase().contains(sName, ignoreCase = true)){
+                    if (document.get("cName").toString().lowercase()
+                            .contains(sName, ignoreCase = true)
+                    ) {
                         val querySnapshot2 =
                             workerCollectionRef.whereEqualTo("email", document.get("wEmail")).get()
                                 .await()
@@ -356,11 +330,14 @@ class HomeSearchFragment : Fragment(R.layout.fragment_home_search) {
 
                             if (worker != null) {
                                 if (!nameEmpty) {
-                                    if(worker.name.lowercase().contains(etSearchNameInput.text.toString(), ignoreCase = true)){
+                                    if (worker.name.lowercase().contains(
+                                            etSearchNameInput.text.toString(),
+                                            ignoreCase = true
+                                        )
+                                    ) {
                                         workers.add(worker)
                                     }
-                                }
-                                else{
+                                } else {
                                     workers.add(worker)
                                 }
                             }
