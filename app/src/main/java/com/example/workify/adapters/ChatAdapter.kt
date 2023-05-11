@@ -12,6 +12,8 @@ import com.example.workify.*
 import com.example.workify.activities.ChatActivity
 import com.example.workify.dataClasses.ChatMessage
 import com.example.workify.dataClasses.Customer
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ChatAdapter(
     private var data: List<ChatMessage>,
@@ -22,10 +24,12 @@ class ChatAdapter(
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val tvChatMsg: TextView
+        val tvMsgSentTime: TextView
 
 
         init {
             tvChatMsg = view.findViewById(R.id.tvChatMsg)
+            tvMsgSentTime = view.findViewById(R.id.tvMsgSentTime)
         }
     }
 
@@ -42,6 +46,9 @@ class ChatAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvChatMsg.text = data[position].message
+        var date = SimpleDateFormat("MMMM dd - hh:mm a", Locale.getDefault()).format(data[position].date)
+
+        holder.tvMsgSentTime.text = date.toString()
 
         if(myEmail == data[position].senderEmail){
             holder.tvChatMsg.background = ContextCompat.getDrawable(context, R.drawable.background_sent_message)
@@ -52,10 +59,13 @@ class ChatAdapter(
                 gravity = Gravity.END
             }
             holder.tvChatMsg.layoutParams = params
+            holder.tvMsgSentTime.layoutParams = params
 
         }else{
             holder.tvChatMsg.background = ContextCompat.getDrawable(context, R.drawable.background_receive_message)
         }
+
+
     }
 
     fun setData(data: List<ChatMessage>, context: Context) {
