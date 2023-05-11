@@ -1,60 +1,202 @@
 package com.example.workify.fragments
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
+import com.example.workify.activities.CustomerLoginActivity2
+import com.example.workify.adapters.ServicesForSettingsAdapter
+import com.example.workify.dataClasses.Category
+import com.example.workify.dataClasses.Customer
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
  * Use the [CustomerSettingFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CustomerSettingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class CustomerSettingFragment : Fragment(R.layout.fragment_customer_setting) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private val workerCollectionRef = Firebase.firestore.collection("customers")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val bundle = arguments
+        val email = bundle!!.getString("curCusEmail")
+
+        val tvWorkerName = view.findViewById<TextView>(R.id.tvWorkerNameSett)
+        val tvWorkerEmail = view.findViewById<TextView>(R.id.tvWorkerEmailSett)
+        val etWSName = view.findViewById<EditText>(R.id.etWSName)
+        val etWSEmail = view.findViewById<EditText>(R.id.etWSDistrict)
+        val etWSDistrict = view.findViewById<EditText>(R.id.etWSEmail)
+        val etWSPassword = view.findViewById<EditText>(R.id.etWSPassword)
+        val btnWorkerEdit = view.findViewById<Button>(R.id.btnWorkerEdit)
+        val workerDeleteProfileBtn = view.findViewById<Button>(R.id.workerDeleteProfileBtn)
+
+
+
+        workerDeleteProfileBtn.setOnClickListener {
+            val builder = AlertDialog.Builder(view.context)
+            builder.setTitle("Confirm!")
+            builder.setMessage("Do you really want to delete your account?")
+
+            builder.setPositiveButton("Delete") { dialog, which ->
+                if (email != null) {
+                    deleteProfile(email, view.context)
+                }
+            }
+
+            builder.setNegativeButton("Cancel") { dialog, which ->
+                dialog.cancel()
+            }
+
+            builder.show()
+        }
+
+        btnWorkerEdit.setOnClickListener {
+            if (email != null) {
+                updateWorker(
+                    email,
+                    etWSName.text.toString(),
+                    etWSDistrict.text.toString(),
+                    tvWorkerName,
+                    tvWorkerEmail,
+                    etWSName,
+                    etWSEmail,
+                    etWSDistrict,
+                    etWSPassword
+                )
+            }
+        }
+
+        if (email != null) {
+            getDetails(email, tvWorkerName, tvWorkerEmail, etWSName, etWSEmail , etWSDistrict,  etWSPassword)
+        }
+
+
+
+    }
+
+    private fun getDetails(
+        email: String,
+        tvWorkerName: TextView,
+        tvWorkerEmail: TextView,
+        etWSName: EditText,
+        etWSDistrict: EditText,
+        etWSEmail: EditText,
+        etWSPassword: EditText
+    ) {
+        etWSName.text.clear()
+        etWSEmail.text.clear()
+        etWSDistrict.text.clear()
+        etWSPassword.text.clear()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
+
+                for (document in querySnapshot.documents) {
+                    val worker = document.toObject<Customer>()
+
+                    if (worker != null) {
+                        tvWorkerName.text = worker.name
+                        tvWorkerEmail.text = worker.email
+                        etWSName.hint = worker.name
+                        etWSEmail.hint = worker.email
+                        etWSDistrict.hint = worker.district
+                        etWSPassword.hint = worker.password
+                    }
+                }
+            } catch (e: Exception) {
+                println(e.message)
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_customer_setting, container, false)
-    }
+    private fun updateWorker(
+        email: String,
+        name: String,
+        district: String,
+        tvWorkerName: TextView,
+        tvWorkerEmail: TextView,
+        etWSName: EditText,
+        etWSDistrict: EditText,
+        etWEmail: EditText,
+        etWSPassword: EditText
+    ) =
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CustomerSettingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CustomerSettingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                for (document in querySnapshot.documents) {
+                    if (name.isNotEmpty()) workerCollectionRef.document(document.id)
+                        .update("name", name)
+                    if (email.isNotEmpty()) workerCollectionRef.document(document.id)
+                        .update("email", email)
+                    if (district.isNotEmpty()) workerCollectionRef.document(document.id)
+                        .update("district", district)
+                    if (etWSPassword.text.toString().isNotEmpty()) workerCollectionRef.document(document.id)
+                        .update("password", etWSPassword.text.toString())
                 }
+
+                getDetails(
+                    email,
+                    tvWorkerName,
+                    tvWorkerEmail,
+                    etWSName,
+                    etWSDistrict,
+                    etWEmail,
+                    etWSPassword
+                )
+
+            } catch (e: Exception) {
+                println(e.message)
             }
+        }
+
+
+
+    private fun deleteProfile(email: String, context: Context){
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = workerCollectionRef
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
+
+                for (document in querySnapshot.documents) {
+                    workerCollectionRef.document(document.id).delete()
+                }
+
+                withContext(Dispatchers.Main) {
+                    var intent = Intent(context, CustomerLoginActivity2::class.java)
+                    startActivity(intent)
+                }
+
+            } catch (e: Exception) {
+                println(e.message)
+            }
+        }
     }
 }
