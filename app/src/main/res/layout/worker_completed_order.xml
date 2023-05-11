@@ -75,10 +75,21 @@ android:orientation="horizontal">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginStart="95dp"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:backgroundTint="#6672FF"
         android:text="@string/AddReveiewCustomer"
+        android:textSize="10sp"
+        app:cornerRadius="30dp"></Button>
+    <Button
+        android:id="@+id/cusFavBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#6672FF"
+        android:text="@string/fav"
         android:textSize="10sp"
         app:cornerRadius="30dp"></Button>
 

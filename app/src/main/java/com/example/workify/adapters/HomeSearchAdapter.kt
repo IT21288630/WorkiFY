@@ -67,6 +67,7 @@ class HomeSearchAdapter(
         holder.orderWorkerBtn.setOnClickListener {
             var intent = Intent(context, BookWorkerActivity::class.java)
             intent.putExtra("workerEmail", data[position].email)
+            intent.putExtra("cusEmail", email)
             context.startActivity(intent)
         }
 
