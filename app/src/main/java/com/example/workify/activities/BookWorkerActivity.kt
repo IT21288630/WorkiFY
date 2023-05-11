@@ -35,6 +35,8 @@ class BookWorkerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_book_worker)
 
         val workerEmail = intent.getStringExtra("workerEmail")
+        val cusEmail = intent.getStringExtra("cusEmail")
+
         etName = findViewById(R.id.cusName)
         etAddress = findViewById(R.id.cusAddress)
         etPhone = findViewById(R.id.cusPhone)

@@ -22,10 +22,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class WorkerAcceptedAdapter(
     private var data: List<Order>,
-    private var context: Context
+    private var context: Context,
+    private var email: String
 ) :
     RecyclerView.Adapter<WorkerAcceptedAdapter.ViewHolder>() {
 
@@ -33,11 +35,13 @@ class WorkerAcceptedAdapter(
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val workerOrderTitle: TextView
+        val acceptedOrderId : TextView
         val CompletebtnWorker: Button
         val AcceptViewDetailsBtn: Button
 
         init {
             workerOrderTitle = view.findViewById(R.id.workerOrderTitle)
+            acceptedOrderId = view.findViewById(R.id.acceptedOrderId)
             CompletebtnWorker = view.findViewById(R.id.CompletebtnWorker)
             AcceptViewDetailsBtn = view.findViewById(R.id.AcceptViewDetailsBtn)
         }
@@ -56,6 +60,7 @@ class WorkerAcceptedAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.workerOrderTitle.text = data[position].cusTitle
+        holder.acceptedOrderId.text = "Order ID: " + data[position].orderID
 
         holder.AcceptViewDetailsBtn.setOnClickListener {
             var intent = Intent(context, ViewOrderDetailsActivity::class.java)
@@ -67,9 +72,11 @@ class WorkerAcceptedAdapter(
         holder.CompletebtnWorker.setOnClickListener {
 
             CoroutineScope(Dispatchers.IO).launch {
+
+                var orders = mutableListOf<Order>()
                 try {
                     val querySnapshot = orderCollectionRef
-                        .whereEqualTo("workEmail","qwe")
+                        .whereEqualTo("workEmail",email)
                         .whereEqualTo("orderID",data[position].orderID)
                         .get()
                         .await()
@@ -87,6 +94,24 @@ class WorkerAcceptedAdapter(
                         orderCollectionRef.document(document.id)
                             .update("orderStatus", "Completed")
 
+                    }
+
+                    val querySnapshot2 = orderCollectionRef
+                        .whereEqualTo("workEmail", email)
+                        .whereEqualTo("orderStatus", "Accepted")
+                        .get()
+                        .await()
+
+                    for (document2 in querySnapshot2.documents){
+                        var order = document2.toObject<Order>()
+
+                        if (order != null) {
+                            orders.add(order)
+                        }
+                    }
+
+                    withContext(Dispatchers.Main){
+                        setData(orders, context)
                     }
 
                 } catch (e: Exception) {

@@ -31,10 +31,12 @@ class WorkerCompletedAdapter(
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val workerOrderTitle: TextView
+        val completedOrderId : TextView
 
 
         init {
             workerOrderTitle = view.findViewById(R.id.workerOrderTitle)
+            completedOrderId = view.findViewById(R.id.completedOrderId)
 
         }
     }
@@ -52,6 +54,7 @@ class WorkerCompletedAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.workerOrderTitle.text = data[position].cusTitle
+        holder.completedOrderId.text = "Order ID: " + data[position].orderID
 
 
     }
