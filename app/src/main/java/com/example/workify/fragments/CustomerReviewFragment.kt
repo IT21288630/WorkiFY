@@ -52,6 +52,7 @@ class CustomerReviewFragment : Fragment(R.layout.fragment_customer_profile_revie
                 }
 
                 withContext(Dispatchers.Main) {
+
                     val adapter = CustomerReviewsAdapter(reviews, view.context)
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(view.context)

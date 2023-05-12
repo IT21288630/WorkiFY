@@ -1,5 +1,6 @@
 package com.example.workify.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -13,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class CustomerReviewActivity : AppCompatActivity() {
 
@@ -31,6 +33,7 @@ class CustomerReviewActivity : AppCompatActivity() {
         var revRecoNo = findViewById<RadioButton>(R.id.radioRecNo)
 
         var revAddBtn = findViewById<Button>(R.id.cusRevSubBtn)
+        var laterBtn = findViewById<Button>(R.id.laterBtn)
         val ratingScale = findViewById<TextView>(R.id.ratingBarText)
 
         var curCustomerEmail = intent.getStringExtra("cusEmail")
@@ -63,6 +66,10 @@ class CustomerReviewActivity : AppCompatActivity() {
                 Toast.makeText(this@CustomerReviewActivity, "Try our other services too", Toast.LENGTH_SHORT).show()
             }
 
+        }
+        laterBtn.setOnClickListener{
+            val intent = Intent(this@CustomerReviewActivity, CustomerActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -98,10 +105,10 @@ class CustomerReviewActivity : AppCompatActivity() {
                 revRecommend = "No"
             }
 
-
+            var revId = getRandomString()
             var review = Review(
                 revTitle.text.toString(), revRecommend, revDescription.text.toString(), revStar.rating.toInt(),
-                workerEmail.toString(), curCustomerEmail.toString(),
+                workerEmail.toString(), curCustomerEmail.toString(), revId
             )
 
             CoroutineScope(Dispatchers.IO).launch {
@@ -112,21 +119,11 @@ class CustomerReviewActivity : AppCompatActivity() {
                     val querySnapshot = ReviewCollectionRef
                         .add(review)
                         .await()
-                    Toast.makeText(this@CustomerReviewActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
 
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(this@CustomerReviewActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
 
-                    /* for (document in querySnapshot.documents) {
-                         ReviewCollectionRef.document(document.id)
-                             .update("Title", revTitle.text.toString())
-                         ReviewCollectionRef.document(document.id)`
-                             .update("Description", revDescription.text.toString())
-                         ReviewCollectionRef.document(document.id)
-                             .update("Star", revStar.numStars.toString())
-                         ReviewCollectionRef.document(document.id)
-                             .update("Recommend", revRecommend.textAlignment.toString())
-
-                     }
- */
+                    }
 
                 } catch (e: Exception) {
 
@@ -136,6 +133,12 @@ class CustomerReviewActivity : AppCompatActivity() {
         }
 
 
+    }
+    fun getRandomString() : String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..5)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 
 }

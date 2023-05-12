@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
 import com.example.workify.activities.CustomerEditReviewActivity
 import com.example.workify.dataClasses.CustomerReview
-import com.example.workify.dataClasses.Order
-import com.example.workify.dataClasses.Review
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -21,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+
 
 class CustomerReviewsAdapter(
     private var data : List<CustomerReview>,
@@ -110,8 +109,8 @@ class CustomerReviewsAdapter(
                         }
                     }
 
-                    withContext(Dispatchers.Main){
 
+                    withContext(Dispatchers.Main){
                         setData(reviews, context)
                     }
 

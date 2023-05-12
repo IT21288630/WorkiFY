@@ -40,6 +40,8 @@ class CusReviewAddActivity : AppCompatActivity() {
         var curCustomerEmail = intent.getStringExtra("cusEmail")
         var workerEmail = intent.getStringExtra("workerEmail")
 
+        var revID = getRandomString()
+
 
         revStar.setOnRatingBarChangeListener { ratingBar, fl, b ->
             ratingScale.text = fl.toString()
@@ -74,7 +76,8 @@ class CusReviewAddActivity : AppCompatActivity() {
 
 
         revAddBtn.setOnClickListener {
-            val revId = getRandomString()
+
+
             val title = revTitle.text.toString()
             val description = revDescription.text.toString()
 
@@ -103,10 +106,11 @@ class CusReviewAddActivity : AppCompatActivity() {
             else if(revRecoNo.isChecked.toString() == "true"){
                 revRecommend = "No"
             }
+            println("this is the ID: "+revID)
 
             var review = Review(
                 revTitle.text.toString(), revRecommend, revDescription.text.toString(), revStar.rating.toInt(),
-                workerEmail.toString(), curCustomerEmail.toString(), revId
+                workerEmail.toString(), curCustomerEmail.toString(), revID
             )
 
             CoroutineScope(Dispatchers.IO).launch {
@@ -120,7 +124,6 @@ class CusReviewAddActivity : AppCompatActivity() {
                         Toast.makeText(this@CusReviewAddActivity, "Review Successfully Added!", Toast.LENGTH_SHORT).show()
 
                     }
-
 
 
 

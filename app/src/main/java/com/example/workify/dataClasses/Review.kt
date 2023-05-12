@@ -7,5 +7,5 @@ class Review(
     var stars: Int = 0,
     var worker_email: String = "",
     var customer_email : String = "",
-    var rev_ID:String=""
+    var rev_ID :String = ""
 )
