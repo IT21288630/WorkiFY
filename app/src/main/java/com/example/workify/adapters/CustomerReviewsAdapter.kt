@@ -32,8 +32,9 @@ class CustomerReviewsAdapter(
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val sellers_review_title_on_cus_profile: TextView
         val sellers_review_description_on_cus_profile: TextView
-      //  val sellers_review_star_on_cus_profile: TextView
+        val sell_rev_starl: TextView
         val sellers_review_name_on_cus_profile: TextView
+        val sellers_review_email: TextView
 
 
 
@@ -45,7 +46,8 @@ class CustomerReviewsAdapter(
             sellers_review_name_on_cus_profile = view.findViewById(R.id.sellers_review_name_on_cus_profile)
             sellers_review_title_on_cus_profile = view.findViewById(R.id.sellers_review_title_on_cus_profile)
             sellers_review_description_on_cus_profile = view.findViewById(R.id.sellers_review_description_on_cus_profile)
-//            sellers_review_star_on_cus_profile = view.findViewById(R.id.sellers_review_star_on_sel_profile)
+            sell_rev_starl = view.findViewById(R.id.sell_rev_starl)
+            sellers_review_email= view.findViewById(R.id.sellers_review_email)
 
 
             ShowreviewcutomerEditBtn = view.findViewById(R.id.ShowreviewcutomerEditBtn)
@@ -65,9 +67,14 @@ class CustomerReviewsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.sellers_review_name_on_cus_profile.text = data[position].rev_ID
+        holder.sellers_review_email.text = data[position].worker_email
         holder.sellers_review_title_on_cus_profile.text = data[position].title
         holder.sellers_review_description_on_cus_profile.text = data[position].description
-        //holder.sellers_review_star_on_cus_profile.text = data[position].stars.toString()
+        holder.sell_rev_starl.text = data[position].stars.toString()
+
+        if(holder.sell_rev_starl.text == null || holder.sell_rev_starl.text == "Null" || holder.sell_rev_starl.text == "null"){
+            holder.sell_rev_starl.text = "bnm"
+        }
 
 
         holder.ShowreviewcutomerEditBtn.setOnClickListener {

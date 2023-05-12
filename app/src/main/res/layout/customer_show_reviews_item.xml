@@ -37,6 +37,15 @@
                 android:textSize="20dp"></TextView>
 
             <TextView
+                android:id="@+id/sellers_review_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bnm"
+                android:padding="5dp"
+                android:textColor="@color/lavendar"
+                android:textSize="14dp"></TextView>
+
+            <TextView
                 android:id="@+id/sellers_review_title_on_cus_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +66,7 @@
                 android:paddingBottom="5dp">
 
                 <TextView
-                    android:id="@+id/sellers_review_star_on_cus_profile"
+                    android:id="@+id/sell_rev_starl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4"
