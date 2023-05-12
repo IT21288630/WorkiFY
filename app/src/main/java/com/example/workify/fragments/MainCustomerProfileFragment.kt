@@ -43,12 +43,22 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
             commit()
         }
 
-        val cusDetailsBtn = view.findViewById<Button>(R.id.cusDetailsBtn)
-        val cusFavBtn = view.findViewById<Button>(R.id.cusFavBtn)
-        val cusRevBtn = view.findViewById<Button>(R.id.cusRevBtn)
-        val cusOrdersBtn = view.findViewById<Button>(R.id.cusOrdersBtn)
+        val cusDetailsBtn = view.findViewById<TextView>(R.id.cusDetailsBtn)
+        val cusFavBtn = view.findViewById<TextView>(R.id.cusFavBtn)
+        val cusRevBtn = view.findViewById<TextView>(R.id.cusRevBtn)
+        val cusOrdersBtn = view.findViewById<TextView>(R.id.cusOrdersBtn)
 
        cusDetailsBtn.setOnClickListener {
+           cusDetailsBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+           cusFavBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+           cusRevBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+           cusOrdersBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+
+           cusDetailsBtn.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+           cusFavBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+           cusRevBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+           cusOrdersBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+
            customerDetailsFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flSubCusProfileFragment, customerDetailsFragment)
@@ -58,6 +68,16 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
         }
 
        cusFavBtn.setOnClickListener {
+           cusDetailsBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+           cusFavBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+           cusRevBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+           cusOrdersBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+
+           cusDetailsBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+           cusFavBtn.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+           cusRevBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+           cusOrdersBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+
            customerProfileFavFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flSubCusProfileFragment, customerProfileFavFragment)
@@ -67,6 +87,16 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
         }
 
         cusOrdersBtn.setOnClickListener {
+            cusDetailsBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            cusFavBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            cusRevBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            cusOrdersBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+
+            cusDetailsBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            cusFavBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            cusRevBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            cusOrdersBtn.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+
             customerOrdersFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flSubCusProfileFragment, customerOrdersFragment)
@@ -76,6 +106,16 @@ class MainCustomerProfileFragment : Fragment(R.layout.fragment_main_customer_pro
         }
 
         cusRevBtn.setOnClickListener {
+            cusDetailsBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            cusFavBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+            cusRevBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_selected)
+            cusOrdersBtn.background = ContextCompat.getDrawable(view.context, R.drawable.toggle_not_selected)
+
+            cusDetailsBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            cusFavBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+            cusRevBtn.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+            cusOrdersBtn.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
+
             customerReviewFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
                 replace(R.id.flSubCusProfileFragment, customerReviewFragment)

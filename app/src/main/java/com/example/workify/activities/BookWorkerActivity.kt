@@ -86,6 +86,7 @@ class BookWorkerActivity : AppCompatActivity() {
             val result = IT21256646TestClass.ValideData(cusPhone)
 
             if(!result){
+                etPhone.error = "Please Enter a Valid Phone Number"
                 return@setOnClickListener
             }
 
