@@ -48,6 +48,7 @@ class MsgForWorkerAdapter(
             intent.putExtra("receiverEmail", email)
             intent.putExtra("cEmail", data[position].email)
             intent.putExtra("wEmail", email)
+            intent.putExtra("senderName", data[position].name)
             context.startActivity(intent)
         }
     }

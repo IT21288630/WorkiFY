@@ -2,6 +2,7 @@ package com.example.workify
 
 import com.example.workify.testClasses.IT21288630TestClass
 import com.google.common.truth.Truth.assertThat
+import org.junit.Assert
 import org.junit.Test
 
 /**
@@ -16,7 +17,7 @@ class IT21288630UnitTest {
 
         val result = IT21288630TestClass.login(email, password)
 
-        assertThat(result).isTrue()
+        Assert.assertEquals(true, result)
     }
 
     @Test
@@ -26,7 +27,7 @@ class IT21288630UnitTest {
 
         val result = IT21288630TestClass.login(email, password)
 
-        assertThat(result).isFalse()
+        Assert.assertEquals(false, result)
     }
 
     @Test
@@ -41,7 +42,7 @@ class IT21288630UnitTest {
 
         val result = IT21288630TestClass.register(email, email, district, password, rePassword, description, phone)
 
-        assertThat(result).isTrue()
+        Assert.assertEquals("Success", result)
     }
 
     @Test
@@ -56,7 +57,7 @@ class IT21288630UnitTest {
 
         val result = IT21288630TestClass.register(email, email, district, password, rePassword, description, phone)
 
-        assertThat(result).isFalse()
+        Assert.assertEquals("phone", result)
     }
 
     @Test
@@ -67,7 +68,7 @@ class IT21288630UnitTest {
 
         val result = IT21288630TestClass.addAService(services[0], description, hrRate)
 
-        assertThat(result).isTrue()
+        Assert.assertEquals(true, result)
     }
 
     @Test
@@ -78,7 +79,7 @@ class IT21288630UnitTest {
 
         val result = IT21288630TestClass.addAService(services[0], description, hrRate)
 
-        assertThat(result).isFalse()
+        Assert.assertEquals(false, result)
     }
 
 

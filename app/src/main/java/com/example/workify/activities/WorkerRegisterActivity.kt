@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.example.workify.R
 import com.example.workify.dataClasses.Worker
+import com.example.workify.testClasses.IT21288630TestClass
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -42,50 +43,60 @@ class WorkerRegisterActivity : AppCompatActivity() {
             val description = etWDescription.text.toString()
             val phone = etWPhone.text.toString()
 
-            if(name.isEmpty()){
-                etWName.error = "Please Enter Your Name"
-                return@setOnClickListener
-            }
-            if(email.isEmpty()){
-                etWEmail.error = "Please Enter Your Email"
-                return@setOnClickListener
-            }
-            if(phone.isEmpty()){
-                etWPhone.error = "Please Enter Your PhoneNumber"
-                return@setOnClickListener
-            }
-            if(phone.length != 10){
-                etWPhone.error = "Please Enter a Valid PhoneNumber"
-                return@setOnClickListener
-            }
-            try {
-                var tempPhone = phone.toInt()
-            }catch (e: Exception){
-                etWPhone.error = "Please Enter a Valid PhoneNumber"
-                return@setOnClickListener
-            }
-            if(district.isEmpty()){
-                etWDistrict.error = "Please Enter Your District"
-                return@setOnClickListener
-            }
-            if(description.isEmpty()){
-                etWDescription.error = "Please Enter Your Description"
-                return@setOnClickListener
-            }
-            if(password.isEmpty()){
-                etWPassword.error = "Please Enter a Password"
-                return@setOnClickListener
-            }
-            if(rePassword.isEmpty()){
-                etWRePassword.error = "Please Enter the Confirm Password"
-                return@setOnClickListener
-            }
-            if(rePassword != password){
-                etWRePassword.error = "Password and the Confirm Password Should Match"
-                return@setOnClickListener
-            }
+            val result = IT21288630TestClass.register(name, email, district, password, rePassword, description, phone)
 
+            when (result){
+                "name" -> {
+                    etWName.error = "Please Enter Your Name"
+                    return@setOnClickListener
+                }
 
+                "email" -> {
+                    etWEmail.error = "Please Enter a Valid Email"
+                    return@setOnClickListener
+                }
+
+                "emailEmp" -> {
+                    etWEmail.error = "Please Enter Your Email"
+                    return@setOnClickListener
+                }
+
+                "phone" -> {
+                    etWPhone.error = "Please Enter a Valid PhoneNumber"
+                    return@setOnClickListener
+                }
+
+                "phoneEmp" -> {
+                    etWPhone.error = "Please Enter Your PhoneNumber"
+                    return@setOnClickListener
+                }
+
+                "disc" -> {
+                    etWDistrict.error = "Please Enter Your District"
+                    return@setOnClickListener
+                }
+
+                "desc" -> {
+                    etWDescription.error = "Please Enter Your Description"
+                    return@setOnClickListener
+                }
+
+                "repass" -> {
+                    etWRePassword.error = "Password and the Confirm Password Should Match"
+                    return@setOnClickListener
+                }
+
+                "repassEmp" -> {
+                    etWRePassword.error = "Please Enter the Confirm Password"
+                    return@setOnClickListener
+                }
+
+                "password" -> {
+                    etWPassword.error = "Please Enter a Password"
+                    return@setOnClickListener
+                }
+
+            }
 
             val worker = Worker(name, email, district, password, description, 0.0, null, phone)
 
