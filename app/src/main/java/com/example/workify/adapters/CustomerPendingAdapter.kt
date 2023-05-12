@@ -37,7 +37,7 @@ class CustomerPendingAdapter(
 
     inner class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val customerOrderTitle: TextView
-     //   val customerPendingOrderId: TextView
+        val customerPendingOrderId: TextView
         val CustomerViewDetailsbtn: Button
         val Customercancelorderbtn: Button
 
@@ -46,7 +46,7 @@ class CustomerPendingAdapter(
             customerOrderTitle = view.findViewById(R.id.customerOrderTitle)
             CustomerViewDetailsbtn = view.findViewById(R.id.CustomerViewDetailsbtn)
             Customercancelorderbtn = view.findViewById(R.id.Customercancelorderbtn)
-            //customerPendingOrderId = view.findViewById(R.id.customerPendingOrderId)
+            customerPendingOrderId = view.findViewById(R.id.customerPendingOrderId)
 
         }
     }
@@ -64,7 +64,7 @@ class CustomerPendingAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.customerOrderTitle.text = data[position].cusTitle
-     //   holder.customerPendingOrderId.text = "Order ID: " + data[position].orderID
+        holder.customerPendingOrderId.text = "Order ID: " + data[position].orderID
 
         holder.CustomerViewDetailsbtn.setOnClickListener {
             var intent = Intent(context, ViewCusOrderDetailsActivity::class.java)
