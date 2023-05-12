@@ -168,6 +168,7 @@ class CustomerEditReviewActivity : AppCompatActivity() {
         revCancelBtn.setOnClickListener {
             val intent = Intent(this@CustomerEditReviewActivity, CustomerActivity::class.java)
             startActivity(intent)
+
         }
 
     }

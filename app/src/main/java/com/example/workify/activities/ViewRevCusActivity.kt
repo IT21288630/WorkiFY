@@ -63,7 +63,7 @@ class ViewRevCusActivity : FragmentActivity() {
                           //  curWorkerEmail.text = review.worker_email
                             title.text = review.title
                             description.text = review.description
-                            RatingBar.rating = review.stars.toInt().toFloat()
+                            RatingBar.rating = review.stars.toFloat()
 
                         }
                     }

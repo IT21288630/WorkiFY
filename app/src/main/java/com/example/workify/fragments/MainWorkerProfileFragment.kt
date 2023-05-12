@@ -23,12 +23,13 @@ import kotlinx.coroutines.withContext
 class MainWorkerProfileFragment : Fragment(R.layout.fragment_main_worker_profile) {
 
     private val workerCollectionRef = Firebase.firestore.collection("workers")
+    private val revCollectionRef = Firebase.firestore.collection("customer_reviews")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val workerProfileDescriptionFragment = WorkerProfileDescriptionFragment()
         val workerProfileServicesFragment = WorkerProfileServicesFragment()
-        //val workerProfileReviewsFragment = WorkerProfileReviewsFragment()
+        val workerProfileReviewFragment = WorkerProfileReviewFragment()
 
         val bundle = arguments
         val email = bundle!!.getString("curWorkerEmail")
@@ -89,12 +90,12 @@ class MainWorkerProfileFragment : Fragment(R.layout.fragment_main_worker_profile
             btnServices.setTextColor(ContextCompat.getColor(view.context, R.color.newBlue))
             btnReviews.setTextColor(ContextCompat.getColor(view.context, R.color.white))
 
-     /*       workerProfileReviewsFragment.arguments = mBundle
+            workerProfileReviewFragment.arguments = mBundle
             childFragmentManager.beginTransaction().apply {
-                replace(R.id.flWorkerProfileFragment, workerProfileReviewsFragment)
+                replace(R.id.flWorkerProfileFragment, workerProfileReviewFragment)
                 addToBackStack(null)
                 commit()
-            }*/
+            }
         }
 
         val tvWorkerName = view.findViewById<TextView>(R.id.tvWorkerName)
