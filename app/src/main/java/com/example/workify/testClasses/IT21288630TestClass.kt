@@ -18,8 +18,22 @@ class IT21288630TestClass {
                 return "emailEmp"
             }
 
+            if(!email.lowercase().contains("@gmail.com")){
+                return "email"
+            }
+
             if (phone.isEmpty()){
                 return "phoneEmp"
+            }
+
+            if (phone.length != 10){
+                return "phone"
+            }
+
+            try {
+                phone.toInt()
+            }catch (e: java.lang.Exception){
+                return "phone"
             }
 
             if (district.isEmpty()){
@@ -38,22 +52,8 @@ class IT21288630TestClass {
                 return "repassEmp"
             }
 
-            if(!email.lowercase().contains("@gmail.com")){
-                return "email"
-            }
-
-            if (phone.length != 10){
-                return "phone"
-            }
-
             if (rePassword !=password){
                 return "repass"
-            }
-
-            try {
-                phone.toInt()
-            }catch (e: java.lang.Exception){
-                return "phone"
             }
 
             return "Success"

@@ -83,7 +83,11 @@ class BookWorkerActivity : AppCompatActivity() {
 
             //IT21256646TestClass.DetailsEmptyCheck(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDesc)
 
-            //IT21256646TestClass.ValideData(cusPhone)
+            val result = IT21256646TestClass.ValideData(cusPhone)
+
+            if(!result){
+                return@setOnClickListener
+            }
 
             val order = Order(cusName,cusAddress,cusPhone,cusTitle,cusDesc,cusDate,cusEmail,intent.getStringExtra("workerEmail"),"Pending",orderID)
             orderWorker(order)

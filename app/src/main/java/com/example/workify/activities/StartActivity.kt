@@ -17,11 +17,13 @@ class StartActivity : AppCompatActivity() {
         hireBtn.setOnClickListener {
             val intent = Intent(this@StartActivity, CustomerLoginActivity2::class.java)
             startActivity(intent)
+            finish()
         }
 
         workBtn.setOnClickListener {
             val intent = Intent(this@StartActivity, WorkerLoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

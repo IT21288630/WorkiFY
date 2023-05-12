@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
+import com.example.workify.activities.StartActivity
 import com.example.workify.activities.WorkerLoginActivity
 import com.example.workify.adapters.ServicesForSettingsAdapter
 import com.example.workify.dataClasses.Category
@@ -336,7 +337,7 @@ class WorkerSettingsFragment : Fragment(R.layout.fragment_worker_settings) {
                 }
 
                 withContext(Dispatchers.Main) {
-                    var intent = Intent(context, WorkerLoginActivity::class.java)
+                    var intent = Intent(context, StartActivity::class.java)
                     startActivity(intent)
                 }
 

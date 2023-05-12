@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.example.workify.R
 import com.example.workify.dataClasses.Worker
@@ -33,6 +34,13 @@ class WorkerRegisterActivity : AppCompatActivity() {
         val etWDescription = findViewById<EditText>(R.id.etWDescription)
         val etWPhone = findViewById<EditText>(R.id.etWPhone)
         val workerRegBtn = findViewById<ImageView>(R.id.workerRegBtn)
+        val tvWorkerSignIn = findViewById<TextView>(R.id.tvWorkerSignIn)
+
+        tvWorkerSignIn.setOnClickListener {
+            val intent = Intent(this@WorkerRegisterActivity, WorkerLoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         workerRegBtn.setOnClickListener {
             val name = etWName.text.toString()
