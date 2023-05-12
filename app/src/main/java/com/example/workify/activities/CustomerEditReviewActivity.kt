@@ -35,7 +35,7 @@ class CustomerEditReviewActivity : AppCompatActivity() {
         println("This is the id in the begning: "+ id)
 
         revTitle = findViewById(R.id.cutomerRevTitle)
-        revStar = findViewById(R.id.RatingBar)
+        revStar = findViewById(R.id.EditRatingBar)
         revDescription = findViewById(R.id.addcustomRevDescription)
 
         var revRecoYes = findViewById<RadioButton>(R.id.radioRecYes)
@@ -114,6 +114,10 @@ class CustomerEditReviewActivity : AppCompatActivity() {
                             .update("title", revTitle.text.toString())
                         customerCollectionRef.document(document.id)
                             .update("description", revDescription.text.toString())
+                        customerCollectionRef.document(document.id)
+                            .update("recomment", revRecommend)
+                        customerCollectionRef.document(document.id)
+                            .update("stars", revStar)
 
 
 
