@@ -22,6 +22,7 @@ import kotlinx.coroutines.withContext
 class WorkerMessagesFragment : Fragment(R.layout.fragment_worker_messages) {
 
     private val customerWorkerMsgCollectionRef = Firebase.firestore.collection("customer_worker_msg")
+    private val customerCollectionRef = Firebase.firestore.collection("customers")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,6 +46,14 @@ class WorkerMessagesFragment : Fragment(R.layout.fragment_worker_messages) {
 
                     customer.email = document.get("cEmail").toString()
 
+                    val querySnapshot2 = customerCollectionRef
+                        .whereEqualTo("email", customer.email)
+                        .get()
+                        .await()
+
+                    for (document2 in querySnapshot2.documents) {
+                        customer.name = document2.get("name").toString()
+                    }
                     customers.add(customer)
                 }
 

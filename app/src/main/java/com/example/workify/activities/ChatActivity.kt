@@ -36,7 +36,7 @@ class ChatActivity : AppCompatActivity() {
         var myEmail = intent.getStringExtra("receiverEmail")
         var wEmail = intent.getStringExtra("wEmail")
         var cEmail = intent.getStringExtra("cEmail")
-        var senderName = intent.getStringExtra("cEmail")
+        var senderName = intent.getStringExtra("senderName")
 
         val tvMsgSenderEmail = findViewById<TextView>(R.id.tvMsgSenderEmail)
         val rvChatMsgs = findViewById<RecyclerView>(R.id.rvChatMsgs)
