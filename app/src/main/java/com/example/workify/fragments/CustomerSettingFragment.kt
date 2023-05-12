@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workify.R
 import com.example.workify.activities.CustomerLoginActivity2
+import com.example.workify.activities.StartActivity
+import com.example.workify.activities.WorkerLoginActivity
 import com.example.workify.adapters.ServicesForSettingsAdapter
 import com.example.workify.dataClasses.Category
 import com.example.workify.dataClasses.Customer
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -47,7 +50,14 @@ class CustomerSettingFragment : Fragment(R.layout.fragment_customer_setting) {
         val etWSPassword = view.findViewById<EditText>(R.id.etWSPassword)
         val btnWorkerEdit = view.findViewById<Button>(R.id.btnWorkerEdit)
         val workerDeleteProfileBtn = view.findViewById<Button>(R.id.workerDeleteProfileBtn)
+        val tvWorkerSignOut = view.findViewById<TextView>(R.id.tvWorkerSignOut)
 
+
+
+        tvWorkerSignOut.setOnClickListener {
+            var intent = Intent(context, StartActivity::class.java)
+            startActivity(intent)
+        }
 
 
         workerDeleteProfileBtn.setOnClickListener {
@@ -199,4 +209,6 @@ class CustomerSettingFragment : Fragment(R.layout.fragment_customer_setting) {
             }
         }
     }
+
+
 }
