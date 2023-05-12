@@ -9,28 +9,54 @@ class IT21288630TestClass {
             return email == "asd@gmail.com" && password == "456dsa"
         }
 
-        fun register(name: String, email: String, district: String, password: String, rePassword: String, description: String,  phone: String): Boolean{
+        fun register(name: String, email: String, district: String, password: String, rePassword: String, description: String,  phone: String): String{
+            if (name.isEmpty()){
+                return "name"
+            }
+
+            if(email.isEmpty()){
+                return "emailEmp"
+            }
+
+            if (phone.isEmpty()){
+                return "phoneEmp"
+            }
+
+            if (district.isEmpty()){
+                return "disc"
+            }
+
+            if (description.isEmpty()){
+                return "desc"
+            }
+
+            if (password.isEmpty()){
+                return "password"
+            }
+
+            if (rePassword.isEmpty()){
+                return "repassEmp"
+            }
+
             if(!email.lowercase().contains("@gmail.com")){
-                return false
+                return "email"
             }
 
             if (phone.length != 10){
-                return false
+                return "phone"
             }
 
             if (rePassword !=password){
-                return false
+                return "repass"
             }
 
             try {
                 phone.toInt()
             }catch (e: java.lang.Exception){
-                return false
+                return "phone"
             }
 
-            val worker = Worker(name, email, district, password, description, null, null, phone)
-
-            return true
+            return "Success"
         }
 
         fun addAService(serviceName: String, description: String, hrRate: String): Boolean{

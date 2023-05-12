@@ -41,7 +41,7 @@ class MsgForCustomerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvMsgWorkerName.text = data[position].email
+        holder.tvMsgWorkerName.text = data[position].name
 
         holder.lyMsgItem.setOnClickListener {
             var intent = Intent(context, ChatActivity::class.java)
@@ -49,6 +49,7 @@ class MsgForCustomerAdapter(
             intent.putExtra("receiverEmail", email)
             intent.putExtra("wEmail", data[position].email)
             intent.putExtra("cEmail", email)
+            intent.putExtra("senderName", data[position].name)
             context.startActivity(intent)
         }
     }

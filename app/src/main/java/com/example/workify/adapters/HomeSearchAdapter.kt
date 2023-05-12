@@ -100,6 +100,7 @@ class HomeSearchAdapter(
             intent.putExtra("receiverEmail", email)
             intent.putExtra("wEmail", data[position].email)
             intent.putExtra("cEmail", email)
+            intent.putExtra("senderName", data[position].name)
             context.startActivity(intent)
         }
     }

@@ -25,6 +25,7 @@ class CustomerMessagesFragment : Fragment(R.layout.fragment_customer_messages) {
 
     private val customerWorkerMsgCollectionRef =
         Firebase.firestore.collection("customer_worker_msg")
+    private val workerCollectionRef = Firebase.firestore.collection("workers")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,6 +48,15 @@ class CustomerMessagesFragment : Fragment(R.layout.fragment_customer_messages) {
                     val worker = Worker()
 
                     worker.email = document.get("wEmail").toString()
+
+                    val querySnapshot2 = workerCollectionRef
+                        .whereEqualTo("email", worker.email)
+                        .get()
+                        .await()
+
+                    for (document2 in querySnapshot2.documents) {
+                        worker.name = document2.get("name").toString()
+                    }
 
                     workers.add(worker)
                 }
